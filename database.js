@@ -20,10 +20,24 @@ const productSchema = new Schema({
     },
     "price": Number,
     "description": String,
-    "quantity": Number,
+    "inventory": Number,
     "image": String,
     "category": String,
-    "discount": Number,
     "rating": Number,
     "reviews": Array
 });
+
+const categorySchema = new Schema({
+    "categoryName": {
+        "type": String,
+        "unique": true
+    },
+    "products": Array
+});
+
+const cartSchema = new Schema({
+    "userName": String,
+    "products": Array
+});
+
+
