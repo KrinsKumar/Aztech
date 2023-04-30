@@ -1,6 +1,6 @@
 //queries all the product and categories from the database
 // and saves it in a variable
-
+const dotenv = require('dotenv').config();
 const database = require('./database')
 /*
 Following function:
@@ -16,21 +16,21 @@ Following function:
 10. get all carts by user
 */
 
-var Product;
-var Category;
-var Cart;
+let Product;
+let Category;
+let Cart;
 
 exports.initialize = function () {
     return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection("");
+        let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
 
         db.on('error', (err) => {
             reject(err); // reject the promise with the provided error
         });
         db.once('open', () => {
-            Product = db.model("products", database.productSchema);
-            Category = db.model("categories", database.categorySchema);
-            Category = db.model("carts", database.cartSchema);
+            Product = db.model("product", database.productSchema);
+            Category = db.model("categorie", database.categorySchema);
+            Cart = db.model("cart", database.cartSchema);
             resolve();
         });
     });
