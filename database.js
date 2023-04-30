@@ -27,12 +27,13 @@ const productSchema = new Schema({
     "reviews": Array
 });
 
+// I dont think we need the products here in the categorySchema, since all products have a category field to filter products from a specific category
 const categorySchema = new Schema({
     "categoryName": {
         "type": String,
         "unique": true
     },
-    "products": Array
+    // "products": Array
 });
 
 const cartSchema = new Schema({
