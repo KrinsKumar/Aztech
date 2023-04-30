@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 //Not compoleted - need to correct the schemes and add more schemas
 
-const userSchema = new Schema({
+export const userSchema = new Schema({
     "userName" : {
         "type": String,
         "unique": true
@@ -13,32 +13,41 @@ const userSchema = new Schema({
     "discount": Number,
 });
 
-const productSchema = new Schema({
+export const productSchema = new Schema({
     "productName": {
         "type": String,
         "unique": true
     },
     "price": Number,
-    "description": String,
+    "description": [{ 
+        "heading": String, 
+        "text": String 
+    }],
     "inventory": Number,
     "image": String,
     "category": String,
-    "rating": Number,
-    "reviews": Array
+    "agnecy": [string] // array of addresses of the photoes of the agencies 
 });
 
-// I dont think we need the products here in the categorySchema, since all products have a category field to filter products from a specific category
-const categorySchema = new Schema({
+export const categorySchema = new Schema({
     "categoryName": {
         "type": String,
         "unique": true
     },
-    // "products": Array
+    "image": String
 });
 
-const cartSchema = new Schema({
+export const cartSchema = new Schema({
     "userName": String,
-    "products": Array
+    "products": [{
+        "productName": String, 
+        "quantity": Number, 
+        "price": Number
+    }],
+    "totalPrice": Number
 });
+
+//---------------------------------------------------------------------
+//Open Connection
 
 
