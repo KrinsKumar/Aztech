@@ -6,7 +6,6 @@ const exphbs = require("express-handlebars");
 
 //--------------------------------------------------------------------
 
-app.use(express.static("public"));
 
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
@@ -14,15 +13,6 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
             return '<li' + 
                 ((url == app.locals.activeRoute) ? ' class="active" ' : '') + 
                 '><a href="' + url + '">' + options.fn(this) + '</a></li>';
-        },
-        equal: function (lvalue, rvalue, options) {
-            if (arguments.length < 3)
-                throw new Error("Handlebars Helper equal needs 2 parameters");
-            if (lvalue != rvalue) {
-                return options.inverse(this);
-            } else {
-                return options.fn(this);
-            }
         },
         safeHTML: function(context){
             return stripJs(context);
@@ -45,6 +35,8 @@ const HTTP_PORT = process.env.PORT || 8080
 function onHttpStart() {
     console.log("Express http server listening on: " + HTTP_PORT);
 }
+
+app.use(express.static("public"));
 
 app.get("/", (req,res) => {
     res.render('home', {
