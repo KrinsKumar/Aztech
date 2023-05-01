@@ -57,14 +57,14 @@ function onHttpStart() {
 
 app.use(express.static("public"));
 
-app.get("/", /*ensureLogin,*/ (req,res) => {
+app.get("/", ensureLogin, (req,res) => {
     res.render('home', {
         layout: 'main'
     })
 });
 //------------------Products------------------
-app.get("/products", /*ensureLogin,*/ (req,res) => {
-
+app.get("/products", ensureLogin, (req,res) => {
+    
 });
 
 //------------------User------------------
