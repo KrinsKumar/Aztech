@@ -2,7 +2,9 @@
 // and saves it in a variable
 let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-const database = require('./database')
+const {userModel, productModel, categoryModel, cartModel} = require('../model/database.js')
+const express = require("express");
+const router = express.Router();
 /*
 Following function:
 1. Queries all the products and categories from the database and save it in a variable
@@ -21,7 +23,7 @@ let Productdb;
 let Categorydb;
 let Cartdb;
 
-exports.initialize = function () {
+const initialize = function () {
     return new Promise(function (resolve, reject) {
         let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
 
@@ -37,7 +39,7 @@ exports.initialize = function () {
     });
 };
 
-exports.getAllProducts = function(){
+const getAllProducts = function(){
     return new Promise((resolve, reject) => {
         Product.find({})
         .exec()
@@ -50,7 +52,7 @@ exports.getAllProducts = function(){
     })
 }
 
-exports.getAllCategories = function(){
+const getAllCategories = function(){
     return new Promise((resolve, reject) => {
         Category.find({})
         .exec()
@@ -63,7 +65,7 @@ exports.getAllCategories = function(){
     })
 }
 
-exports.getAllProductsByCategory = function(categoryName){
+const getAllProductsByCategory = function(categoryName){
     return new Promise((resolve, reject) => {
         Product.find({category:categoryName})
         .exec()
@@ -76,7 +78,7 @@ exports.getAllProductsByCategory = function(categoryName){
     })
 }
 
-exports.getProductById = function(val){
+const getProductById = function(val){
     return new Promise((resolve, reject) => {
         Product.findOne({_id : val})
         .exec()
@@ -89,7 +91,7 @@ exports.getProductById = function(val){
     })
 }
 
-exports.getCategoryById = function(val){
+const getCategoryById = function(val){
     return new Promise((resolve, reject) => {
         Category.findOne({_id : val})
         .exec()
@@ -102,7 +104,7 @@ exports.getCategoryById = function(val){
     })
 }
 
-exports.getCartById = function(val){
+const getCartById = function(val){
     return new Promise((resolve, reject) => {
         Cart.findOne({_id : val})
         .exec()
@@ -115,10 +117,10 @@ exports.getCartById = function(val){
     })
 }
 
-exports.getCartItems = function(val)
+const getCartItems = function(val)
 {
     return new Promise((resolve, reject) => {
-        exports.getCartById(val)
+        getCartById(val)
         .then((cart)=>{
             resolve(cart.products)
         })
@@ -128,7 +130,7 @@ exports.getCartItems = function(val)
     })
 }
 
-exports.getAllCarts = function(){
+const getAllCarts = function(){
     return new Promise((resolve, reject) => {
         Cart.find({})
         .exec()
@@ -140,3 +142,8 @@ exports.getAllCarts = function(){
         })
     })
 }
+
+router.get("/", (req, res)=>{
+    
+})
+module.export = router;

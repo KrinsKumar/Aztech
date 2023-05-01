@@ -58,9 +58,41 @@ const cartSchema = new Schema({
     }]
 });
 
+
+userSchema.pre("save", function (next) {
+    let user = this;
+
+    // Generate a unique SALT.
+    bcryptjs.genSalt()
+        .then(salt => {
+            // Hash the password using the generated SALT.
+            bcryptjs.hash(user.Password, salt)
+                .then(hashedPwd => {
+                    // The password was hashed.
+                    user.Password = hashedPwd;
+                    next();
+                })
+                .catch(err => {
+                    console.log(`Error occurred when hasing ... ${err}`);
+                });
+        })
+        .catch(err => {
+            console.log(`Error occurred when salting ... ${err}`);
+        });
+});
+const userModel = mongoose.model("users", userSchema);
+
 //to export
-exports.userSchema = userSchema;
-exports.productSchema = productSchema;
-exports.categorySchema = categorySchema;
-exports.cartSchema = cartSchema;
+const userModell = mongoose.model("User", userSchema);
+const productModell = mongoose.model("Product", productSchema);
+const categoryModell = mongoose.model("Category", categorySchema);
+const cartModell = mongoose.model("Cart", cartSchema);
+
+
+
+ exports.userModel = userModell;
+ exports.productModel = productModell;
+ exports.categoryModel = categoryModell;
+ exports.cartModel = cartModell;
+ 
 

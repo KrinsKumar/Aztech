@@ -10,6 +10,7 @@ const userAuth = require(`./userAuth.js`);
 const productData = require(`./product.js`);
 //--------------------------------------------------------------------
 
+
 //to be removed later if not being used
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
@@ -29,6 +30,10 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
         }
     }})
 );
+
+const productController = require("./controller/productController.js");
+app.use("/product", productController);
+
 app.set('view engine', '.hbs');
 
 app.use(clientSessions({
