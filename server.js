@@ -1,12 +1,15 @@
+//dependancies
 const express = require('express');
 const app = express();
 const path = require("path");
-const dotenv = require('dotenv').config();
 const exphbs = require("express-handlebars");
 
+//modules
+const userAuth = require(`./userAuth.js`);
+const productData = require(`./product.js`);
 //--------------------------------------------------------------------
 
-
+//to be removed later if not being used
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
         navLink: function(url, options){
@@ -28,7 +31,7 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
 
 app.set('view engine', '.hbs');
 
-//--------------------------------------------------------------------
+//-routes-------------------------------------------------------------------
 
 const HTTP_PORT = process.env.PORT || 8080
 
@@ -51,4 +54,11 @@ app.use((req,res) => {
     })
 });
 
-app.listen(HTTP_PORT, onHttpStart)
+productData.initialize()
+.then((userAuth.initialize))
+.then(() => {
+    app.listen(HTTP_PORT, onHttpStart)
+})
+.catch((err) => {
+    console.log(err);
+});

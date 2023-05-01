@@ -1,5 +1,6 @@
 //queries all the product and categories from the database
 // and saves it in a variable
+let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const database = require('./database')
 /*

@@ -3,17 +3,17 @@ let Schema = mongoose.Schema;
 
 //Not compoleted - need to correct the schemes and add more schemas
 
-export const userSchema = new Schema({
+const userSchema = new Schema({
     "userName" : {
         "type": String,
         "unique": true
     },
     "password": String,
     "email": String,
-    "discount": Number,
+    "discount": Number
 });
 
-export const productSchema = new Schema({
+const productSchema = new Schema({
     "productName": {
         "type": String,
         "unique": true
@@ -26,10 +26,15 @@ export const productSchema = new Schema({
     "inventory": Number,
     "image": String,
     "category": String,
-    "agnecy": [string] // array of addresses of the photoes of the agencies 
+    "agnecy": [String], // array of addresses of the photos of the agencies 
+    "hasChild": Boolean, // true if this is a sub category
+    "discountable": Boolean  // true if this product can be discounted
 });
+productSchema.add({
+    "subProducts" : [productSchema] // array of sub products if this is a sub category
+})
 
-export const categorySchema = new Schema({
+const categorySchema = new Schema({
     "categoryName": {
         "type": String,
         "unique": true
@@ -37,7 +42,7 @@ export const categorySchema = new Schema({
     "image": String
 });
 
-export const cartSchema = new Schema({
+const cartSchema = new Schema({
     "userName": String,
     "products": [{
         "productName": String, 
@@ -47,4 +52,9 @@ export const cartSchema = new Schema({
     "totalPrice": Number
 });
 
+//to export
+exports.userSchema = userSchema;
+exports.productSchema = productSchema;
+exports.categorySchema = categorySchema;
+exports.cartSchema = cartSchema;
 
