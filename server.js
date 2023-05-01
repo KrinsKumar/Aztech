@@ -6,8 +6,6 @@ const exphbs = require("express-handlebars");
 const clientSessions = require("client-sessions");
 
 //modules
-const userAuth = require(`./userAuth.js`);
-const productData = require(`./product.js`);
 //--------------------------------------------------------------------
 
 
