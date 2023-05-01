@@ -62,14 +62,40 @@ function onHttpStart() {
 
 app.use(express.static("public"));
 
-app.get("/", /*ensureLogin,*/ (req,res) => {
+app.get("/", ensureLogin, (req,res) => {
     res.render('home', {
         layout: 'main'
     })
 });
-//------------------Products------------------
-app.get("/products", /*ensureLogin,*/ (req,res) => {
 
+//------------------Products------------------
+
+app.get("/category",ensureLogin, function (req, res) {
+    productData.getAllCategories()
+        .then((data) => {
+            if (data.length > 0) {
+                res.render("categories", { categories: data })
+            }
+            else {
+                res.render("categories", { message: "no results" })
+            }
+        }).catch((err) => {
+            res.render("categories", { message: "no results" })
+        })
+})
+
+app.get("/products", ensureLogin, (req,res) => {
+    productData.getAllProducts()
+    .then((data) => {
+        if (data.length > 0) {
+            res.render("product", { products: data })
+        }
+        else {
+            res.render("product", { message: "no results" })
+        }
+    }).catch((err) => {
+        res.render("product", { message: "no results" })
+    })
 });
 
 //------------------User------------------
