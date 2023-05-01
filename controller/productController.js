@@ -144,6 +144,17 @@ const getAllCarts = function(){
 }
 
 router.get("/", (req, res)=>{
-    
+    // productData.getAllProducts()
+    // .then((data) => {
+    //     if (data.length > 0) {
+    //         res.render("product", { products: data })
+    //     }
+    //     else {
+    //         res.render("product", { message: "no results" })
+    //     }
+    // }).catch((err) => {
+    //     res.render("product", { message: "no results" })
+    // })
+    res.render("product", { layout: "main" })
 })
-module.export = router;
+module.exports = router;

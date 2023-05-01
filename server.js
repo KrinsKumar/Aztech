@@ -4,10 +4,10 @@ const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
 const clientSessions = require("client-sessions");
-
+let mongoose = require('mongoose');
 //modules
-const userAuth = require(`./userAuth.js`);
-const productData = require(`./product.js`);
+//const userAuth = require(`./userAuth.js`);
+//const productData = require(`./product.js`);
 //--------------------------------------------------------------------
 
 
@@ -84,19 +84,19 @@ app.get("/category",ensureLogin, function (req, res) {
         })
 })
 
-app.get("/products", ensureLogin, (req,res) => {
-    productData.getAllProducts()
-    .then((data) => {
-        if (data.length > 0) {
-            res.render("product", { products: data })
-        }
-        else {
-            res.render("product", { message: "no results" })
-        }
-    }).catch((err) => {
-        res.render("product", { message: "no results" })
-    })
-});
+// app.get("/products", ensureLogin, (req,res) => {
+//     productData.getAllProducts()
+//     .then((data) => {
+//         if (data.length > 0) {
+//             res.render("product", { products: data })
+//         }
+//         else {
+//             res.render("product", { message: "no results" })
+//         }
+//     }).catch((err) => {
+//         res.render("product", { message: "no results" })
+//     })
+// });
 
 //------------------User------------------
 app.get("/register", (req,res) => {
@@ -118,11 +118,24 @@ app.use((req,res) => {
     })
 });
 
-productData.initialize()
-.then((userAuth.initialize))
-.then(() => {
-    app.listen(HTTP_PORT, onHttpStart)
+mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-.catch((err) => {
-    console.log(err);
-});
+.then(()=>{
+    app.listen(HTTP_PORT, onHttpStart);
+})
+.catch(()=>{
+    console.log("Error while connection to mongoDB");
+})
+
+
+//app.listen(HTTP_PORT, onHttpStart)
+// productData.initialize()
+// .then((userAuth.initialize))
+// .then(() => {
+//     app.listen(HTTP_PORT, onHttpStart)
+// })
+// .catch((err) => {
+//     console.log(err);
+// });
