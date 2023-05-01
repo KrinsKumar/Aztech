@@ -2,7 +2,7 @@
   "name": "aztech",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "build-tw": "npx tailwindcss -i ./public/css/main.css -o ./public/css/tailwind.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
