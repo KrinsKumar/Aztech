@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
+const clientSessions = require("client-sessions");
 
 //modules
 const userAuth = require(`./userAuth.js`);
@@ -28,8 +29,23 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
         }
     }})
 );
-
 app.set('view engine', '.hbs');
+
+app.use(clientSessions({
+    cookieName: "session", 
+    secret: "ThisIsaSuperLongSecretKeyWithNumbers1234567890!@#$%^&*()", 
+    duration: 60 * 60 * 1000 * 24 * 7, // 1 week
+    activeDuration: 1000 * 60 * 60 * 24  // 1 day
+}));
+
+//middleware
+function ensureLogin(req, res, next) { // checks the sessions
+    if (!req.session.user) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+}
 
 //-routes-------------------------------------------------------------------
 
@@ -41,9 +57,26 @@ function onHttpStart() {
 
 app.use(express.static("public"));
 
-app.get("/", (req,res) => {
+app.get("/", /*ensureLogin,*/ (req,res) => {
     res.render('home', {
         layout: 'main'
+    })
+});
+//------------------Products------------------
+app.get("/products", /*ensureLogin,*/ (req,res) => {
+
+});
+
+//------------------User------------------
+app.get("/register", (req,res) => {
+    res.render('register', {
+        layout: 'signUp'
+    })
+});
+
+app.get("/login", (req,res) => {
+    res.render('login', {
+        layout: 'signIn'
     })
 });
 
