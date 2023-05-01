@@ -16,9 +16,9 @@ Following function:
 10. get all carts by user
 */
 
-let Product;
-let Category;
-let Cart;
+let Productdb;
+let Categorydb;
+let Cartdb;
 
 exports.initialize = function () {
     return new Promise(function (resolve, reject) {
@@ -28,9 +28,9 @@ exports.initialize = function () {
             reject(err); // reject the promise with the provided error
         });
         db.once('open', () => {
-            Product = db.model("product", database.productSchema);
-            Category = db.model("categorie", database.categorySchema);
-            Cart = db.model("cart", database.cartSchema);
+            Productdb = db.model("product", database.productSchema);
+            Categorydb = db.model("categorie", database.categorySchema);
+            Cartdb = db.model("cart", database.cartSchema);
             resolve();
         });
     });

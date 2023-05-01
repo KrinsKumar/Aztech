@@ -47,7 +47,4 @@ export const cartSchema = new Schema({
     "totalPrice": Number
 });
 
-//---------------------------------------------------------------------
-//Open Connection
-
 
