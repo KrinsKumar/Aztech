@@ -3,29 +3,7 @@ const dotenv = require('dotenv').config();
 const bcryptjs = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
-const app = express();
-const clientSessions = require("client-sessions");
 const {userModel, productModel, categoryModel, cartModel} = require('../model/database.js')
-// exports.initialize = function () {
-//     return new Promise(function (resolve, reject) {
-//         let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
-
-//         db.on('error', (err) => {
-//             reject(err); // reject the promise with the provided error
-//         });
-//         db.once('open', () => {
-//             user = db.model("user", database.userSchema);
-//             resolve();
-//         });
-//     });
-// };
-
-app.use(clientSessions({
-    cookieName: "session", 
-    secret: "ThisIsaSuperLongSecretKeyWithNumbers1234567890!@#$%^&*()", 
-    duration: 60 * 60 * 1000 * 24 * 7, // 1 week
-    activeDuration: 1000 * 60 * 60 * 24  // 1 day
-}));
 
 let registerUser = function (data) {
     return new Promise((resolve, reject) => {
@@ -46,7 +24,10 @@ let registerUser = function (data) {
 };
 
 router.get("/login", (req, res)=>{
-    res.render("login");
+    res.render("login", {
+        link: "/register",
+        linkText: "Register"
+    })
 })
 
 router.post("/login", (req, res)=>{
@@ -61,6 +42,10 @@ router.post("/login", (req, res)=>{
                 bcryptjs.compare(password, user.password)
                     .then(matched => {
                         if (matched) {
+                            req.session.user = {
+                                userName: user.userName,
+                                email: user.email
+                            };
                             res.redirect("/");
                         }
                         else {
@@ -116,7 +101,5 @@ router.post("/register", (req, res)=>{
         }
     });
 })
-router.get("/", (req, res)=>{
-    res.render("home", {layout: "main"})
-})
+
 module.exports = router;

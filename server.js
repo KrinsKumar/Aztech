@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
 let mongoose = require('mongoose');
+const clientSessions = require("client-sessions");
 
 //controllers
 const productController = require("./controller/productController.js");
@@ -34,8 +35,15 @@ app.set('layout', 'main');
 
 //express configurations
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static("public"));
 
+app.use(clientSessions({
+    cookieName: "session", 
+    secret: "ThisIsaSuperLongSecretKeyWithNumbers1234567890!@#$%^&*()", 
+    duration: 60 * 60 * 1000 * 24 * 7, // 1 week
+    activeDuration: 1000 * 60 * 60 * 24  // 1 day
+}));
 
 //middleware
 function ensureLogin(req, res, next) { // checks the sessions
@@ -45,6 +53,7 @@ function ensureLogin(req, res, next) { // checks the sessions
       next();
     }
 }
+
 
 //-routes-------------------------------------------------------------------
 
@@ -56,6 +65,11 @@ function onHttpStart() {
 
 app.use("/", userController);
 app.use("/product", productController);
+
+
+app.get("/", ensureLogin, (req, res)=>{
+    res.render("home", {layout: "main"})
+})
 
 // for the pages that do not exist
 app.use((req,res) => {
