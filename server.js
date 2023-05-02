@@ -1,5 +1,5 @@
 //dependancies
-const express = require('express');
+const express = require("express");
 const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
@@ -31,8 +31,13 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     }})
 );
 
+// Set up body-parser
+app.use(express.urlencoded({ extended: false }));
+
 const productController = require("./controller/productController.js");
+const userController = require("./controller/userController.js");
 app.use("/product", productController);
+app.use("/", userController);
 
 app.set('view engine', '.hbs');
 

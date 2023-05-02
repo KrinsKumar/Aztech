@@ -8,9 +8,9 @@ const userSchema = new Schema({
         "type": String,
         "unique": true
     },
-    "password": String,
-    "email": String,
-    "discount": Number
+    "Password": String,
+    "Email": String,
+    "Discount": Number
 });
 
 const productSchema = new Schema({
