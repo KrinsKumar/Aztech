@@ -8,9 +8,12 @@ const userSchema = new Schema({
         "type": String,
         "unique": true
     },
-    "Password": String,
-    "Email": String,
-    "Discount": Number
+    "password": String,
+    "email": {
+        "type": String,
+        "unique": true
+    },
+    "discount": Number
 });
 
 const productSchema = new Schema({
@@ -24,7 +27,7 @@ const productSchema = new Schema({
         "text": String 
     }],
     "inventory": Number,
-    "image": String,
+    "image": [String],
     "category": String,
     "agnecy": [String], // array of addresses of the photos of the agencies 
     "hasChild": Boolean, // true if this is a sub category
@@ -58,7 +61,6 @@ const cartSchema = new Schema({
     }]
 });
 
-
 userSchema.pre("save", function (next) {
     let user = this;
 
@@ -66,10 +68,10 @@ userSchema.pre("save", function (next) {
     bcryptjs.genSalt()
         .then(salt => {
             // Hash the password using the generated SALT.
-            bcryptjs.hash(user.Password, salt)
+            bcryptjs.hash(user.password, salt)
                 .then(hashedPwd => {
                     // The password was hashed.
-                    user.Password = hashedPwd;
+                    user.password = hashedPwd;
                     next();
                 })
                 .catch(err => {
@@ -80,7 +82,6 @@ userSchema.pre("save", function (next) {
             console.log(`Error occurred when salting ... ${err}`);
         });
 });
-const userModel = mongoose.model("users", userSchema);
 
 //to export
 const userModell = mongoose.model("User", userSchema);
@@ -88,11 +89,9 @@ const productModell = mongoose.model("Product", productSchema);
 const categoryModell = mongoose.model("Category", categorySchema);
 const cartModell = mongoose.model("Cart", cartSchema);
 
+exports.userModel = userModell;
+exports.productModel = productModell;
+exports.categoryModel = categoryModell;
+exports.cartModel = cartModell;
 
-
- exports.userModel = userModell;
- exports.productModel = productModell;
- exports.categoryModel = categoryModell;
- exports.cartModel = cartModell;
- 
 
