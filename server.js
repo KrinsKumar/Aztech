@@ -118,7 +118,7 @@ app.use((req,res) => {
     })
 });
 
-mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
+mongoose.connect("mongodb+srv://krinskumar2:12345678%40Kk@dbs311.8cc2ark.mongodb.net/urbanEase", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

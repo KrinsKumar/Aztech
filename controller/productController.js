@@ -23,25 +23,25 @@ let Productdb;
 let Categorydb;
 let Cartdb;
 
-const initialize = function () {
-    return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
+// const initialize = function () {
+//     return new Promise(function (resolve, reject) {
+//         let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
 
-        db.on('error', (err) => {
-            reject(err); // reject the promise with the provided error
-        });
-        db.once('open', () => {
-            Productdb = db.model("product", database.productSchema);
-            Categorydb = db.model("categorie", database.categorySchema);
-            Cartdb = db.model("cart", database.cartSchema);
-            resolve();
-        });
-    });
-};
+//         db.on('error', (err) => {
+//             reject(err); // reject the promise with the provided error
+//         });
+//         db.once('open', () => {
+//             Productdb = db.model("product", database.productSchema);
+//             Categorydb = db.model("categorie", database.categorySchema);
+//             Cartdb = db.model("cart", database.cartSchema);
+//             resolve();
+//         });
+//     });
+// };
 
 const getAllProducts = function(){
     return new Promise((resolve, reject) => {
-        Product.find({})
+        productModel.find({})
         .exec()
         .then((data)=>{
             resolve(data)
@@ -54,7 +54,7 @@ const getAllProducts = function(){
 
 const getAllCategories = function(){
     return new Promise((resolve, reject) => {
-        Category.find({})
+        categoryModel.find({})
         .exec()
         .then((data)=>{
             resolve(data)
@@ -67,7 +67,7 @@ const getAllCategories = function(){
 
 const getAllProductsByCategory = function(categoryName){
     return new Promise((resolve, reject) => {
-        Product.find({category:categoryName})
+        productModel.find({category:categoryName})
         .exec()
         .then((data)=>{
             resolve(data)
@@ -80,7 +80,7 @@ const getAllProductsByCategory = function(categoryName){
 
 const getProductById = function(val){
     return new Promise((resolve, reject) => {
-        Product.findOne({_id : val})
+        productModel.findOne({_id : val})
         .exec()
         .then((product)=>{
             resolve(product)
@@ -155,6 +155,27 @@ router.get("/", (req, res)=>{
     // }).catch((err) => {
     //     res.render("product", { message: "no results" })
     // })
-    res.render("product", { layout: "main" })
+    getAllProducts()
+    .then(data=>{
+        res.render("product", { layout: "main", data })
+    })
+    .catch(err=>{console.log("error while fetching all products")});
 })
+// 
+router.get("/category", (req, res)=>{
+    
+    const category = req.query.category;
+    console.log(category);
+    getAllProductsByCategory(category)
+    .then(data=>{res.render("product", { layout: "main", data })})
+    .catch(err=>{console.log("error while fetching product for a paticular category")})
+})
+
+router.get("/:productID", (req, res)=>{
+    const productId = req.params.productID;
+    getProductById(productId)
+    .then(data=>{res.render("product", { layout: "main", data })})
+    .catch(err=>{console.log(err)});
+})
+
 module.exports = router;
