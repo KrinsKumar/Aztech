@@ -1,0 +1,10 @@
+//middleware
+module.exports.ensureLogin = function(req, res, next) { // checks the sessions
+    if (!req.session.user) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+}
+
+
