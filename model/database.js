@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
+const bcryptjs = require('bcryptjs');
 //Not compoleted - need to correct the schemes and add more schemas
 
 const userSchema = new Schema({
