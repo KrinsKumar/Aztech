@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
+const { boolean } = require('webidl-conversions');
 //Not compoleted - need to correct the schemes and add more schemas
 
 const userSchema = new Schema({
@@ -14,10 +15,17 @@ const userSchema = new Schema({
         "unique": true
     },
     "discount": Number,
+<<<<<<< HEAD
+    "verified": {
+        "type": Boolean,
+        "default": false
+    },
+=======
     "carts": [{
-        "cart": Number,
+        "cartID": Number,
         "owner": Boolean  // true if this user owns the cart
     }]
+>>>>>>> 63f0db6c7211481366f4b2afae4626e032616e2f
 });
 
 const productSchema = new Schema({
@@ -55,6 +63,10 @@ const categorySchema = new Schema({
 });
 
 const cartSchema = new Schema({
+    "cartID": {
+        "type": Number,
+        "unique": true
+    },
     "userName": String,
     "products": [{
         "productName": String, 
