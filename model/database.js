@@ -29,7 +29,7 @@ const productSchema = new Schema({
     "inventory": Number,
     "image": [String],
     "category": String,
-    "agnecy": [String], // array of addresses of the photos of the agencies 
+    "agency": [String], // array of addresses of the photos of the agencies 
     "hasChild": Boolean, // true if this is a sub category
     "discountable": Boolean,  // true if this product can be discounted
     "notification-list": [String]
