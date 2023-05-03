@@ -3,29 +3,9 @@ const dotenv = require('dotenv').config();
 const bcryptjs = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
-const { userModel, productModel, categoryModel, cartModel } = require('../model/database.js')
+const {userModel, productModel, categoryModel, cartModel} = require('../model/database.js')
 
 
-function generateRandomNumber() {
-    return Math.floor(Math.random() * 900000) + 100000;
-}
-let registerUser = function (data) {
-    return new Promise((resolve, reject) => {
-        //if the password do not match or the data is empty
-        if ((data.password != data.password2) || !data) {
-            reject("Passwords do not match");
-        }
-
-        let newUser = new Userdb(data);
-        newUser.save((err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(`new user: ${newUser.userName} successfully registered`);
-            }
-        });
-    });
-};
 
 router.get("/login", (req, res) => {
     res.render("login", {
@@ -33,6 +13,8 @@ router.get("/login", (req, res) => {
         linkText: "Register"
     })
 })
+
+
 let factorCode;
 router.post("/login", (req, res) => {
     // logging in user
@@ -205,9 +187,5 @@ router.post("/register", (req, res) => {
             }
         });
 })
-router.get("/logout", (req, res)=>{
-    req.session.destroy();
-    // MongoStore.destroy(),
-    res.redirect("login");
-})
+
 module.exports = router;

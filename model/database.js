@@ -15,13 +15,24 @@ const userSchema = new Schema({
         "unique": true
     },
     "discount": Number,
+<<<<<<< HEAD
     "verified": {
         "type": Boolean,
         "default": false
     },
+=======
+    "carts": [{
+        "cartID": Number,
+        "owner": Boolean  // true if this user owns the cart
+    }]
+>>>>>>> 63f0db6c7211481366f4b2afae4626e032616e2f
 });
 
 const productSchema = new Schema({
+    "sku": {
+        "type": Number,
+        "unique": true
+    },
     "productName": {
         "type": String,
         "unique": true
@@ -52,6 +63,10 @@ const categorySchema = new Schema({
 });
 
 const cartSchema = new Schema({
+    "cartID": {
+        "type": Number,
+        "unique": true
+    },
     "userName": String,
     "products": [{
         "productName": String, 

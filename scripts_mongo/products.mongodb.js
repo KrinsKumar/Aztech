@@ -1,5 +1,3 @@
-const { stripVTControlCharacters } = require("util");
-
 //insert all products
 db.products.insertMany([
     {
