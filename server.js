@@ -51,33 +51,6 @@ app.use(function(req,res,next) {
     next();
 })
 
-function ensureLogin(req, res, next) { 
-    if (!req.session.user.userName) {
-      res.redirect("/login");
-    } else {
-      next();
-    }
-}
-
-function checkAdmin(req, res, next) {
-    if (req.session.user.userName === "admin") {
-        next();
-    } else {
-        res.redirect("/noaccess");
-    }
-}
-
-function ensureAccess(req, res, next) {
-  if(isAccessable(req.session.email)) {
-      next();
-  } else {
-      res.render('home', {
-          layout: 'noAccess'
-      })
-  }
-}
-
-
 
 //-routes-------------------------------------------------------------------
 

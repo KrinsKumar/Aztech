@@ -36,18 +36,18 @@ const productSchema = new Schema({
         "unique": true
     },
     "price": Number,
-    "description": [{ 
+    "description" : String,
+    "info": [{ 
         "heading": String, 
         "text": String 
     }],
     "inventory": Number,
     "image": [String],
-    "category": String,
-    "agency": [String], // array of addresses of the photos of the agencies 
-    "hasChild": Boolean, // true if this is a sub category
-    "discountable": Boolean,  // true if this product can be discounted
     "notification-list": [String],
-    "category": Number
+    "category": Number,
+    "velocity": String,
+    "specification": String,
+    "manual": String
 });
 productSchema.add({
     "subProducts" : [productSchema] // array of sub products if this is a sub category
@@ -66,6 +66,7 @@ const categorySchema = new Schema({
 });
 
 const cartSchema = new Schema({
+    "cartName": String,
     "cartID": {
         "type": Number,
         "unique": true

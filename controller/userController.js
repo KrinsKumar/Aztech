@@ -179,6 +179,7 @@ router.post("/register", (req, res) => {
 router.get("/verify", (req, res) => {
     res.render("verification", {
         layout: "main",
+        email: req.session.user.email,
     });
 })
 
@@ -201,7 +202,7 @@ router.post("/verify", (req, res) => {
                 res.redirect("/");
             }
             else {
-                res.render("verify", {
+                res.render("verification", {
                     error: "Code didnt match",
                     link: "/register",
                     linkText: "Register"

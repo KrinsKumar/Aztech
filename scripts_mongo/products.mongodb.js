@@ -35,8 +35,7 @@ db.products.insertMany([
         ],
         "inventory": 10,
         "image": ["https://mircom.com/wp-content/uploads/products/FX-401R-front_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401R-right_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401-right_sm.jpg"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf"
@@ -76,8 +75,7 @@ db.products.insertMany([
         ],
         "inventory": 12,
         "image": ["https://mircom.com/wp-content/uploads/products/FX-401-front_sm-1.jpg", "https://mircom.com/wp-content/uploads/products/FX-401_left_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401-right_sm.jpg"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf"
@@ -97,8 +95,7 @@ db.products.insertMany([
         ],
         "inventory": 36,
         "image": ["https://mircom.com/wp-content/uploads/products/RAX-LCD-LITE-600x600.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5350_RAX-LCD-LITE_Remote_LCD_Annunciator.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-1149_RAX-LCD-LITE_Installation_Manual.pdf"
@@ -120,8 +117,7 @@ db.products.insertMany([
         ],
         "inventory": 30,
         "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5347_RAM-1032TZDS_32-Zone_Remote_LED_Annunciator.pdf"
     },
@@ -142,8 +138,7 @@ db.products.insertMany([
         ],
         "inventory": 6,
         "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf"
     },
@@ -164,8 +159,7 @@ db.products.insertMany([
         ],
         "inventory": 10,
         "image": ["https://mircom.com/wp-content/uploads/products/RAX-1048TZDS-600x599.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5349_RAX-1048TZDS_48-Zone_Remote_LED_Adder_Annunciator.pdf",
         "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf"
@@ -199,8 +193,7 @@ db.products.insertMany([
         ],
         "inventory": 10,
         "image": ["https://mircom.com/wp-content/uploads/products/RAX-1048TZS-CC-1.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5348_RAX-1048TZDS-CC_48-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
         "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf"
@@ -222,8 +215,7 @@ db.products.insertMany([
         ],
         "inventory": 10,
         "image": ["https://mircom.com/wp-content/uploads/products/UIMA4-600x599.png"],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9517_UIMA4_Interface_for_Configurating_MGC_Fire_Panels.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/CAT-9519_MGC-CONFIG-KIT4_Fire_Panel_Configuration_Kit.pdf"
@@ -245,8 +237,7 @@ db.products.insertMany([
         ],
         "inventory": 6,
         "image": [`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo8RHhZwqyqf0cd1IwqCak4r54UJX2cIPhHN1eoTuJHz4f-mq3IOXoZOABUjv7y-TMflY&usqp=CAU`],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
     },
@@ -267,36 +258,104 @@ db.products.insertMany([
         ],
         "inventory": 6,
         "image": [`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo8RHhZwqyqf0cd1IwqCak4r54UJX2cIPhHN1eoTuJHz4f-mq3IOXoZOABUjv7y-TMflY&usqp=CAU`],
-        "hasChild": "false",
-        "notification-list": "null",
+        "notification-list": [],
         "velocity": "B",
         "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
+    },
+    {
+        "sku": 1010,
+        "productName": "ALC-480",
+        "price": 1160,
+        "description": "FX-401 Dual Loop Controller Module 480 points (MGC Devices 4000 Series Compatible)",
+        "inventory": 34,
+        "image": ["https://cdn.shopify.com/s/files/1/0641/8491/0041/products/ALC-480.jpg?v=1655225678"],
+        "notification-list": [],
+        "velocity": "B",
+        "category": 4
+    },
+    {
+        "sku": 1011,
+        "productName": "PR-300",
+        "price": 225,
+        "description": "PR-300 Polarity Reversal City Tie Module. The PR-300 Polarity Reversal/City Tie Module provides the system with a supervised City Tie via a 24 VDC/200 mA maximum and polarity reversal connection via a 24 VDC (open circuit), 8 mA maximum",
+        "info": [
+            {
+                "heading": "The PR-300 Polarity Reversal/City Tie Module provides the system with a supervised City Tie via a 24 VDC/200 mA maximum and polarity reversal connection via a 24 VDC (open circuit), 8 mA maximum (shorted).",
+                "text": []
+            }
+        ],
+        "inventory": 22,
+        "image": ["https://mircom.com/wp-content/uploads/products/PR-300-600x600.png"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5341_PR-300_Polarity_Reversal-City_Tie_Module.pdf",
+        "category": 4
+    },
+    {
+        "sku": 1012,
+        "productName": "AGD-048",
+        "price": 815,
+        "description": "For use with FX-350, FA-1000 and FX-2000 series fire alarm control panels. Adder graphic driver module for use with the MGD-32 master graphic driver modules.",
+        "info": [
+            {
+                "heading": "The AGD-048 Adder Graphic Driver Module can be used with the MGD-32 Master Graphic Driver modules, or if located remotely it must be connected and mounted with the RAX-LCD Shared Display.",
+                "text": []
+            }, 
+            {
+                "heading": "The AGD-048 will support an additional 48 supervised outputs. As with the master modules, the AGD-048 will support both LEDs and incandescent lamps. It mounts in a graphic annunciator wallbox or in the BB-5000 enclosures.",
+                "text": []
+            }
+        ],
+        "inventory": 25,
+        "image": ["https://mircom.com/wp-content/uploads/products/AGD-048-front-600x600.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "category": 4
+    },
+    {
+        "sku": 1013,
+        "productName": "MGD-32",
+        "price": 1105,
+        "description": "For use with FX-350, FA-1000, FX-2000 and FX-3500 series fire alarm control panels. Works with AGD-048 adder graphic driver module.",
+        "info": [
+            {
+                "heading": "For use with FX-350, FA-1000 and FX-2000 Series Fire Alarm Control Panels. The MGD-32 Master Graphic Driver Module provides common control inputs for the common control switches such as System Reset, Signal Silence, Auxiliary Disconnect, Fire Drill, Lamp Test and Acknowledge.Z",
+                "text": []
+            }, 
+            {
+                "heading": "The MGD-32 Master Graphic Driver Module provides common control inputs for the common control switches such as System Reset, Signal Silence, Auxiliary Disconnect, Fire Drill, Lamp Test, Acknowledge and General Alarm. Any or all of these switch inputs can be used. There are supervised outputs for all of the support LEDs and the common control switches. The MGD-32 can also drive up to 32 supervised outputs. These output points are capable of driving LEDs or incandescent lamps. Mounts in a graphic annunciator wall box or in the BB-5000 enclosures. External power supply required for incandescent lamps and lamp test.",
+                "text": []
+            }
+        ],
+        "inventory": 20,
+        "image": ["https://mircom.com/wp-content/uploads/products/MGD-32-front.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5949-MGD-32-Master-Graphic-Driver-Module.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-847_MGD-32_and_AGD-048_Installation_and_Operation_Manual.pdf",
+        "category": 4
+    },
+    {
+        "sku": 1014,
+        "productName": "SRM-312",
+        "price": 210,
+        "description": "The SRM-312R provides twelve Form C configurable relay circuits, rated @ 28 VDC, 1 amp(resistive).",
+        "info": [
+            {
+                "heading": "Each circuit can be configured as a Normally Open (N.O.) or Normally Closed (N.C.) contact. Each relay is equipped with an LED that is lit when the relay is energized. The relays can be configured as relay per zone (1 to 1), Common on Alarm, Common on Supervisory or programmable for a logical or adjacent zone configuration.",
+                "text": []
+            }, 
+            {
+                "heading": "An adjacent zone configuration will turn on an adjacent zone when the configured zone is active. A chaining configuration allows for multiple relays to turn on. The SRM-312R is DIP switch configurable and connects to the RS-485 bus. The SRM-312R come complete with a red enclosure and a CAT-30 lock and key.",
+                "text": []
+            }
+        ],
+        "inventory": 22,
+        "image": ["https://mircom.com/wp-content/uploads/products/SRM-312R_right-600x600.jpg"],
+        "notification-list": [],
+        "velocity": "C",
+        "specification": "https://mircom.com/wp-content/uploads/pdf/CAT-5661_FA-300_Series_LED_Display_Fire_Alarm_Control_Panels.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-1001_SRM-312_Installation_and_Operation_Manual.pdf",
+        "category": 4
     }
 ]);
-
-db.test.find({"collab.approved": "true","collab.asked": "true"});
-
-//delete all the values from the database test
-db.test.remove({});
-
-db.test.insertMany([
-    {
-        "collab": {
-            "email": "1111",
-            "approved": "false",
-            "asked": "false",
-        }
-    },{
-        "collab": {
-            "email": "2222",
-            "approved": "true",
-            "asked": "false",
-        }
-    },{
-        "collab": {
-            "email": "3333",
-            "approved": "false",
-            "asked": "true",
-        }
-    }
-])
