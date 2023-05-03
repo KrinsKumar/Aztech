@@ -81,20 +81,6 @@ getAllCategories()
     res.status(500).send('Error retrieving categories');
     });
 });
-  
-// GET a product by ID
-router.get('/:id', (req, res) => {
-const SKU = req.params.id;
-
-    getProductBySku(SKU)
-    .then((product) => {
-    res.render('product', { layout: "main", data:product });
-    })
-    .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error retrieving product');
-    });
-});
 
 router.get('/category/:name', (req, res) => {
     const categoryName = req.params.name;
@@ -111,6 +97,7 @@ router.get('/category/:name', (req, res) => {
 
 router.get("/:sku", (req, res)=>{
     const SKU = req.params.sku;
+    console.log(SKU); 
     getProductBySku(SKU)
     .then((data)=>{
         res.render("product", { layout: "main", data })})
