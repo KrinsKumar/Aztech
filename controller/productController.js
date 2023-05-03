@@ -50,7 +50,6 @@ const getProductBySku = function (val) {
         productModel.findOne({ sku: val })
             .exec()
             .then((product) => {
-                console.log(product);
                 resolve(product)
             })
             .catch((err) => {
@@ -63,9 +62,7 @@ const getProductBySku = function (val) {
 router.get('/', (req, res) => {
     let categories=[];
     getAllCategories()
-        .then((data) => {
-            console.log(data);
-            categories = data})
+        .then((data) => {categories = data})
         .then(
             categories.forEach((category) => {
                 getAllProductsByCategory(category)
@@ -79,7 +76,6 @@ router.get('/', (req, res) => {
             })
         )
         .then(() =>{
-            console.log(categories);
             res.render('product', { layout: "main", data: categories })
         })
 });
@@ -89,6 +85,7 @@ router.get("/:sku", (req, res) => {
     let related, bundle;
     getProductBySku(SKU)
         .then((data) => {   
+            console.log("here : "+data);
             getAllProductsByCategory(data.category)
             .then((rel)=>{
                 related = rel;
