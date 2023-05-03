@@ -6,37 +6,6 @@ const {userModel, productModel, categoryModel, cartModel} = require('../model/da
 const express = require("express");
 const router = express.Router();
 
-/*
-Following function:
-1. Queries all the products and categories from the database and save it in a variable
-2. get all products
-3. get all categories
-4. get all products in a category
-5. get a product by id
-6. get a category by id
-7. get all products in a cart
-8. get a cart by id
-9. get all carts
-10. get all carts by user
-*/
-
-
-// const initialize = function () {
-//     return new Promise(function (resolve, reject) {
-//         let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
-
-//         db.on('error', (err) => {
-//             reject(err); // reject the promise with the provided error
-//         });
-//         db.once('open', () => {
-//             Productdb = db.model("product", database.productSchema);
-//             Categorydb = db.model("categorie", database.categorySchema);
-//             Cartdb = db.model("cart", database.cartSchema);
-//             resolve();
-//         });
-//     });
-// };
-
 const getAllProducts = function(){
     return new Promise((resolve, reject) => {
         productModel.find({})
