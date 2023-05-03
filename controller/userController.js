@@ -141,7 +141,7 @@ router.post("/register", (req, res) => {
 
             sgMail.send(msg)  //send the email
             .then(() => {
-                userModel.updateOne({ userName: username },
+                userModel.updateOne({ "userName": userName },
                     {$set: { verificationCode: newNumber }}
                 );
                 req.session.user = {
@@ -151,7 +151,7 @@ router.post("/register", (req, res) => {
             })
             .catch(err => {
                 res.render("register", {
-                    error: "Faled to send the verification email",
+                    error: `Faled to send the verification email ${err}`,
                     link: "/login",
                     linkText: "login"
                 })
