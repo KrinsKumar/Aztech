@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 const bcryptjs = require('bcryptjs');
+const { boolean } = require('webidl-conversions');
 //Not compoleted - need to correct the schemes and add more schemas
 
 const userSchema = new Schema({
@@ -13,7 +14,11 @@ const userSchema = new Schema({
         "type": String,
         "unique": true
     },
-    "discount": Number
+    "discount": Number,
+    "verified": {
+        "type": Boolean,
+        "default": false
+    },
 });
 
 const productSchema = new Schema({
