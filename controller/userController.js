@@ -24,7 +24,6 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
 
     userModel.findOne({
         userName: username
@@ -125,7 +124,7 @@ router.get("/register", (req, res) => {
 })
 
 router.post("/register", (req, res) => {
-    const { userName, password } = req.body;
+    const { userName, email, password } = req.body;
     let user = new userModel({ userName, email, password });
 
     user.save()
@@ -133,7 +132,7 @@ router.post("/register", (req, res) => {
 
             let newNumber = generateRandomNumber();
             const msg = {
-                to: req.body.email,
+                to: email,
                 from: "eazeurban@gmail.com",
                 subject: "Email Verification for Urban Eaze",
                 html:
@@ -146,15 +145,15 @@ router.post("/register", (req, res) => {
                     {$set: { verificationCode: newNumber }}
                 );
                 req.session.user = {
-                    email: req.body.email,
+                    "email": email,
                 };
                 res.redirect("/verify");
             })
             .catch(err => {
-                res.render("login", {
+                res.render("register", {
                     error: "Faled to send the verification email",
-                    link: "/register",
-                    linkText: "Register"
+                    link: "/login",
+                    linkText: "login"
                 })
             });
         })
@@ -182,6 +181,7 @@ router.get("/verify", (req, res) => {
         layout: "main",
     });
 })
+
 router.post("/verify", (req, res) => {
     let code = req.body.code;
     code = parseInt(code);
@@ -210,7 +210,6 @@ router.post("/verify", (req, res) => {
         }
     })
 })
-
 
 
 module.exports = router;

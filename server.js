@@ -9,6 +9,7 @@ const clientSessions = require("client-sessions");
 //controllers
 const productController = require("./controller/productController.js");
 const userController = require("./controller/userController.js");
+const cartController = require("./controller/cartController.js");
 
 //------------------------------------------------------------------------------
 //to be removed later if not being used
@@ -45,6 +46,39 @@ app.use(clientSessions({
     activeDuration: 1000 * 60 * 60 * 24  // 1 day
 }));
 
+app.use(function(req,res,next) {
+    res.locals.session = req.session;
+    next();
+})
+
+function ensureLogin(req, res, next) { 
+    if (!req.session.user.userName) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+}
+
+function checkAdmin(req, res, next) {
+    if (req.session.user.userName === "admin") {
+        next();
+    } else {
+        res.redirect("/noaccess");
+    }
+}
+
+function ensureAccess(req, res, next) {
+  if(isAccessable(req.session.email)) {
+      next();
+  } else {
+      res.render('home', {
+          layout: 'noAccess'
+      })
+  }
+}
+
+
+
 //-routes-------------------------------------------------------------------
 
 const HTTP_PORT = process.env.PORT || 8080
@@ -55,6 +89,7 @@ function onHttpStart() {
 
 app.use("/", userController);
 app.use("/product", productController);
+app.use("/cart", cartController);
 
 
 app.get("/", (req, res)=>{

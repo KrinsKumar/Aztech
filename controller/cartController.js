@@ -2,12 +2,46 @@ const {cartModel, userModel} = require('../model/database.js')
 let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const express = require("express");
+const app = express();
 const router = express.Router();
-const middle = require("./middleware.js");
 
 
 let carts;
 
+//middleware
+
+app.use(function(req,res,next) {
+    res.locals.session = req.session;
+    next();
+})
+
+function ensureLogin(req, res, next) { 
+    if (!req.session.user.userName) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+}
+
+function checkAdmin(req, res, next) {
+    if (req.session.user.userName === "admin") {
+        next();
+    } else {
+        res.redirect("/noaccess");
+    }
+}
+
+function ensureAccess(req, res, next) {
+  if(isAccessable(req.session.email)) {
+      next();
+  } else {
+      res.render('home', {
+          layout: 'noAccess'
+      })
+  }
+}
+
+//functions
 const initialize = function () {
     return new Promise(function (resolve, reject) {
         let db = mongoose.createConnection(process.env.MONGO_CONNECTION_STRING);
@@ -273,11 +307,13 @@ const loadAllCarts = function(userNamePara) {
 // admin page
 // 
 //Renders all the carts that the user owns or have access to
-router.get("/", generalController.ensureLogin, (req, res) => {
+router.get("/", ensureLogin , (req, res) => {
     loadAllCarts(req.session.user.userName).then((cartData) => {
-        res.render("home", {
+        res.render("cart", {
             carts: cartData
         })
 
     })
 });
+
+module.exports = router;

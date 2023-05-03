@@ -23,7 +23,7 @@ const userSchema = new Schema({
         "cartID": Number,
         "owner": Boolean  // true if this user owns the cart
     }],
-    "verificationCode": Number,
+    "verificationCode": Number
 });
 
 const productSchema = new Schema({
@@ -46,13 +46,18 @@ const productSchema = new Schema({
     "agency": [String], // array of addresses of the photos of the agencies 
     "hasChild": Boolean, // true if this is a sub category
     "discountable": Boolean,  // true if this product can be discounted
-    "notification-list": [String]
+    "notification-list": [String],
+    "category": Number
 });
 productSchema.add({
     "subProducts" : [productSchema] // array of sub products if this is a sub category
 })
 
 const categorySchema = new Schema({
+    "id": {
+        "type": Number,
+        "unique": true
+    },
     "categoryName": {
         "type": String,
         "unique": true
