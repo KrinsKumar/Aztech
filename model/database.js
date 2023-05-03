@@ -13,7 +13,11 @@ const userSchema = new Schema({
         "type": String,
         "unique": true
     },
-    "discount": Number
+    "discount": Number,
+    "carts": [{
+        "cart": Number,
+        "owner": Boolean  // true if this user owns the cart
+    }]
 });
 
 const productSchema = new Schema({
