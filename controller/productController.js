@@ -90,64 +90,12 @@ const getProductBySku = function(val){
     })
 }
 
-const getCategoryById = function(val){
-    return new Promise((resolve, reject) => {
-        categoryModel.findOne({_id : val})
-        .exec()
-        .then((category)=>{
-            resolve(category)
-        })
-        .catch((err)=>{
-            reject(err)
-        })
-    })
-}
-
-const getCartById = function(val){
-    return new Promise((resolve, reject) => {
-        Cart.findOne({_id : val})
-        .exec()
-        .then((cart)=>{
-            resolve(cart)
-        })
-        .catch((err)=>{
-            reject(err)
-        })
-    })
-}
-
-const getCartItems = function(val)
-{
-    return new Promise((resolve, reject) => {
-        getCartById(val)
-        .then((cart)=>{
-            resolve(cart.products)
-        })
-        .catch((err)=>{
-            reject(err)
-        })
-    })
-}
-
-const getAllCarts = function(){
-    return new Promise((resolve, reject) => {
-        Cart.find({})
-        .exec()
-        .then((carts)=>{
-            resolve(carts)
-        })
-        .catch((err)=>{
-            reject(err)
-        })
-    })
-}
-
 
 router.get('/', (req, res) => {
     getAllProducts()
       .then((products) => {
-        res.render('products', { products });
-      })
+        res.render('product', { layout: "main", data:products });
+    })
       .catch((err) => {
         console.error(err);
         res.status(500).send('Error retrieving products');
@@ -157,25 +105,11 @@ router.get('/', (req, res) => {
 router.get('/categories', (req, res) => {
 getAllCategories()
     .then((categories) => {
-    res.render('categories', { categories });
+        res.render('categories', { layout: "main", data:categories });
     })
     .catch((err) => {
     console.error(err);
     res.status(500).send('Error retrieving categories');
-    });
-});
-  
-  // GET all products in a category
-router.get('/categories/:id/products', (req, res) => {
-const categoryId = req.params.id;
-
-getAllProductsByCategory(categoryId)
-    .then((products) => {
-    res.render('products', { products });
-    })
-    .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error retrieving products in category');
     });
 });
   
@@ -185,28 +119,13 @@ const SKU = req.params.id;
 
     getProductBySku(SKU)
     .then((product) => {
-    res.render('product', { product });
+    res.render('product', { layout: "main", data:product });
     })
     .catch((err) => {
     console.error(err);
     res.status(500).send('Error retrieving product');
     });
 });
-  
-// GET a category by ID
-router.get('/categories/:id', (req, res) => {
-const categoryId = req.params.id;
-
-getCategoryById(categoryId)
-    .then((category) => {
-    res.render('category', { category });
-    })
-    .catch((err) => {
-    console.error(err);
-    res.status(500).send('Error retrieving category');
-    });
-});
-
 
 router.get('/category/:name', (req, res) => {
     const categoryName = req.params.name;
