@@ -15,7 +15,7 @@ const userSchema = new Schema({
     },
     "discount": Number,
     "carts": [{
-        "cart": Number,
+        "cartID": Number,
         "owner": Boolean  // true if this user owns the cart
     }]
 });
@@ -55,6 +55,10 @@ const categorySchema = new Schema({
 });
 
 const cartSchema = new Schema({
+    "cartID": {
+        "type": Number,
+        "unique": true
+    },
     "userName": String,
     "products": [{
         "productName": String, 

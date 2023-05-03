@@ -1,9 +1,10 @@
-const {cartModel} = require('../model/database.js')
+const {cartModel, userModel} = require('../model/database.js')
 let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const express = require("express");
 const router = express.Router();
-const generalController = require("./generalController.js");
+const middle = require("./middleware.js");
+
 
 let carts;
 
@@ -241,21 +242,40 @@ const removeproduct = function(cartIdPara, productNamePara) {
     })
 }
 
-//a middleware that checks if the access is granted
-// the user is already logged in since this middleware runs after the login middleware
-let ensureAccess = function(req, res, next) {
-    if(isAccessable(req.session.email)) {
-        next();
-    } else {
-        res.render('home', {
-            layout: 'noAccess'
+//load all users cart
+const loadAllCarts = function(userNamePara) {
+    return new Promise((resolve, reject) => {
+        let allCarts = [];
+        userModel.findOne({userName: userNamePara})
+        .exec()
+        .then((userData) => {
+            userData.carts.forEach((cart) => {
+                carts.findOne({cartID: cart.cartID})
+                .exec()
+                .then((cartData) => {
+                    cartData.owner = cart.owner;
+                    allCarts.push(cartData);
+                })
+                .catch((err) => {
+                    rej(err);
+                });
+            });
+            resolve(allCarts);
         })
-    }
+        .catch((err) => {
+            rej(err);
+        });
+        
+    })
 }
 
-//Renders all the carts that the user owns
-router.get("/", generalController.ensureLogin,  ensureAccess, (req, res) => {
-    res.render("home", {
-        layout: "cart"
+//todo no carts, carts seggraigation for ownder and added
+//Renders all the carts that the user owns or have access to
+router.get("/", generalController.ensureLogin, (req, res) => {
+    loadAllCarts(req.session.user.userName).then((cartData) => {
+        res.render("home", {
+            carts: cartData
+        })
+
     })
 });

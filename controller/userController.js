@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 const {userModel, productModel, categoryModel, cartModel} = require('../model/database.js')
+const middle = require("./middleware.js");
 
 router.get("/login", (req, res)=>{
     res.render("login", {
@@ -23,14 +24,14 @@ router.post("/login", (req, res)=>{
                 // user exist with that email
                 bcryptjs.compare(password, user.password)
                     .then(matched => {
+                        req.session.user = {
+                            userName: user.userName,
+                            email: user.email
+                        };
                         if (matched) {
                             if (username === "admin") {
-                                res.redirect("/user/admin")
+                                res.redirect("/admin")
                             } else {
-                                req.session.user = {
-                                    userName: user.userName,
-                                    email: user.email
-                                };
                                 res.redirect("/");
                             }
                         }
@@ -102,7 +103,7 @@ router.post("/register", (req, res)=>{
     });
 })
 
-router.post("/admin", (req, res)=>{
+router.get("/admin", middle.ensureLogin, middle.checkAdmin, (req, res)=>{
     res.render("adminMain", {
         layout: "admin"
     })

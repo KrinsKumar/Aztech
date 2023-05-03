@@ -45,16 +45,6 @@ app.use(clientSessions({
     activeDuration: 1000 * 60 * 60 * 24  // 1 day
 }));
 
-//middleware
-function ensureLogin(req, res, next) { // checks the sessions
-    if (!req.session.user) {
-      res.redirect("/login");
-    } else {
-      next();
-    }
-}
-
-
 //-routes-------------------------------------------------------------------
 
 const HTTP_PORT = process.env.PORT || 8080
@@ -67,8 +57,14 @@ app.use("/", userController);
 app.use("/product", productController);
 
 
-app.get("/", ensureLogin, (req, res)=>{
+app.get("/", (req, res)=>{
     res.render("home", {layout: "main"})
+})
+
+app.get("/noaccess", (req, res)=>{
+    res.render("noaccess", {
+        layout: "main"
+    })
 })
 
 // for the pages that do not exist
