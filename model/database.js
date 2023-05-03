@@ -22,7 +22,8 @@ const userSchema = new Schema({
     "carts": [{
         "cartID": Number,
         "owner": Boolean  // true if this user owns the cart
-    }]
+    }],
+    "verificationCode": Number,
 });
 
 const productSchema = new Schema({

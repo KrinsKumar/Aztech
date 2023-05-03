@@ -269,7 +269,9 @@ const loadAllCarts = function(userNamePara) {
     })
 }
 
-//todo no carts, carts seggraigation for ownder and added
+//todo no carts, carts seggraigation for owned and added
+// admin page
+// 
 //Renders all the carts that the user owns or have access to
 router.get("/", generalController.ensureLogin, (req, res) => {
     loadAllCarts(req.session.user.userName).then((cartData) => {
