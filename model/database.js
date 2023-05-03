@@ -21,6 +21,10 @@ const userSchema = new Schema({
 });
 
 const productSchema = new Schema({
+    "sku": {
+        "type": Number,
+        "unique": true
+    },
     "productName": {
         "type": String,
         "unique": true

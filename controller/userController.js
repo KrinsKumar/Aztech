@@ -5,24 +5,6 @@ const express = require("express");
 const router = express.Router();
 const {userModel, productModel, categoryModel, cartModel} = require('../model/database.js')
 
-let registerUser = function (data) {
-    return new Promise((resolve, reject) => {
-        //if the password do not match or the data is empty
-        if ((data.password != data.password2) || !data) {
-            reject("Passwords do not match");
-        }
-
-        let newUser = new Userdb(data);
-        newUser.save((err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(`new user: ${newUser.userName} successfully registered`);
-            }
-        });
-    });
-};
-
 router.get("/login", (req, res)=>{
     res.render("login", {
         link: "/register",
@@ -42,11 +24,15 @@ router.post("/login", (req, res)=>{
                 bcryptjs.compare(password, user.password)
                     .then(matched => {
                         if (matched) {
-                            req.session.user = {
-                                userName: user.userName,
-                                email: user.email
-                            };
-                            res.redirect("/");
+                            if (username === "admin") {
+                                res.redirect("/user/admin")
+                            } else {
+                                req.session.user = {
+                                    userName: user.userName,
+                                    email: user.email
+                                };
+                                res.redirect("/");
+                            }
                         }
                         else {
                             res.render("login", {
@@ -76,8 +62,22 @@ router.get("/register", (req, res)=>{
 
 router.post("/register", (req, res)=>{
     console.log(req.body);
-    const { userName, email, password} = req.body;
+    const { userName, email, password, password2} = req.body;
     let user = new userModel({userName, email, password});
+
+    if (password != password2) {
+        res.render("register", {
+            error: `Passwords do not match!`,
+            link: "/login",
+            linkText: "Login"
+        });
+    } else if (userName.toLowerCase().search("admin" != -1)) {
+        res.render("register", {
+            error: `Username cannot contain the word "admin"`,
+            link: "/login",
+            linkText: "Login"
+        });
+    }
 
     user.save()
     .then(() => {
@@ -100,6 +100,12 @@ router.post("/register", (req, res)=>{
             });
         }
     });
+})
+
+router.post("/admin", (req, res)=>{
+    res.render("adminMain", {
+        layout: "admin"
+    })
 })
 
 module.exports = router;
