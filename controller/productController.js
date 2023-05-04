@@ -69,9 +69,6 @@ router.get('/', (req, res) => {
   
         Promise.all(promises)
           .then((categoryProducts) => {
-            categoryProducts.forEach((cat)=>{
-                console.log(cat.products);
-            })
             res.render('product', { layout: "main", catData: categoryProducts });
           })
           .catch((err) => {
@@ -84,27 +81,6 @@ router.get('/', (req, res) => {
         res.status(500).send('Error retrieving categories');
       });
   });
-  
-  
-// router.get('/', (req, res) => {
-//     getAllCategories()
-//         .then((data) => {
-//             console.log(data);
-//             data.forEach((category) => {
-//                 getAllProductsByCategory(category)
-//                     .then((products) => {
-//                         category.push(products)
-//                         console.log(category);
-//                     })
-//                     .catch((err) => {
-//                         console.error(err);
-//                         res.status(500).send('Error retrieving products');
-//                     })
-
-//             })
-//             res.render('product', { layout: "main", catData: data })
-//         })
-// });
 
 router.get("/:sku", (req, res) => {
     const SKU = req.params.sku;
