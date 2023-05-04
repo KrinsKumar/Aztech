@@ -6,18 +6,6 @@ const { userModel, productModel, categoryModel, cartModel } = require('../model/
 const express = require("express");
 const router = express.Router();
 
-const getAllProducts = function () {
-    return new Promise((resolve, reject) => {
-        productModel.find({})
-            .exec()
-            .then((data) => {
-                resolve(data)
-            })
-            .catch((err) => {
-                reject(err)
-            })
-    })
-}
 
 const getAllCategories = function () {
     return new Promise((resolve, reject) => {

@@ -7,12 +7,33 @@ const {userModel, productModel, categoryModel, cartModel} = require('../model/da
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-
 //functions
 function generateRandomNumber() {
     return Math.floor(Math.random() * 900000) + 100000;
 }
 
+function getAllUsers()
+{
+    return new Promise((resolve, reject) => {
+        userModel.find({})
+        .exec()
+        .then((users=>resolve(users)))
+        .catch((err)=>console.log(err))
+    })
+}
+
+const getAllProducts = function () {
+    return new Promise((resolve, reject) => {
+        productModel.find({})
+            .exec()
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+}
 
 //routes
 router.get("/login", (req, res) => {
@@ -221,6 +242,41 @@ router.post("/verify", (req, res) => {
         }
     })
 })
+
+router.get('/admin/users', (req, res)=>{
+const username = req.session.user.userName;
+if(username == "Admin")
+{
+    getAllUsers()
+    .then((userList)=>{
+        res.render("users", {
+            layout: 'admin',
+            users: userList
+        })
+    })
+}
+else{
+    res.redirect("/login");
+}
+})
+
+router.get('/admin/products', (req, res)=>{
+    const username = req.session.user.userName;
+    if(username == "Admin")
+    {
+        getAllProducts()
+        .then((data)=>{
+            res.render("product", {
+                layout: 'admin',
+                products: data
+            })
+        })
+    }
+    else{
+        res.redirect("/login");
+    }
+    })
+
 router.get("/logout", (req, res)=>{
     req.session.destroy();
     // MongoStore.destroy(),
