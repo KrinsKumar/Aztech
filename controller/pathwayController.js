@@ -47,7 +47,8 @@ router.get("/4k/1", /*ensureLogin,*/ (req, res) => {
     getAllProductsByCategory('6')
     .then((data) => {
         res.render("path", {
-            products: data
+            products: data,
+            index: 1
         })
     })
 

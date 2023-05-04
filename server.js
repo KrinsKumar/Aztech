@@ -16,6 +16,9 @@ const pathController = require("./controller/pathwayController.js");
 //to be removed later if not being used
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
+        ifeq: function(a, b, options) {
+            if (a == b) { return options.fn(this); }
+        },
         navLink: function(url, options){
             return '<li' + 
                 ((url == app.locals.activeRoute) ? ' class="active" ' : '') + 
