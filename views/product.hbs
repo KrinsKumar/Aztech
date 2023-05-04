@@ -3,3 +3,12 @@
         {{products}}
     {{/each}}
 {{/each}}
+
+
+{{product}}
+
+{{#each relatedProducts}}
+    {{#each this}}
+        {{this.productName}}
+    {{/each}}
+{{/each}}

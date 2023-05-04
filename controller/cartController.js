@@ -309,8 +309,9 @@ router.get("/", ensureLogin , (req, res) => {
         res.render("cart", {
             carts: cartData
         })
-
     })
 });
+
+
 
 module.exports = router;
