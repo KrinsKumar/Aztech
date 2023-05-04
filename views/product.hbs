@@ -1,3 +1,135 @@
-{{#each product}}
+{{!-- {{!-- {{#each product}}
 <h1>{{productName}}</h1>
-{{/each}}
+{{/each}} --}}
+
+<button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+   <span class="sr-only">Open sidebar</span>
+   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+   </svg>
+</button>
+
+<aside id="separator-sidebar" class="fixed top-16 left-0 -z-20 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 block xsm:bg-gray-100" aria-label="Sidebar">
+   <div class="h-full px-9 py-4 overflow-y-auto border-r border-gray-200">
+        <h3 class="my-3 text-xl font-bold text-urban">Products</h3>
+        <!-- Search Bar  -->
+        <form>   
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <input type="search" id="default-search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." required>
+                <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+        </form>
+        <ul class="mt-4 space-y-2 font-medium">
+            <li>
+                <div class="flex items-center mb-4">
+                    <input id="stocked-checkbox" type="checkbox" value="" class="w-4 h-4 text-urban bg-gray-100 border-gray-300 rounded focus:ring-urban">
+                    <label for="stocked-checkbox" class="ml-2 text-sm font-medium text-gray-900">In Stock</label>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="pt-4 mt-4 space-y-1 font-medium border-t border-gray-200">
+            <h3 class="my-3 text-xl font-bold text-urban">Categories</h3>
+
+            <button type="button" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 " aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                  <span class="flex-1 ml-1 text-left whitespace-nowrap" sidebar-toggle-item >Fire Detection & Alarm</span>
+                  <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+            <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-8 group hover:bg-gray-100">FX-4000 Intelligent Fire Control Unit</a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-8 group hover:bg-gray-100">Remote Annunciator Enclosures</a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-8 group hover:bg-gray-100">MGC-4000 Sensors & Modules</a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-500 transition duration-75 rounded-lg pl-8 group hover:bg-gray-100">Mircom 800 Manual Plastic Pull Stations</a>
+                  </li>
+            </ul>
+         </li>
+            <li>
+                <a href="#" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100">
+                    <span class="ml-1">Communications & Security</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100">
+                    <span class="ml-1">Mass Notification</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100">
+                    <span class="ml-1">Smart Buildings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside> 
+
+<div class="p-4 pl-10 -z-50 sm:ml-72">
+    <!-- Pathways -->
+    <h3 class="my-3 ml-2 text-2xl font-bold text-gray-900">Pathways</h3>
+    <div class="flex flex-row">
+        <div class="max-w-sm w-1/2 bg-white border border-gray-200 rounded-lg shadow mx-2">
+            <a href="#">
+                <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
+            </a>
+            <div class="p-5">
+                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">4000 Series Pathway</h5>
+                <p class="mb-3 font-normal text-sm text-gray-700">Sensors and Detectors</p>
+                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-urban rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    Guide Me
+                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-sm w-1/2 bg-white border border-gray-200 rounded-lg shadow mx-2">
+            <a href="#">
+                <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
+            </a>
+            <div class="p-5">
+                <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">FX-400 Series Pathway</h5>
+                <p class="mb-3 font-normal text-sm text-gray-700">Fire alarm contorl unit</p>
+                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-urban rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    Guide Me
+                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Products -->
+    <h3 class="my-3 ml-2 text-2xl font-bold text-gray-900">Products</h3>
+    <div>
+        <div class="w-1/2 max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-2">
+            <a href="#">
+                <img class="p-8 rounded-t-lg" src="/docs/images/products/apple-watch.png" alt="product image" />
+            </a>
+            <div class="px-5 pb-5">
+                <a href="#">
+                    <h5 class="text-xl font-semibold tracking-tight text-gray-900">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                </a>
+                <div class="flex items-center mt-2.5 mb-5">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ml-3">5.0</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-3xl font-bold text-gray-900">$599</span>
+                    <a href="#" class="text-white bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

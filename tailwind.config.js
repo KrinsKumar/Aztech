@@ -19,6 +19,9 @@ module.exports = {
       },
       backgroundImage: {
         'images': "url('/public/photo/bg-hero.png')",
+      },
+      screens: {
+        'xsm': '100px'
       }
     }
   }
