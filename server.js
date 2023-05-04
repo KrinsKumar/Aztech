@@ -10,6 +10,7 @@ const clientSessions = require("client-sessions");
 const productController = require("./controller/productController.js");
 const userController = require("./controller/userController.js");
 const cartController = require("./controller/cartController.js");
+const pathController = require("./controller/pathwayController.js");
 
 //------------------------------------------------------------------------------
 //to be removed later if not being used
@@ -37,7 +38,7 @@ app.set('layout', 'main');
 //express configurations
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.use(clientSessions({
     cookieName: "session", 
@@ -63,6 +64,7 @@ function onHttpStart() {
 app.use("/", userController);
 app.use("/product", productController);
 app.use("/cart", cartController);
+app.use("/pathway", pathController);
 
 
 app.get("/", (req, res)=>{

@@ -5,9 +5,6 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 
-
-let carts;
-
 //middleware
 
 app.use(function(req,res,next) {
