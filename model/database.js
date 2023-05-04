@@ -61,6 +61,7 @@ const categorySchema = new Schema({
         "unique": true
     },
     "image": String,
+    "products": [productSchema]
 });
 
 const cartSchema = new Schema({

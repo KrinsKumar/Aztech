@@ -7,12 +7,33 @@ const {userModel, productModel, categoryModel, cartModel} = require('../model/da
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-
 //functions
 function generateRandomNumber() {
     return Math.floor(Math.random() * 900000) + 100000;
 }
 
+function getAllUsers()
+{
+    return new Promise((resolve, reject) => {
+        userModel.find({})
+        .exec()
+        .then((users=>resolve(users)))
+        .catch((err)=>console.log(err))
+    })
+}
+
+const getAllProducts = function () {
+    return new Promise((resolve, reject) => {
+        productModel.find({})
+            .exec()
+            .then((data) => {
+                resolve(data)
+            })
+            .catch((err) => {
+                reject(err)
+            })
+    })
+}
 
 //routes
 router.get("/login", (req, res) => {
@@ -105,7 +126,16 @@ router.post("/2factor", (req, res) => {
                     userName: user.userName,
                     email: user.email
                 };
-                res.redirect("/");
+                if(req.session.user.userName == "Admin")
+                {
+                    console.log("dssd");
+                    res.render("/adminMain", {layout: "admin"})
+                }
+                else
+                {
+                    console.log("asd");
+                    res.redirect("/");
+                }
             }
             else {
                 res.render("2factor", {
@@ -213,5 +243,48 @@ router.post("/verify", (req, res) => {
     })
 })
 
+router.get('/admin/users', (req, res)=>{
+const username = req.session.user.userName;
+if(username == "Admin")
+{
+    getAllUsers()
+    .then((data)=>{
+        const displayUsers = data.map(user => {
+            return { name: user.userName, email: user.email, discount: user.discount, cartList: user.carts};
+          });
+          console.log(displayUsers);
+                res.render("users", {
+            layout: 'admin',
+            users: displayUsers
+        })
+    })
+}
+else{
+    res.redirect("/login");
+}
+})
+
+router.get('/admin/products', (req, res)=>{
+    const username = req.session.user.userName;
+    if(username == "Admin")
+    {
+        getAllProducts()
+        .then((data)=>{
+            res.render("product", {
+                layout: 'admin',
+                products: data
+            })
+        })
+    }
+    else{
+        res.redirect("/login");
+    }
+    })
+
+router.get("/logout", (req, res)=>{
+    req.session.destroy();
+    // MongoStore.destroy(),
+    res.redirect("login");
+})
 
 module.exports = router;

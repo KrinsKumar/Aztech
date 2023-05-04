@@ -6,18 +6,6 @@ const { userModel, productModel, categoryModel, cartModel } = require('../model/
 const express = require("express");
 const router = express.Router();
 
-const getAllProducts = function () {
-    return new Promise((resolve, reject) => {
-        productModel.find({})
-            .exec()
-            .then((data) => {
-                resolve(data)
-            })
-            .catch((err) => {
-                reject(err)
-            })
-    })
-}
 
 const getAllCategories = function () {
     return new Promise((resolve, reject) => {
@@ -69,9 +57,6 @@ router.get('/', (req, res) => {
   
         Promise.all(promises)
           .then((categoryProducts) => {
-            categoryProducts.forEach((cat)=>{
-                console.log(cat.products);
-            })
             res.render('product', { layout: "main", catData: categoryProducts });
           })
           .catch((err) => {
@@ -90,7 +75,6 @@ router.get("/:sku", (req, res) => {
     let related, bundle;
     getProductBySku(SKU)
         .then((data) => {
-            console.log("here : " + data);
             getAllProductsByCategory(data.category)
                 .then((rel) => {
                     related = rel;
