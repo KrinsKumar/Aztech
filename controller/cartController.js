@@ -13,7 +13,7 @@ app.use(function(req,res,next) {
 })
 
 function ensureLogin(req, res, next) { 
-    if (!req.session.user.userName) {
+    if (!req.session.user) {
       res.redirect("/login");
     } else {
       next();
@@ -29,6 +29,7 @@ function checkAdmin(req, res, next) {
 }
 
 function ensureAccess(req, res, next) {
+    // isAccessable takes 2 argument first one is cartID. // TODO
   if(isAccessable(req.session.email)) {
       next();
   } else {
@@ -281,7 +282,7 @@ const loadAllCarts = function(userNamePara) {
         .exec()
         .then((userData) => {
             userData.carts.forEach((cart) => {
-                carts.findOne({cartID: cart.cartID})
+                cartModel.findOne({cartID: cart.cartID})
                 .exec()
                 .then((cartData) => {
                     cartData.owner = cart.owner;
@@ -304,13 +305,28 @@ const loadAllCarts = function(userNamePara) {
 // admin page
 // 
 //Renders all the carts that the user owns or have access to
+
 router.get("/", ensureLogin , (req, res) => {
     loadAllCarts(req.session.user.userName).then((cartData) => {
         res.render("cart", {
             carts: cartData
         })
-
     })
 });
 
+router.get("/:id", ensureLogin, (req, res)=>{
+    let Data;
+    const id = req.params.id
+    cartModel.findOne({cartID: id})
+    .exec()
+    .then(data=>{
+        Data = data;
+    })
+    loadAllCarts(req.session.user.userName).then((cartData) => {
+        res.render("cart", {
+            carts: cartData,
+            items: Data
+        })
+    })
+})
 module.exports = router;

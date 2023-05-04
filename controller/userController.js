@@ -212,6 +212,10 @@ router.post("/verify", (req, res) => {
         }
     })
 })
-
+router.get("/logout", (req, res)=>{
+    req.session.destroy();
+    // MongoStore.destroy(),
+    res.redirect("login");
+})
 
 module.exports = router;
