@@ -32,9 +32,9 @@ const getAllCategories = function () {
     })
 }
 
-const getAllProductsByCategory = function (categoryName) {
+const getAllProductsByCategory = function (val) {
     return new Promise((resolve, reject) => {
-        productModel.find({ category: categoryName })
+        productModel.find({ category: val })
             .exec()
             .then((data) => {
                 resolve(data)
@@ -58,44 +58,70 @@ const getProductBySku = function (val) {
     })
 }
 
-
 router.get('/', (req, res) => {
-    let categories=[];
     getAllCategories()
-        .then((data) => {categories = data})
-        .then(
-            categories.forEach((category) => {
-                getAllProductsByCategory(category)
-                    .then((products) => {
-                        category.push(products)
-                    })
-                    .catch((err) => {
-                        console.error(err);
-                        res.status(500).send('Error retrieving products');
-                    })
+      .then((categories) => {
+        const promises = categories.map(async (category) => {
+          const products = await getAllProductsByCategory(category.id);
+            category.products = products;
+            return category;
+        });
+  
+        Promise.all(promises)
+          .then((categoryProducts) => {
+            categoryProducts.forEach((cat)=>{
+                console.log(cat.products);
             })
-        )
-        .then(() =>{
-            res.render('product', { layout: "main", data: categories })
-        })
-});
+            res.render('product', { layout: "main", catData: categoryProducts });
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error retrieving products');
+          });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error retrieving categories');
+      });
+  });
+  
+  
+// router.get('/', (req, res) => {
+//     getAllCategories()
+//         .then((data) => {
+//             console.log(data);
+//             data.forEach((category) => {
+//                 getAllProductsByCategory(category)
+//                     .then((products) => {
+//                         category.push(products)
+//                         console.log(category);
+//                     })
+//                     .catch((err) => {
+//                         console.error(err);
+//                         res.status(500).send('Error retrieving products');
+//                     })
+
+//             })
+//             res.render('product', { layout: "main", catData: data })
+//         })
+// });
 
 router.get("/:sku", (req, res) => {
     const SKU = req.params.sku;
     let related, bundle;
     getProductBySku(SKU)
-        .then((data) => {   
-            console.log("here : "+data);
+        .then((data) => {
+            console.log("here : " + data);
             getAllProductsByCategory(data.category)
-            .then((rel)=>{
-                related = rel;
-                res.render("product", { 
-                    layout: "main", 
-                    product: data,
-                    relatedProducts: related,
-                    bundleProducts: bundle 
-                 })
-            })
+                .then((rel) => {
+                    related = rel;
+                    res.render("product", {
+                        layout: "main",
+                        product: data,
+                        relatedProducts: related,
+                        bundleProducts: bundle
+                    })
+                })
         })
         .catch(err => { console.log(err) });
 })
