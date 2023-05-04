@@ -38,7 +38,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf",
+        "category": 1
     },
     {
         "sku": 1002,
@@ -78,7 +79,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6670-FX-401-Installation-Manual.pdf",
+        "category": 1
     },
     {
         "sku": 1003,
@@ -98,7 +100,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5350_RAX-LCD-LITE_Remote_LCD_Annunciator.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-1149_RAX-LCD-LITE_Installation_Manual.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-1149_RAX-LCD-LITE_Installation_Manual.pdf",
+        "category": 2
     },
     {
         "sku": 1004,
@@ -119,7 +122,8 @@ db.products.insertMany([
         "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
         "notification-list": [],
         "velocity": "A",
-        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5347_RAM-1032TZDS_32-Zone_Remote_LED_Annunciator.pdf"
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5347_RAM-1032TZDS_32-Zone_Remote_LED_Annunciator.pdf",
+        "category": 2
     },
     {
         "sku": 1005,
@@ -140,7 +144,8 @@ db.products.insertMany([
         "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
         "notification-list": [],
         "velocity": "B",
-        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf"
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
+        "category": 2
     },
     {
         "sku": 1006,
@@ -162,7 +167,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5349_RAX-1048TZDS_48-Zone_Remote_LED_Adder_Annunciator.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf",
+        "category": 2
     },
     {
         "sku": 1007,
@@ -196,7 +202,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5348_RAX-1048TZDS-CC_48-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/pdf/LT-617_RA-1000_Installation_and_Wiring_Manual.pdf",
+        "category": 2
     },
     {
         "sku": 1008,
@@ -218,7 +225,8 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9517_UIMA4_Interface_for_Configurating_MGC_Fire_Panels.pdf",
-        "manual": "https://mircom.com/wp-content/uploads/product_documents/CAT-9519_MGC-CONFIG-KIT4_Fire_Panel_Configuration_Kit.pdf"
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/CAT-9519_MGC-CONFIG-KIT4_Fire_Panel_Configuration_Kit.pdf",
+        "category": 3
     },
     {
         "sku": 1009,
@@ -240,6 +248,7 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
+        "category": 3
     },
     {
         "sku": 1009,
@@ -261,6 +270,7 @@ db.products.insertMany([
         "notification-list": [],
         "velocity": "B",
         "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
+        "category": 3
     },
     {
         "sku": 1010,
@@ -357,5 +367,752 @@ db.products.insertMany([
         "specification": "https://mircom.com/wp-content/uploads/pdf/CAT-5661_FA-300_Series_LED_Display_Fire_Alarm_Control_Panels.pdf",
         "manual": "https://mircom.com/wp-content/uploads/pdf/LT-1001_SRM-312_Installation_and_Operation_Manual.pdf",
         "category": 4
+    },
+    {
+        "sku": 1015,
+        "productName": "BB-1001DR",
+        "price": 285,
+        "description": "The BB-1001 comes complete with a backbox, door and hinge. The enclosure door comes with Lexan windows, two keys and a durable lock. The enclosure is capable of handling one RAM-1032TZDS, RAXN-LCD, RAXN-LCDG, Main Annunciator Chassis.",
+        "info": [
+            {
+                "heading": "",
+                "text": [
+                    "BB-1001 – Remote Annunciator Enclosure. It comes complete with a backbox, door and hinge. The enclosure door comes with Lexan windows, two keys and a durable lock. The door comes hinged to the left side of the box.",
+                    "The enclosure is capable of handling one RAM-1032TZDS, RAXN-LCD, RAXN-LCDG, Main Annunciator Chassis."
+                ]
+            },
+            {
+                "heading": "Dimensions",
+                "text": "BB-1001D Enclosure: 9”H x 12.75”W x 1.85”D"
+            }
+        ],
+        "inventory": 11,
+        "image": ["https://mircom.com/wp-content/uploads/products/BB-1001DR.png"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5505_RA-1000_Series_Remote_Multiplex_Annunciators.pdf",
+        "category": 5
+    },
+    {
+        "sku":1016,
+        "productName": "BB-1001WPRA",
+        "price": 1075,
+        "description": "The RAM-1032TZDS-CC Main Remote LED Annunciator provides common annunciator functions and 32 points of LED annunciation. The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Each display point can be identified by the slide-in label that slides in beside the LED.",
+        "info": [
+            {
+                "heading": "",
+                "text": [
+                    "RAM-1032TZDS-CC Conformal Coated Annunciator provides common annunciator functions and 32 points of LED annunciation. In addition, The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Also, Identify each display point by the slide-in label that slides in beside the LED. The RAM-1032TZDS-CC allows for the control switches to be disabled on a per-function basis for areas that do not require certain common control functions to be remotely located from the fire alarm control unit.",
+                    "In order to expand the RAM1032TZDS-CC, use the addition of RAX1048TZDS-CC Programmable LED Annunciator Modules.",
+                    "Furthermore, both RAM-1032TZDS-CC Conformal Coated Annunciator and RAX-1048TZDS-CC are conformal coated annunciators and are UL and ULC approved for outdoor use when used with BB-1001WPRA or BB-1002WPRA. It is not necessary to install a heater or a thermostat."
+                ]
+            },
+            
+        ],
+        "inventory": 9,
+        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
+        "category": 5
+    },
+    {
+        "sku": 1017,
+        "productName": "BB-1002DR",
+        "price": 515,
+        "description": "The BB-1002 comes complete with a backbox, door and hinge. The enclosure door comes with Lexan windows, two keys and a durable lock. The enclosure is capable of handling one RAM-1032TZDS, RAXN-LCD, RAXN-LCDG, Main Annunciator Chassis and one RAX-1048TZDS Adder Annunciator Chassis.",
+        "info": [
+            {
+                "heading": "",
+                "text": [
+                    "BB-1002 – Remote Annunciator Enclosure. It comes complete with a backbox, door and hinge. The enclosure door comes with Lexan windows, two keys and a durable lock. The door comes hinged to the left side of the box.",
+                    "The enclosure is capable of handling one RAM-1032TZDS, RAXN-LCD, RAXN-LCDG, Main Annunciator Chassis and one RAX-1048TZDS Adder Annunciator Chassis."
+                ]
+            },
+            {
+                "heading": "Dimensions",
+                "text": "BB-1002 Enclosure: 18”H x 12.75”W x 1.85”D"
+            }
+        ],
+        "inventory": 14,
+        "image": ["https://mircom.com/wp-content/uploads/products/BB-1002DS.png"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5505_RA-1000_Series_Remote_Multiplex_Annunciators.pdf",
+        "category": 5
+    },
+    {
+        "sku": 1018,
+        "productName": "BB-1002WPRA",
+        "price": 1335,
+        "description": "The RAM-1032TZDS-CC Main Remote LED Annunciator provides common annunciator functions and 32 points of LED annunciation. The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Each display point can be identified by the slide-in label that slides in beside the LED.",
+        "info": [
+            {
+                "heading": "",
+                "text": [
+                    "RAM-1032TZDS-CC Conformal Coated Annunciator provides common annunciator functions and 32 points of LED annunciation. In addition, The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Also, Identify each display point by the slide-in label that slides in beside the LED. The RAM-1032TZDS-CC allows for the control switches to be disabled on a per-function basis for areas that do not require certain common control functions to be remotely located from the fire alarm control unit.",
+                    "In order to expand the RAM1032TZDS-CC, use the addition of RAX1048TZDS-CC Programmable LED Annunciator Modules.",
+                    "Furthermore, both RAM-1032TZDS-CC Conformal Coated Annunciator and RAX-1048TZDS-CC are conformal coated annunciators and are UL and ULC approved for outdoor use when used with BB-1001WPRA or BB-1002WPRA. It is not necessary to install a heater or a thermostat."
+                ]
+            }
+        ],
+        "inventory": 7,
+        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
+        "category": 5
+    },
+    {
+        "sku": 1019,
+        "productName": "MIX-4010",
+        "price": 130,
+        "description": "The MIX-4010 is a photoelectric smoke sensor that continuously monitors the environment to provide early warning of a fire condition.",
+        "info": [
+            {
+                "heading": "",
+                "text": "NEW MIX-4010 / MIX-4010-ISO are photoelectric smoke detectors that contently monitor the environment in order to provide early warning of a fire condition. All MIX-4000 series smoke sensors communicate with panels using a fully digital protocol."
+            },
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4010 / MIX-4010-ISO work with MGC compatible control panels",
+                    "Can add up to 240 MIX-4000 series devices on a single SLC",
+                    "Different LED colors for Alarms and Troubles",
+                    "Use advanced software algorithms for smoke detection",
+                    "Protect against nuisance alarms caused by dust, insects or other debris",
+                    "Multiple sensitivity settings",
+                    "Compatible with the full series of MIX-4000 input and control modules",
+                    "A unique Anti-Tamper feature provides additional security to all devices",
+                    "Easy address configuration with the hand-held programmer MIX-4090"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure locking",
+                    "Bases are available in 4” or 6” sizes",
+                    "In addition, all bases have a detachable tab for easy device address labeling",
+                    "The MIX-4010-ISO has a bi-directional short-circuit isolator in order to protect against wiring faults and loop failure",
+                    "Low standby current",
+                    "Magnet test option helps with commissioning and maintenance"
+                ]
+            }
+        ],
+        "inventory": 25,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9501_MIX-4010-MIX-4010-ISO_Photoelectric_Smoke_Detectors.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6136-MIX-4010-Photoelectric-Smoke-detector.pdf",
+        "category": 6
+
+    },
+    {
+        "sku": 1020,
+        "productName": "MIX-4010-ISO",
+        "price": 140,
+        "description": "The MIX-4010-ISO is a photoelectric smoke sensor that continuously monitors the environment to provide early warning of a fire condition.",
+        "info": [
+            {
+                "heading": "",
+                "text": "NEW MIX-4010 / MIX-4010-ISO are photoelectric smoke detectors that contently monitor the environment in order to provide early warning of a fire condition. All MIX-4000 series smoke sensors communicate with panels using a fully digital protocol."
+            },
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4010 / MIX-4010-ISO work with MGC compatible control panels",
+                    "Can add up to 240 MIX-4000 series devices on a single SLC",
+                    "Different LED colors for Alarms and Troubles",
+                    "Use advanced software algorithms for smoke detection",
+                    "Protect against nuisance alarms caused by dust, insects or other debris",
+                    "Multiple sensitivity settings",
+                    "Compatible with the full series of MIX-4000 input and control modules",
+                    "A unique Anti-Tamper feature provides additional security to all devices",
+                    "Easy address configuration with the hand-held programmer MIX-4090"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure locking",
+                    "Bases are available in 4” or 6” sizes",
+                    "In addition, all bases have a detachable tab for easy device address labeling",
+                    "The MIX-4010-ISO has a bi-directional short-circuit isolator in order to protect against wiring faults and loop failure",
+                    "Low standby current",
+                    "Magnet test option helps with commissioning and maintenance"
+                ]
+            }
+        ],
+        "inventory": 25,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9501_MIX-4010-MIX-4010-ISO_Photoelectric_Smoke_Detectors.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6136-MIX-4010-Photoelectric-Smoke-detector.pdf",
+        "category": 6
+    },
+    {
+        "sku": 1020,
+        "productName": "MIX-4020",
+        "price": 160,
+        "description": "4000 Series Multi Sensor - Photoelectric heat W/O Isolation",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "The MIX-4020 / MIX-4020-ISO work with MGC compatible control panels",
+                    "Can add up to 240 MIX-4000 series devices on a single SLC",
+                    "Different LED colors for Alarms and Troubles",
+                    "Use advanced software algorithms for smoke detection",
+                    "Protect against nuisance alarms caused by dust, insects or other debris",
+                    "Multiple sensitivity settings",
+                    "Compatible with the full series of MIX-4000 input and control modules",
+                    "A unique Anti-Tamper feature provides additional security to all devices",
+                    "Easy address configuration with the hand-held programmer MIX-4090"
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure locking",
+                    "Bases are available in 4” or 6” sizes",
+                    "In addition, all bases have a detachable tab for easy device address labeling",
+                    "The MIX-4020-ISO has a bi-directional short-circuit isolator in order to protect against wiring faults and loop failure",
+                    "Low standby current",
+                    "Magnet test option helps with commissioning and maintenance"
+                ]
+            },
+            {
+                "heading": "Ordering Information",
+                "text": [
+                    "MIX-4020:	MULTI-SENSOR DETECTOR W/O ISOLATION",
+                    "MIX-4020-ISO:	MULTI-SENSOR DETECTOR WITH ISOLATION"
+                ]
+            }
+        ],
+        "inventory": 11,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9502_MIX-4020-MIX-4020-ISO_Multi-Sensor_Detectors.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6137-MIX-4020-Multi-Sensor-detector.pdf",
+        "category": 6
+    },
+    {
+        "sku": 1021,
+        "productName": "MIX-4020-ISO",
+        "price": 170,
+        "description": "4000 Series Multi Sensor - Photoelectric heat with Isolation",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "The MIX-4020 / MIX-4020-ISO work with MGC compatible control panels",
+                    "Can add up to 240 MIX-4000 series devices on a single SLC",
+                    "Different LED colors for Alarms and Troubles",
+                    "Use advanced software algorithms for smoke detection",
+                    "Protect against nuisance alarms caused by dust, insects or other debris",
+                    "Multiple sensitivity settings",
+                    "Compatible with the full series of MIX-4000 input and control modules",
+                    "A unique Anti-Tamper feature provides additional security to all devices",
+                    "Easy address configuration with the hand-held programmer MIX-4090"
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure locking",
+                    "Bases are available in 4” or 6” sizes",
+                    "In addition, all bases have a detachable tab for easy device address labeling",
+                    "The MIX-4020-ISO has a bi-directional short-circuit isolator in order to protect against wiring faults and loop failure",
+                    "Low standby current",
+                    "Magnet test option helps with commissioning and maintenance"
+                ]
+            },
+            {
+                "heading": "Ordering Information",
+                "text": [
+                    "MIX-4020:	MULTI-SENSOR DETECTOR W/O ISOLATION",
+                    "MIX-4020-ISO:	MULTI-SENSOR DETECTOR WITH ISOLATION"
+                ]
+            }
+        ],
+        "inventory": 11,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9502_MIX-4020-MIX-4020-ISO_Multi-Sensor_Detectors.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6137-MIX-4020-Multi-Sensor-detector.pdf",
+        "category": 6
+    },
+    {
+        "sku": 1022,
+        "productName": "MIX-4001",
+        "price": 28,
+        "description": "The NEW MIX-4001 and MIX-4002 mounting bases are used to interface series 4000 detectors to the SLC line and remote devices.",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Sleek low profile design",
+                    "Ceiling or wall mountable",
+                    "4″ or 6″ options",
+                    "The base provides a device Anti-Tamper feature"
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure docking",
+                    "Save time with multiple mounting options",
+                    "A breakable flat tab in the center of the base can be cut and inserted in the base outer edge, then a label can can be used to identify the device"
+                ]
+            },
+            {
+                "heading": "Ordering Information",
+                "text": [
+                    "MIX-4001:	6″ DETECTOR BASE",
+                    "MIX-4002:	4″ DETECTOR BASE"
+                ]
+            }
+        ],
+        "inventory": 18,
+        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9505_MIX-4001-MIX-4002_Detector_Bases.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6135-MIX-4001-and-2-Detector-Base-Installation.pdf",
+        "category": 7
+    },
+    {
+        "sku": 1023,
+        "productName": "MIX-4002",
+        "price": 24,
+        "description": "The NEW MIX-4001 and MIX-4002 mounting bases are used to interface series 4000 detectors to the SLC line and remote devices.",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Sleek low profile design",
+                    "Ceiling or wall mountable",
+                    "4″ or 6″ options",
+                    "The base provides a device Anti-Tamper feature"
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure docking",
+                    "Save time with multiple mounting options",
+                    "A breakable flat tab in the center of the base can be cut and inserted in the base outer edge, then a label can can be used to identify the device"
+                ]
+            },
+            {
+                "heading": "Ordering Information",
+                "text": [
+                    "MIX-4001:	6″ DETECTOR BASE",
+                    "MIX-4002:	4″ DETECTOR BASE"
+                ]
+            }
+        ],
+        "inventory": 19,
+        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9505_MIX-4001-MIX-4002_Detector_Bases.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6135-MIX-4001-and-2-Detector-Base-Installation.pdf",
+        "category": 7
+    },
+    {
+        "sku": 1024,
+        "productName": "MIX-4003-R",
+        "price": 140,
+        "description": "The MIX-4003-R relay base provides one form C (SPDT) contact rated at 2A at 30Vdc, or 0.5A at 125Vac and a compatible panel can switch discrete contacts by command.",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Compatible with isolated and non-isolated detectors",
+                    "Designed to meet UL268/ULCS529 requirements for smoke detectors",
+                    "Designed to meet UL521/ULC S530 requirements for heat detector."
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure docking",
+                    "Save time with multiple mounting options",
+                    "Compatible with all MIX-4000 Detectors"
+                ]
+            },
+            {
+                "heading": "Notes",
+                "text": [
+                    "Circuit connections to the relay contacts are not supervised by the base. The MIX-4003-R supports group activation capability for fast reaction time.",
+                    "The MIX-4003-R must be used with a compatible MGC control panel. The device can control one independent circuit while using one address."
+                ]
+            }
+        ],
+        "inventory": 8,
+        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg",
+            "https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4010-ISO-100x100.jpg",
+            "https://mircom.com/wp-content/uploads/products/mix-4003-r-2-100x100.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9498_MIX-4003-R_MIX-4000_Series_Relay_Base.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6697-Sounder-bases_Relay-1_1.pdf",
+        "category": 7
+    },
+    {
+        "sku": 1025,
+        "productName": "MIX-4003-S",
+        "price": 175,
+        "description": "The MIX-4003-S sounder base provides localized alarm sounding capability for the MIX-4000 family of fire detection devices.",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Multiple options of tone patterns.",
+                    "Three-pulse temporal pattern fire alarm signal required by NFPA 72.",
+                    "Two volume levels: low and high"
+                ]
+            },
+            {
+                "heading": "Benefits",
+                "text": [
+                    "Open style mounting bases offer easy wiring and low pressure docking",
+                    "Save time with multiple mounting options",
+                    "Compatible with all MIX-4000 Detectors"
+                ]
+            },
+            {
+                "heading": "Notes",
+                "text": [
+                    "It can be used in place of external sounders to minimize installation cost and footprint while allowing individual control of signal rate and on-off state for each device.",
+                    "The MIX-4003-S must be used with a compatible MGC control panel.",
+                    "Operational mode and levels are selected at the fire alarm panel through the MGC MP configuration tool."
+                ]
+            }
+        ],
+        "inventory": 15,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4010-ISO-1-768x576.jpg",
+            "https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4020-ISO-100x100.jpg",
+            "https://mircom.com/wp-content/uploads/products/mix-4003-r-100x100.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9499_MIX-4003-S_MIX-4000_Series_Sounder_Base.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6696-Sounder-bases_Horn_1_1.pdf",
+        "category": 7
+    },
+    {
+        "sku": 1026,
+        "productName": "MIX-4090",
+        "price": 600,
+        "description": "The MIX-4090 programmer is small and lightweight tool used to set or read device addresses and device's parameters such as device type and firmware version.",
+        "info": [
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "MIX-4090 programmer works with MGC MIX-4000 series devices",
+                    "Programs Addresses",
+                    "Reads Addresses",
+                    "Reads device type",
+                    "Also reads manufacturing date & firmware version",
+                    "Comes with a plug-in cable in order to program wired device",
+                    "Can also change addresses on modules even in the field (un-powered)",
+                    "2 x 8-character LCD display",
+                    "9v battery operated"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Battery Operated with auto shut down function when it's not in use for more than 30 sec",
+                    "In addition to light, robust and easy to use design, MIX-4090 allows simple device re-programming within seconds."
+                ]
+            }
+        ],
+        "inventory": 27,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4090.png"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9500_MIX-4090_Addressable_Device_Programmer.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6146-MIX-4090-Device-Programmer.pdf",
+        "category": 8
+    },
+    {
+        "sku": 1027,
+        "productName": "MIX-4040",
+        "price": 130,
+        "description": "The NEW MIX-4040 Dual Input Module is an intelligent addressable module is designed to be used for alarm, supervisory, or monitor applications.",
+        "info": [
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4040 Dual Input Module is designed to be used with MGC compatible panels.",
+                    "Any combination of MIX-4000 series devices up to 240 can be connected on a single SLC.",
+                    "Mounts in a standard 4” square or double gang electrical back box.",
+                    "Reads device type",
+                    "Indicating LED provides module status",
+                    "The address of each module is set using the MIX-4090 programmer tool.",
+                    "Temperature range 32°F to 120°F  (0°C to 49°C)"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Fast, reliable contact monitoring.",
+                    "Will automatically set inputs to single Class A or dual Class B according to the configuration sent by the fire alarm panel.",
+                    "No EOL resistor required when input is in Class A operation.",
+                    "Monitors two (2) independent circuits in Class B using one (1) module address"
+                ]
+            }
+        ],
+        "inventory": 43,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4040.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9504_MIX-4040_Dual_Input_Modules.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6139-MIX-4040-Dual-input-module.pdf",
+        "category": 8
+    },
+    {
+        "sku": 1028,
+        "productName": "MIX-4042",
+        "price": 195,
+        "description": "The NEW MIX-4042 Conventional Zone Module is typically used to connect a zone of conventional devices to be interfaced to an intelligent loop.",
+        "info": [
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4042 Conventional Zone Module is designed to be used with MGC compatible panels.",
+                    "Any combination of MIX-4000 series devices up to 240 can be connected on a single SLC.",
+                    "Mounts in a standard 4” square or double gang electrical back box.",
+                    "Indicating LED provides module status",
+                    "Compatible with conventional two wire or 4-20mA devices.",
+                    "Temperature range 32°F to 120°F (0°C to 49°C)"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Each MIX-4042 module monitors the current used by the devices and reports alarms and troubles accordingly.",
+                    "Compatible with a large array of 2 wire devices.",
+                    "When configured for conventional devices, the module will automatically handle Class A or Class B lines.",
+                ]
+            }
+        ],
+        "inventory": 39,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4042.jpg"],
+        "notification-list": [],
+        "velocity": "B",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9510_MIX-4042_Conventional_Zone_Input_Module.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6142-MIX-4042-Conventional-zone-and-4-20mA-input-module.pdf",
+        "category": 8
+    },
+    {
+        "sku": 1029,
+        "productName": "MIX-4045",
+        "price": 150,
+        "description": "The NEW MIX-4045 Dual Relay Module provides an addressable relay output that can be programmed to respond to any alarm or any combination of inputs.",
+        "info": [
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4045 Dual Relay Module is designed to be used with MGC compatible panels.",
+                    "Any combination of MIX-4000 series devices up to 240 can be connected on a single SLC.",
+                    "Mounts in a standard 4” square or double gang electrical back box.",
+                    "Indicating LED provides module status",
+                    "Two individually controllable contacts per module.",
+                    "Each contact provides access to normally closed and normally open sides.",
+                    "Contact position is verified by the module. Stuck or inoperative contacts are reported as a trouble.",
+                    "Temperature range 32°F to 120°F  (0°C to 49°C)"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "Supports group activation capability for fast reaction time.",
+                    "Provides two (2) outputs using only one (1) module address.",
+                    "The SLC and externally powered connections are on opposite sides of the device for easy installation (no need to install an additional barrier)."
+                ]
+            }
+        ],
+        "inventory": 24,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4045.jpg"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9508_MIX-4045_Dual_Relay_Module.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6143-MIX-4045-Dual-relay-module.pdf",
+        "category": 8
+    },
+    {
+        "sku": 1030,
+        "productName": "MIX-4050",
+        "price": 170,
+        "description": "The MIX-4050 Sync Module is designed to synchronize the MGC notification devices. The module can be used to synchronize the strobe flashes with the audio signal pattern. The same protocol is used to silence the horn while maintaining the strobe flashes.",
+        "info": [
+            {
+                "heading": "FEATURES",
+                "text": [
+                    "The MIX-4050 Sync Module is designed to be used with MGC NAC devices",
+                    "The module can synchronize one (1) class A or two (2) class B NAC lines without the need for programming.",
+                    "Supports two stage alarm function of “Alert” and “Evac”",
+                    "This Sync Module is fail-safe and will provide power to the NAC line by default through a relay",
+                    "The MIX-4050 has an isolated sync input/output which allows to link up to 20 modules together",
+                    "Mounts in a standard 4” square or double gang electrical back box",
+                    "Mounts in a standard 4” square or double gang electrical back box",
+                    "Complies with all agency requirements including the 2016 edition"
+                ]
+            },
+            {
+                "heading": "BENEFITS",
+                "text": [
+                    "The Sync module uses no power during standby",
+                    "Does not require addressing",
+                    "A built-in LED indicates activation and master / slave status",
+                    "The Sync module is compatible with any UL/ULC listed panels and power supplies capable of providing regulated 24VDC or FWR for NACs",
+                    "The interconnected MIX-4050 devices synchronize automatically without the need of programming or jumper setting."
+                ]
+            }
+        ],
+        "inventory": 18,
+        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4050-768x730.png"],
+        "notification-list": [],
+        "velocity": "A",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9511_MIX-4050_Sync_Module.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6151-MIX-4050-Sync-module.pdf",
+        "category": 8
+    },
+    {
+        "sku": 1031,
+        "category": 10, 
+        "productName": "MPS-810MP",
+        "price":  190.00 ,
+        "description": "MP 1 STAGE ADDR DOUBLE ACTION PULL STATION ULC",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Completely made of LEXAN material",
+                    "Closed-fist operation (ADA – Americans with Disability Act)",
+                    "No printed text on the devices, symbols and icons are used instead",
+                    "Symbols are raised to be easily recognized by touch",
+                    "Compatible with FX-400 Series and Flex-Net FX-4000 Fire Alarm Panels",
+                    "Easy installation",
+                    "Accessible from the front for wiring while mounted",
+                    "Mounts on a single gang backbox",
+                    "Temperature range from 0ºC to 49ºC",
+                    "Device comes with a reset key",
+                    "Indoor use only",
+                    "Alarm LED is viewable from the front – Useful for troubleshooting",
+                ]
+            }
+        ],
+        "inventory": 101,
+        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "notification-list": [],
+        "velocity": "N",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6168-MPS-800MPU-Series-Manual-Stations-Installation-Instructions.pdf",
+    },
+    {
+        "sku": 1032,
+        "category": 11, 
+        "productName": "MPS-802MP",
+        "price":  200 ,
+        "description": "MP 2 STAGE ADDRESSABLE PULL STATION ULC",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Completely made of LEXAN material",
+                    "Closed-fist operation (ADA – Americans with Disability Act)",
+                    "No printed text on the devices, symbols and icons are used instead",
+                    "Symbols are raised to be easily recognized by touch",
+                    "Compatible with FX-400 Series and Flex-Net FX-4000 Fire Alarm Panels",
+                    "Easy installation",
+                    "Accessible from the front for wiring while mounted",
+                    "Mounts on a single gang backbox",
+                    "Temperature range from 0ºC to 49ºC",
+                    "Device comes with a reset key",
+                    "Indoor use only",
+                    "Alarm LED is viewable from the front – Useful for troubleshooting",
+                ]
+            }
+        ],
+        "inventory": 101,
+        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "notification-list": [],
+        "velocity": "N",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6168-MPS-800MPU-Series-Manual-Stations-Installation-Instructions.pdf",
+    },
+    {
+        "sku": 1033,
+        "category": 11, 
+        "productName": "MPS-822MP",
+        "price": 210 ,
+        "description": "MP MAGLOCK 2 STAGE ADDR DOUBLE ACTION PULL STATION ULC",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Completely made of LEXAN material",
+                    "Closed-fist operation (ADA – Americans with Disability Act)",
+                    "No printed text on the devices, symbols and icons are used instead",
+                    "Symbols are raised to be easily recognized by touch",
+                    "Compatible with FX-400 Series and Flex-Net FX-4000 Fire Alarm Panels",
+                    "Easy installation",
+                    "Accessible from the front for wiring while mounted",
+                    "Mounts on a single gang backbox",
+                    "Temperature range from 0ºC to 49ºC",
+                    "Device comes with a reset key",
+                    "Indoor use only",
+                    "Alarm LED is viewable from the front – Useful for troubleshooting",
+                ]
+            }
+        ],
+        "inventory": 101,
+        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "notification-list": [],
+        "velocity": "N",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6168-MPS-800MPU-Series-Manual-Stations-Installation-Instructions.pdf",
+    },
+    {
+        "sku": 1034,
+        "category": 12, 
+        "productName": "BB800",
+        "price":  45 ,
+        "description": "MP MAGLOCK 2 STAGE ADDR DOUBLE ACTION PULL STATION ULC",
+        "info": [
+            {
+                "heading": "Features",
+                "text": [
+                    "Completely made of LEXAN material",
+                    "Closed-fist operation (ADA – Americans with Disability Act)",
+                    "No printed text on the devices, symbols and icons are used instead",
+                    "Symbols are raised to be easily recognized by touch",
+                    "Compatible with FX-400 Series and Flex-Net FX-4000 Fire Alarm Panels",
+                    "Easy installation",
+                    "Accessible from the front for wiring while mounted",
+                    "Mounts on a single gang backbox",
+                    "Temperature range from 0ºC to 49ºC",
+                    "Device comes with a reset key",
+                    "Indoor use only",
+                    "Alarm LED is viewable from the front – Useful for troubleshooting",
+                ]
+            }
+        ],
+        "inventory": 101,
+        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "notification-list": [],
+        "velocity": "N",
+        "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
+        "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6168-MPS-800MPU-Series-Manual-Stations-Installation-Instructions.pdf",
     }
 ]);
+
+db.users.find({userName: "krims"})

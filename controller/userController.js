@@ -49,7 +49,8 @@ router.post("/login", (req, res) => {
                                     //save the code into the database
                                     userModel.updateOne({ userName: username },
                                         {$set: { verificationCode: newNumber }}
-                                    );
+                                    ).then(data => { console.log() })
+                                    .catch(err => { console.log() });
                                     req.session.user = {
                                         email: user.email,
                                     };
@@ -85,6 +86,7 @@ router.post("/login", (req, res) => {
 
 router.get("/2factor", (req, res) => {
     res.render("2factor", {
+        email: req.session.user.email,
         link: "/register",
         linkText: "Register"
     });
@@ -141,9 +143,10 @@ router.post("/register", (req, res) => {
 
             sgMail.send(msg)  //send the email
             .then(() => {
-                userModel.updateOne({ "userName": userName },
-                    {$set: { verificationCode: newNumber }}
-                );
+                userModel.updateOne({ "userName": req.body.userName },
+                    {"verificationCode": newNumber }
+                ).then(data => { console.log() })
+                .catch(err => { console.log() });
                 req.session.user = {
                     "email": email,
                 };
@@ -178,7 +181,6 @@ router.post("/register", (req, res) => {
 
 router.get("/verify", (req, res) => {
     res.render("verification", {
-        layout: "main",
         email: req.session.user.email,
     });
 })
@@ -196,10 +198,9 @@ router.post("/verify", (req, res) => {
                     userName: user.userName,
                     email: user.email
                 };
-                userModel.updateOne({ userName: email }, { verified: true })
+                userModel.updateOne({ email: userEmail }, { verified: true })
                 .then(data => { res.redirect("/") })
                 .catch(err => { res.redirect("/verify") })
-                res.redirect("/");
             }
             else {
                 res.render("verification", {

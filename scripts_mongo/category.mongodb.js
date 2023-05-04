@@ -48,12 +48,12 @@ db.categories.insertMany([
     },
     {
         "id": 10,
-        "categoryName": "Single Stage",
+        "categoryName": "Single Stage Pull Station",
         "image": ""
     },
     {
         "id": 11,
-        "categoryName": "Dual Stage",
+        "categoryName": "Dual Stage Pull Station",
         "image": ""
     },
     {
