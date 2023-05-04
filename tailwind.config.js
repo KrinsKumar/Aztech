@@ -22,6 +22,10 @@ module.exports = {
       },
       screens: {
         'xsm': '100px'
+      },
+      inset: {
+        '71px': '71px',
+        '73px': '73px',
       }
     }
   }

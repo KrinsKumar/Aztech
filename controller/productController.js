@@ -9,7 +9,7 @@ const router = express.Router();
 
 const getAllCategories = function () {
     return new Promise((resolve, reject) => {
-        categoryModel.find({})
+        categoryModel.find({}).lean()
             .exec()
             .then((data) => {
                 resolve(data)
@@ -22,9 +22,14 @@ const getAllCategories = function () {
 
 const getAllProductsByCategory = function (val) {
     return new Promise((resolve, reject) => {
-        productModel.find({ category: val })
+        productModel.find({ category: val }).lean()
             .exec()
             .then((data) => {
+                data.forEach((item) => {
+                    if (item.inventory == 0) {
+                        item.available = false;
+                    }
+                })
                 resolve(data)
             })
             .catch((err) => {
@@ -35,7 +40,7 @@ const getAllProductsByCategory = function (val) {
 
 const getProductBySku = function (val) {
     return new Promise((resolve, reject) => {
-        productModel.findOne({ sku: val })
+        productModel.findOne({ sku: val }).lean()
             .exec()
             .then((product) => {
                 resolve(product)

@@ -53,7 +53,7 @@ const productSchema = new Schema({
 
 const categorySchema = new Schema({
     "id": {
-        "type": Number,
+        "type": String,
         "unique": true
     },
     "categoryName": {
@@ -72,7 +72,7 @@ const cartSchema = new Schema({
     },
     "userName": String,
     "products": [{
-        "sku": Number, 
+        "productName": String, 
         "quantity": Number, 
         "price": Number
     }],

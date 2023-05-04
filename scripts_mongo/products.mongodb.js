@@ -1,3 +1,5 @@
+db.products.remove({});
+
 //insert all products
 db.products.insertMany([
     {
@@ -34,7 +36,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 10,
-        "image": ["https://mircom.com/wp-content/uploads/products/FX-401R-front_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401R-right_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401-right_sm.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/FX-401R-front_sm.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
@@ -75,7 +77,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 12,
-        "image": ["https://mircom.com/wp-content/uploads/products/FX-401-front_sm-1.jpg", "https://mircom.com/wp-content/uploads/products/FX-401_left_sm.jpg", "https://mircom.com/wp-content/uploads/products/FX-401-right_sm.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/FX-401-front_sm-1.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5982_FX-401_Addressable_Fire_Alarm_Control_Panel.pdf",
@@ -96,7 +98,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 36,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAX-LCD-LITE-600x600.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAX-LCD-LITE-600x600.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5350_RAX-LCD-LITE_Remote_LCD_Annunciator.pdf",
@@ -119,7 +121,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 30,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5347_RAM-1032TZDS_32-Zone_Remote_LED_Annunciator.pdf",
@@ -141,7 +143,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 6,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1-600x597.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
@@ -163,7 +165,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 10,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAX-1048TZDS-600x599.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAX-1048TZDS-600x599.png",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5349_RAX-1048TZDS_48-Zone_Remote_LED_Adder_Annunciator.pdf",
@@ -198,7 +200,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 10,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAX-1048TZS-CC-1.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAX-1048TZS-CC-1.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5348_RAX-1048TZDS-CC_48-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
@@ -221,7 +223,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 10,
-        "image": ["https://mircom.com/wp-content/uploads/products/UIMA4-600x599.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/UIMA4-600x599.png",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9517_UIMA4_Interface_for_Configurating_MGC_Fire_Panels.pdf",
@@ -244,29 +246,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 6,
-        "image": [`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo8RHhZwqyqf0cd1IwqCak4r54UJX2cIPhHN1eoTuJHz4f-mq3IOXoZOABUjv7y-TMflY&usqp=CAU`],
-        "notification-list": [],
-        "velocity": "B",
-        "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
-        "category": 3
-    },
-    {
-        "sku": 1009,
-        "productName": "MGC-CONFIG-KIT4",
-        "price": 425,
-        "description": "The UIMA4 is an interface for configuring FleX-Net™, FA-300, FX-350, FX-2000, FX-3500, FX-3318, QX-5000, and UDACT-300. The ribbon cable can be replaced.",
-        "info": [
-            {
-                "heading": "The UIMA4 interface has 3 connectors:",
-                "text": [
-                    "9 pin male serial connector for connecting the UIMA4 to the9 pin male to female serial cable and then to the RS-232 serial port on some products",
-                    "USB B female connector for connecting the UIMA4 to the USB A to B male cable and then to the computer",
-                    "10 pin female connector for connecting the UIMA4 to the configuration port or debug interface on some products"
-                ]
-            }
-        ],
-        "inventory": 6,
-        "image": [`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo8RHhZwqyqf0cd1IwqCak4r54UJX2cIPhHN1eoTuJHz4f-mq3IOXoZOABUjv7y-TMflY&usqp=CAU`],
+        "image": `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo8RHhZwqyqf0cd1IwqCak4r54UJX2cIPhHN1eoTuJHz4f-mq3IOXoZOABUjv7y-TMflY&usqp=CAU`,
         "notification-list": [],
         "velocity": "B",
         "specification": "mircom-cat-9519-mgc-config-kit4-fire-panel-configuration-kit-0745698321.pdf",
@@ -278,7 +258,7 @@ db.products.insertMany([
         "price": 1160,
         "description": "FX-401 Dual Loop Controller Module 480 points (MGC Devices 4000 Series Compatible)",
         "inventory": 34,
-        "image": ["https://cdn.shopify.com/s/files/1/0641/8491/0041/products/ALC-480.jpg?v=1655225678"],
+        "image": "https://cdn.shopify.com/s/files/1/0641/8491/0041/products/ALC-480.jpg?v=1655225678",
         "notification-list": [],
         "velocity": "B",
         "category": 4
@@ -295,7 +275,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 22,
-        "image": ["https://mircom.com/wp-content/uploads/products/PR-300-600x600.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/PR-300-600x600.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5341_PR-300_Polarity_Reversal-City_Tie_Module.pdf",
@@ -317,7 +297,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 25,
-        "image": ["https://mircom.com/wp-content/uploads/products/AGD-048-front-600x600.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/AGD-048-front-600x600.jpg",
         "notification-list": [],
         "velocity": "B",
         "category": 4
@@ -338,7 +318,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 20,
-        "image": ["https://mircom.com/wp-content/uploads/products/MGD-32-front.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MGD-32-front.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5949-MGD-32-Master-Graphic-Driver-Module.pdf",
@@ -361,7 +341,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 22,
-        "image": ["https://mircom.com/wp-content/uploads/products/SRM-312R_right-600x600.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/SRM-312R_right-600x600.jpg",
         "notification-list": [],
         "velocity": "C",
         "specification": "https://mircom.com/wp-content/uploads/pdf/CAT-5661_FA-300_Series_LED_Display_Fire_Alarm_Control_Panels.pdf",
@@ -387,7 +367,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 11,
-        "image": ["https://mircom.com/wp-content/uploads/products/BB-1001DR.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/BB-1001DR.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5505_RA-1000_Series_Remote_Multiplex_Annunciators.pdf",
@@ -410,7 +390,7 @@ db.products.insertMany([
             
         ],
         "inventory": 9,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
@@ -435,7 +415,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 14,
-        "image": ["https://mircom.com/wp-content/uploads/products/BB-1002DS.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/BB-1002DS.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5505_RA-1000_Series_Remote_Multiplex_Annunciators.pdf",
@@ -457,7 +437,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 7,
-        "image": ["https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/RAM-1032TZDS-CC-1.png",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5346_RAM-1032TZDS-CC_32-Zone_Conformal_Coated_Remote_LED_Annunciator.pdf",
@@ -500,7 +480,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 25,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9501_MIX-4010-MIX-4010-ISO_Photoelectric_Smoke_Detectors.pdf",
@@ -545,7 +525,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 25,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9501_MIX-4010-MIX-4010-ISO_Photoelectric_Smoke_Detectors.pdf",
@@ -553,7 +533,7 @@ db.products.insertMany([
         "category": 6
     },
     {
-        "sku": 1020,
+        "sku": 1120,
         "productName": "MIX-4020",
         "price": 160,
         "description": "4000 Series Multi Sensor - Photoelectric heat W/O Isolation",
@@ -592,7 +572,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 11,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9502_MIX-4020-MIX-4020-ISO_Multi-Sensor_Detectors.pdf",
@@ -639,7 +619,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 11,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4010-MIX-4020-tilt_lg-768x768.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9502_MIX-4020-MIX-4020-ISO_Multi-Sensor_Detectors.pdf",
@@ -678,7 +658,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 18,
-        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/bases-2-1.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9505_MIX-4001-MIX-4002_Detector_Bases.pdf",
@@ -717,7 +697,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 19,
-        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/bases-2-1.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9505_MIX-4001-MIX-4002_Detector_Bases.pdf",
@@ -755,9 +735,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 8,
-        "image": ["https://mircom.com/wp-content/uploads/products/bases-2-1.jpg",
-            "https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4010-ISO-100x100.jpg",
-            "https://mircom.com/wp-content/uploads/products/mix-4003-r-2-100x100.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/bases-2-1.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9498_MIX-4003-R_MIX-4000_Series_Relay_Base.pdf",
@@ -796,9 +774,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 15,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4010-ISO-1-768x576.jpg",
-            "https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4020-ISO-100x100.jpg",
-            "https://mircom.com/wp-content/uploads/products/mix-4003-r-100x100.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4003-S-R-with-MIX-4010-ISO-1-768x576.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9499_MIX-4003-S_MIX-4000_Series_Sounder_Base.pdf",
@@ -834,7 +810,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 27,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4090.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4090.png",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9500_MIX-4090_Addressable_Device_Programmer.pdf",
@@ -870,12 +846,12 @@ db.products.insertMany([
             }
         ],
         "inventory": 43,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4040.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4040.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9504_MIX-4040_Dual_Input_Modules.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6139-MIX-4040-Dual-input-module.pdf",
-        "category": 8
+        "category": 9
     },
     {
         "sku": 1028,
@@ -904,12 +880,12 @@ db.products.insertMany([
             }
         ],
         "inventory": 39,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4042.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4042.jpg",
         "notification-list": [],
         "velocity": "B",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9510_MIX-4042_Conventional_Zone_Input_Module.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6142-MIX-4042-Conventional-zone-and-4-20mA-input-module.pdf",
-        "category": 8
+        "category": 9
     },
     {
         "sku": 1029,
@@ -940,12 +916,12 @@ db.products.insertMany([
             }
         ],
         "inventory": 24,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4045.jpg"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4045.jpg",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9508_MIX-4045_Dual_Relay_Module.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6143-MIX-4045-Dual-relay-module.pdf",
-        "category": 8
+        "category": 9
     },
     {
         "sku": 1030,
@@ -978,12 +954,12 @@ db.products.insertMany([
             }
         ],
         "inventory": 18,
-        "image": ["https://mircom.com/wp-content/uploads/products/MIX-4050-768x730.png"],
+        "image": "https://mircom.com/wp-content/uploads/products/MIX-4050-768x730.png",
         "notification-list": [],
         "velocity": "A",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-9511_MIX-4050_Sync_Module.pdf",
         "manual": "https://mircom.com/wp-content/uploads/product_documents/LT-6151-MIX-4050-Sync-module.pdf",
-        "category": 8
+        "category": 9
     },
     {
         "sku": 1031,
@@ -1011,7 +987,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 101,
-        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "image": "https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp",
         "notification-list": [],
         "velocity": "N",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
@@ -1043,7 +1019,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 101,
-        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "image": "https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp",
         "notification-list": [],
         "velocity": "N",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
@@ -1075,7 +1051,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 101,
-        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "image": "https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp",
         "notification-list": [],
         "velocity": "N",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
@@ -1107,7 +1083,7 @@ db.products.insertMany([
             }
         ],
         "inventory": 101,
-        "image": ["https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp"],
+        "image": "https://mircom.com/wp-content/uploads/products/MPS-810MP-500x500-1-e1661453196705.webp",
         "notification-list": [],
         "velocity": "N",
         "specification": "https://mircom.com/wp-content/uploads/product_documents/CAT-5964_MPS-800MPU_Addressable_Manual_Stations-1.pdf",
@@ -1115,4 +1091,4 @@ db.products.insertMany([
     }
 ]);
 
-db.users.find({userName: "krims"})
+db.products.find({})

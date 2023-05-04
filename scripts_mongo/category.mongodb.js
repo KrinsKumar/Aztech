@@ -43,7 +43,7 @@ db.categories.insertMany([
     },
     {
         "id": 9,
-        "categoryName": "4000 series inleligent modules",
+        "categoryName": "4000 series Intelligent modules",
         "image": ""
     },
     {

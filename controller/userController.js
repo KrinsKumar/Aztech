@@ -128,12 +128,10 @@ router.post("/2factor", (req, res) => {
                 };
                 if(req.session.user.userName == "Admin")
                 {
-                    console.log("dssd");
                     res.render("/adminMain", {layout: "admin"})
                 }
                 else
                 {
-                    console.log("asd");
                     res.redirect("/");
                 }
             }
