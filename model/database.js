@@ -49,9 +49,7 @@ const productSchema = new Schema({
     "specification": String,
     "manual": String
 });
-productSchema.add({
-    "subProducts" : [productSchema] // array of sub products if this is a sub category
-})
+
 
 const categorySchema = new Schema({
     "id": {
@@ -62,18 +60,19 @@ const categorySchema = new Schema({
         "type": String,
         "unique": true
     },
-    "image": String
+    "image": String,
+    "products": [productSchema]
 });
 
 const cartSchema = new Schema({
     "cartName": String,
     "cartID": {
-        "type": Number,
+        "type": String,
         "unique": true
     },
     "userName": String,
     "products": [{
-        "productName": String, 
+        "sku": Number, 
         "quantity": Number, 
         "price": Number
     }],

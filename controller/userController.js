@@ -105,7 +105,16 @@ router.post("/2factor", (req, res) => {
                     userName: user.userName,
                     email: user.email
                 };
-                res.redirect("/");
+                if(req.session.user.userName == "Admin")
+                {
+                    console.log("dssd");
+                    res.render("/adminMain", {layout: "admin"})
+                }
+                else
+                {
+                    console.log("asd");
+                    res.redirect("/");
+                }
             }
             else {
                 res.render("2factor", {
