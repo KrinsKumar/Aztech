@@ -248,10 +248,14 @@ const username = req.session.user.userName;
 if(username == "Admin")
 {
     getAllUsers()
-    .then((userList)=>{
-        res.render("users", {
+    .then((data)=>{
+        const displayUsers = data.map(user => {
+            return { name: user.userName, email: user.email, discount: user.discount, cartList: user.carts};
+          });
+          console.log(displayUsers);
+                res.render("users", {
             layout: 'admin',
-            users: userList
+            users: displayUsers
         })
     })
 }
