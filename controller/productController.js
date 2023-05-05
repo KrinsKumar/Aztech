@@ -83,7 +83,7 @@ router.get("/:sku", (req, res) => {
             getAllProductsByCategory(data.category)
                 .then((rel) => {
                     related = rel;
-                    res.render("product", {
+                    res.render("specificProduct", {
                         layout: "main",
                         product: data,
                         relatedProducts: related,
