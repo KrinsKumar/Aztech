@@ -18,7 +18,10 @@ const chatController = require("./controller/chatController.js");
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
         ifeq: function(a, b, options) {
-            if (a == b) { return options.fn(this); }
+            if (a === b) 
+                { return options.fn(this); }
+            else 
+                { return options.inverse(this); }
         },
         navLink: function(url, options){
             return '<li' + 
