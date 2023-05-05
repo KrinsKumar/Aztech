@@ -12,10 +12,23 @@
     </div>
 {{/if}}
 {{#if carts}}
+    <div class="flex flex-row flex-wrap justify-center gap-5 mt-8">
+        {{#each carts}}
+        
+            <a href="/cart/{{cartID}}" class="block min-w-[30%] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{#displayCart cartName cartID}}{{/displayCart}}</h5>
+                <p class="font-normal text-gray-700">{{#ifmore totalPrice 0}}${{totalPrice}}{{/ifmore}}</p>
+            </a>
 
+        {{/each}}
+            <a href="#" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"  class="block max-w-sm p-6 bg-indigo-400 text-black border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-black">Create a new Cart</h5>
+                <p class="font-normal text-black">Carts is where you can add your desired products and get the quotation.</p>
+            </a>
+    </div>
 {{else}}
     <section class="py-6 bg-indigo-400 text-gray-900">
-        <div class="container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 md:px-24 xl:px-48">
+        <div class="mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 md:px-24 xl:px-48 ">
             <h1 class="text-5xl font-bold leading-none text-center">Ug-oh, looks like you have no carts</h1>
             <p class="pt-2 pb-8 text-xl font-medium text-center">Carts is where you can add your desired products and get the quotation. You can even add collabrators and mods to have them interact with the cart.</p>
             <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"  class="px-8 py-3 text-lg font-semibold rounded bg-gray-800 text-gray-50">Create one</button>

@@ -3,6 +3,6 @@ let buttons = document.querySelectorAll('.helper-buttons');
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-        prompt.value += button.innerText;
+        prompt.value += " " + button.innerText;
     })
 })

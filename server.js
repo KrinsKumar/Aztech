@@ -23,6 +23,9 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
             else 
                 { return options.inverse(this); }
         },
+        ifmore: function(a, b, options) {
+            if (a > b) { return options.fn(this); }
+        },
         navLink: function(url, options){
             return '<li' + 
                 ((url == app.locals.activeRoute) ? ' class="active" ' : '') + 
@@ -36,6 +39,22 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
             let month = (dateObj.getMonth() + 1).toString();
             let day = dateObj.getDate().toString();
             return `${year}-${month.padStart(2, '0')}-${day.padStart(2,'0')}`;
+        },
+        ini: function(a, options){
+            return a[0].toUpperCase();
+        },
+        displayCart: function(cartName, cartID, options){
+            if (cartName) return cartName
+            else {
+                console.log(typeof(cartID) + " + " + cartID)
+                return cartID
+                return cartID.substr(1, cartID.length)
+            }
+        },
+        modExist: function(mod, options){
+            if (mod.length > 0) return options
+            else "No Collabrators Exists"
+
         }
     }})
 );

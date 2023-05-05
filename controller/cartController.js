@@ -24,6 +24,14 @@ function ensureLogin(req, res, next) {
     }
 }
 
+function ensureCart(req, res, next) { 
+    if (!req.session.cart) {
+      res.redirect("/cart");
+    } else {
+        next();
+    }
+}
+
 function checkAdmin(req, res, next) {
     if (req.session.user.userName === "admin") {
         next();
@@ -61,7 +69,7 @@ const initialize = function () {
 //returns the cart data
 const getCart = function(cartIdPara) {
     return new Promise((resolve, reject) => {
-        carts.find({cartID: cartIdPara})
+        cartModel.find({cartID: cartIdPara}).lean()
         .exec()
         .then((data)=>{
             resolve(data)
@@ -278,30 +286,60 @@ const removeproduct = function(cartIdPara, productNamePara) {
     })
 }
 
-//load all users cart
 const loadAllCarts = function(userNamePara) {
     return new Promise((resolve, reject) => {
-        let allCarts = [];
         userModel.findOne({userName: userNamePara}).lean()
         .exec()
         .then((userData) => {
-            userData.carts.forEach((cart) => {
-                cartModel.findOne({cartID: cart.cartID}).lean()
-                .exec()
-                .then((cartData) => {
-                    cartData.owner = cart.owner;
-                    allCarts.push(cartData);
-                })
-                .catch((err) => {
-                    reject(err);
-                });
-            });
-            resolve(allCarts);
+            let promises = userData.carts.map(async (cart) => {
+                let thisCart = await getCart(cart.cartID);
+                return thisCart[0];
+            })
+
+            Promise.all(promises).
+            then((allCarts) => {
+                resolve(allCarts);
+            })
         })
         .catch((err) => {
-            rej(err);
+            reject(err);
         });
         
+    })
+}
+
+function loadCartPage(req, res, cartt, cartErrorr = null) {
+    cartModel.findOne({cartID: cartt}).lean()
+    .exec()
+    .then(data=>{
+        if (data == null) {
+            res.render("cart", {
+                error: "This cart does not exist"
+            })
+        } else {
+            loadAllCarts(req.session.user.userName).then((cartData) => {
+                req.session.cart = {
+                    cartID: data.cartID
+                }
+                if (cartErrorr == null) {
+                    res.render("cart", {
+                        carts: cartData,
+                        thisCart: data
+                    })
+                } else {
+                    res.render("cart", {
+                        carts: cartData,
+                        thisCart: data,
+                        cartError: cartErrorr
+                    })
+                }
+            })
+        }
+    })
+    .catch(err=>{
+        res.render("cart", {
+            error: err
+        })
     })
 }
 
@@ -319,10 +357,8 @@ router.get("/", ensureLogin , (req, res) => {
                 carts: cartData
             })
         }
-    })
+    }).catch((err) => {console.log(err)})
 });
-
-
 
 router.post("/", ensureLogin, (req, res) => {
     let cartFound = false;
@@ -332,18 +368,16 @@ router.post("/", ensureLogin, (req, res) => {
         data[0].carts.forEach((cart) => {
             if(cart.cartID == req.session.user.userName + req.body.cart) {
                 cartFound = true;
-                res.render("allCarts", {
-                    err: "A cart with that name already exists"
-                })
             }
         })
         allCarts = data[0].carts;
     })
 
-    if(!cartFound) {
         let cart = new cartModel({
             cartID: req.session.user.userName + req.body.cart,
-            userName: req.session.user.userName
+            userName: req.session.user.userName,
+            cartName: req.body.cart,
+            totalPrice: 0
         });
 
         cart.save()
@@ -356,36 +390,61 @@ router.post("/", ensureLogin, (req, res) => {
             ).then((data)=>{}).catch((err)=>{});
             
             loadAllCarts(req.session.user.userName).then((cartData) => {
-                res.render("allCarts", {
-                    cart: cartData
+                if (cartFound) {res.render("allCarts", {
+                    carts: cartData,
+                    error: "A cart with that name already exists"
                 });
-                
-            });
 
+                } else {
+                    res.render("allCarts", {
+                        carts: cartData,
+                    });
+                }
+            });
         })
         .catch((err)=>{
             res.render("allCarts", {
                 error: err
             });
         })
-    }
 });
 
 router.get("/:id", ensureLogin, (req, res)=>{
-    let Data;
-    const id = req.params.id
-    cartModel.findOne({cartID: id})
-    .exec()
-    .then(data=>{
-        Data = data;
-    })
-    loadAllCarts(req.session.user.userName).then((cartData) => {
-        res.render("cart", {
-            carts: cartData,
-            items: Data
-        })
-    })
+    loadCartPage(req, res, req.params.id);
 })
+
+router.post('/addmod', ensureLogin, ensureCart, (req, res) => {
+    if(req.body.email == req.session.user.email) {
+        loadCartPage(req, res, req.session.cart.cartID, "You cannot add yourself as a collaborator");
+    } else {
+        userModel.updateOne({email: req.body.email},
+            {$push: {carts: {
+                cartID: req.session.cart.cartID,
+                owner: false,
+            }}  
+        }).then((data)=>{
+            if (data.modifiedCount == 0) {
+                loadCartPage(req, res, req.session.cart.cartID, "No user with that email exists");
+            } else {
+                let modd;
+                if (req.body.mod == "on") modd = true; 
+                else  modd = false;
+                
+                cartModel.updateOne({cartID: req.session.cart.cartID},{
+                    $push: {collaborators: {
+                        email: req.body.email,
+                        approved: false,
+                        isModerator: modd
+                    }}
+                }).then((dataa)=>{
+                    res.redirect("/cart/" + req.session.cart.cartID);
+                })
+
+            }
+        })
+    }
+
+});
 
 
 module.exports = router;

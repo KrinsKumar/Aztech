@@ -55,7 +55,7 @@ const products = [
         productName: "ALC-480"
     },
     {
-        category: "Loop Adder",
+        category: "Loop Adde",
         productName: "PR-300"
     },
     {   category: "Loop Adder",
