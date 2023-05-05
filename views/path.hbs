@@ -74,8 +74,7 @@
                         <p class="text-xl font-black text-gray-800">
                             ${{price}}
                         </p>
-                        <div class="inline-flex w-[150px]">
-
+                        <div class="{{#if available}}inline-flex{{else}}hidden{{/if}} w-[150px]">
                             <span class="inline-flex items-center px-3 text-sm bg-urban text-white border border-r-0 border-gray-300 rounded-l-md">
                                 Quantity
                             </span>

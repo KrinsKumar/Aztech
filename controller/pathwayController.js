@@ -61,7 +61,7 @@ const getAllProductsByCategory = function (categoryID) {
 ///4000 series
 // clicking on the product will take you to a new product tab
 
-router.get("/4k/1", ensureLogin, ensureCart, (req, res) => {
+router.get("/4k/1", ensureLogin, /*ensureCart,*/ (req, res) => {
     //create new cart add that to the useres accounts cart array
     //products from 6 max 250
     //get the max value from the cart for the id

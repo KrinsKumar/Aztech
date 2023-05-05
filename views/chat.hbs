@@ -1,0 +1,114 @@
+<section class="flex flex-row justify-center">
+        <div class="w-full bg-gray-50  rounded-lg shadow mt-2 sm:max-w-md xl:p-0 bg-slate-300">
+            <div class="p-6 sm:p-8 pb-0">
+                {{#if reply}}
+                    <p>{{reply}}</p>
+                    <p>Checkout our <a class="text-urban" href="/product">product </a>page</p>
+                {{/if}}
+            </div>
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight text-urban tracking-tight text-gray-900 md:text-2xl ">
+                    Stuck Somewhere? Ask a question!
+                </h1>
+                <form class="space-y-4 md:space-y-6" action="/chat" method="post">
+                    <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50">
+                        
+                        <div class="px-4 py-2 bg-white rounded-t-lg">
+                            <label for="prompt" class="sr-only">Your comment</label>
+                            <textarea id="prompt" rows="4" class="w-full px-0 text-sm text-gray-900 bg-white border-0 focus:ring-0" required name="prompt" placeholder="What types of annunciators does mircom offer?"></textarea>
+                        </div>
+                        <div class="flex items-center justify-end px-3 py-2 border-t">
+                            <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800">
+                                Ask
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-row">
+                        <label for="feet" class="block m-2 text-sm font-medium text-gray-900 self-center">The amount of square feet that you want to cover with devices</label>
+                        <input type="feet" name="feet" id="feet" class="bg-gray-50 w-40 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5" placeholder="100">
+                    </div>
+                </form>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        What type
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        FX-400
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Annunciators
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Pull Stations
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Sensors
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        FX-401
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Why
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Fire Detection
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Control Unit
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Modules
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Single Stage
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Dual Stage
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Series 8000
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Alarm
+                    </span>
+                </button>
+                <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white">
+                    <span class="helper-buttons relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0">
+                        Smoke
+                    </span>
+                </button>
+            </div>
+        </div>
+</section>
+<script src="/js/prompt.js"></script>
+
+
+
+
+

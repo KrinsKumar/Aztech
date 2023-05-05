@@ -11,6 +11,7 @@ const productController = require("./controller/productController.js");
 const userController = require("./controller/userController.js");
 const cartController = require("./controller/cartController.js");
 const pathController = require("./controller/pathwayController.js");
+const chatController = require("./controller/chatController.js");
 
 //------------------------------------------------------------------------------
 //to be removed later if not being used
@@ -68,6 +69,7 @@ app.use("/", userController);
 app.use("/product", productController);
 app.use("/cart", cartController);
 app.use("/pathway", pathController);
+app.use("/chat", chatController);
 
 
 app.get("/", (req, res)=>{
