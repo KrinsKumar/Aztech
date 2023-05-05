@@ -103,133 +103,53 @@
     
     {{#each catData}}
         <h3 class="my-3 ml-2 text-2xl font-bold text-gray-900">{{categoryName}}</h3>
-        <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
-            <div class="w-full relative flex items-center justify-center">
-                <button aria-label="slide backward" class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" id="prev">
-                    <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
                 <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
                     <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-                            {{#each this.products}}
-                                <div class="flex flex-shrink-0 relative sm:w-auto overflow-hidden">
-                                    <img src="{{image}}" alt="{{productName}}" class="object-cover object-center overflow-hidden" />
-                                    <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                                        <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">{{productName}}</h2>
-                                        <div class="flex h-full items-end pb-6">
-                                            <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">{{description}}</h3>
+                            {{#each products}}
+                                <div class="flex flex-col justify-center">
+                                <div class="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white my-5">
+                                    <div class="w-full md:w-1/3 bg-white grid place-items-center border-2 rounded-xl">
+                                        <img src="{{image}}" alt="{{productName}}" class="rounded-xl" />
+                                    </div>
+                                    <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3 justify-between">
+                                        <div class="flex flex-row justify-between">
+                                            <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{productName}}</h3>
+                                            <div class="item-center">
+                                                {{#if available}}
+                                                <div class="bg-green-200 px-3 py-1 rounded-full text-xs font-medium text-green-800">
+                                                    In stock
+                                                </div>
+                                                {{else}}
+                                                <div class="bg-red-200 px-3 py-1 rounded-full text-xs font-medium text-red-800">
+                                                    Out of Stock
+                                                </div>
+                                                {{/if}}
+                                            </div>
+                                        </div>
+                                        <p class="md:text-lg text-gray-500 text-base">{{description}}</p>
+                                        <div class=" flex flex-row items-center justify-between">
+                                            <p class="text-xl font-black text-gray-800">
+                                                ${{price}}
+                                            </p>
+                                            <div class="{{#if available}}inline-flex{{else}}hidden{{/if}} w-[150px]">
+                                                        <span class="inline-flex items-center px-3 text-sm bg-urban text-white border border-r-0 border-gray-300 rounded-l-md">
+                                                    Quantity
+                                                </span>
+                                                <input type="text" name="{{categoryName}}" class="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            {{/each}}
+                            </div>
+                        {{/each}}
                     </div>
                 </div>
-                <button aria-label="slide forward" class="absolute z-30 right-0 mr-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
-                    <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
         </div>
     {{/each}}
       
         
         
     
-
-<!--
-        <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
-            <div class="w-full relative flex items-center justify-center">
-                <button aria-label="slide backward" class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" id="prev">
-                    <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-
-                <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-                    <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-                        <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                            <img src="https://i.ibb.co/fDngH9G/carosel-1.png" alt="black chair and white table" class="object-cover object-center w-full" />
-                            <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                                <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">Catalog 1</h2>
-                                <div class="flex h-full items-end pb-6">
-                                    <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">Minimal Interior</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button aria-label="slide forward" class="absolute z-30 right-0 mr-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
-                    <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-      -->
-        
-        <!--
-                <div>
-                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-2">
-                        <a href="#">
-                            <img class="p-8 rounded-t-lg" src="{{image}}" alt="product image" />
-                        </a>
-                        <div class="px-5 pb-5">
-                            <a href="#">
-                                <h5 class="text-xl font-semibold tracking-tight text-gray-900">{{productName}}</h5>
-                            </a>
-                            <div class="flex items-center mt-2.5 mb-5">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ml-3">5.0</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-3xl font-bold text-gray-900">${{price}}</span>
-                                <a href="#" class="text-white bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                -->
-
-    <!-- Products -->
-    <!--
-        {{#each catData}}
-        <h3 class="my-3 ml-2 text-2xl font-bold text-gray-900">{{categoryName}}</h3>
-                <div class="flex items-center justify-center w-full h-full py-24 sm:py-8 px-4">
-                    <div class="w-full relative flex items-center justify-center">
-                        <button aria-label="slide backward" class="absolute z-30 left-0 ml-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 cursor-pointer" id="prev">
-                            <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                        {{#each this.products}}
-                                <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-                                    <div class="w-full h-full mx-auto overflow-x-hidden overflow-y-hidden">
-                                        <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
-                                            <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                                                <img src="{{image}}" alt="black chair and white table" class="object-cover object-center w-full overflow-hidden" />
-                                                <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                                                    <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900">{{productName}}</h2>
-                                                    <div class="flex h-full items-end pb-6">
-                                                        <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900">{{description}}</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        {{/each}}
-                        <button aria-label="slide forward" class="absolute z-30 right-0 mr-10 focus:outline-none focus:bg-gray-400 focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" id="next">
-                            <svg class="dark:text-gray-900" width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-        {{/each}}
-    </div>
-    -->
 
 
     <script src="/js/product.js"></script>

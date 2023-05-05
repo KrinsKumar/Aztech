@@ -26,8 +26,8 @@ const getAllProductsByCategory = function (val) {
             .exec()
             .then((data) => {
                 data.forEach((item) => {
-                    if (item.inventory == 0) {
-                        item.available = false;
+                    if (item.inventory > 0) {
+                        item.available = true;
                     }
                 })
                 resolve(data)
@@ -77,11 +77,13 @@ router.get('/', (req, res) => {
 
 router.get("/:sku", (req, res) => {
     const SKU = req.params.sku;
-    let related, bundle;
+    let similarProducts, boughtTogether;
     getProductBySku(SKU)
         .then((data) => {
             getAllProductsByCategory(data.category)
                 .then((rel) => {
+                    // if data.category is either 4 5 12
+                    getAllProductsByCategory(data.category + 1)
                     related = rel;
                     res.render("specificProduct", {
                         layout: "main",
