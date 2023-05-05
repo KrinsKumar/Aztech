@@ -16,7 +16,11 @@ function ensureLogin(req, res, next) {
     if (!req.session.user) {
       res.redirect("/login");
     } else {
-      next();
+    if (!req.session.user.userName) {
+            res.redirect("/login");
+        } else {
+        next();
+        }
     }
 }
 
@@ -278,18 +282,18 @@ const removeproduct = function(cartIdPara, productNamePara) {
 const loadAllCarts = function(userNamePara) {
     return new Promise((resolve, reject) => {
         let allCarts = [];
-        userModel.findOne({userName: userNamePara})
+        userModel.findOne({userName: userNamePara}).lean()
         .exec()
         .then((userData) => {
             userData.carts.forEach((cart) => {
-                cartModel.findOne({cartID: cart.cartID})
+                cartModel.findOne({cartID: cart.cartID}).lean()
                 .exec()
                 .then((cartData) => {
                     cartData.owner = cart.owner;
                     allCarts.push(cartData);
                 })
                 .catch((err) => {
-                    rej(err);
+                    reject(err);
                 });
             });
             resolve(allCarts);
@@ -308,10 +312,63 @@ const loadAllCarts = function(userNamePara) {
 
 router.get("/", ensureLogin , (req, res) => {
     loadAllCarts(req.session.user.userName).then((cartData) => {
-        res.render("cart", {
-            carts: cartData
-        })
+        if (cartData.length == 0) {
+            res.render("allCarts")
+        } else {
+            res.render("allCarts", {
+                carts: cartData
+            })
+        }
     })
+});
+
+
+
+router.post("/", ensureLogin, (req, res) => {
+    let cartFound = false;
+    let allCarts = [];
+    userModel.find({userName: req.session.user.userName}).lean().exec()
+    .then((data)=>{
+        data[0].carts.forEach((cart) => {
+            if(cart.cartID == req.session.user.userName + req.body.cart) {
+                cartFound = true;
+                res.render("allCarts", {
+                    err: "A cart with that name already exists"
+                })
+            }
+        })
+        allCarts = data[0].carts;
+    })
+
+    if(!cartFound) {
+        let cart = new cartModel({
+            cartID: req.session.user.userName + req.body.cart,
+            userName: req.session.user.userName
+        });
+
+        cart.save()
+        .then((data)=>{
+            userModel.updateOne({userName: req.session.user.userName}, 
+                {$push: {carts: {
+                    cartID: req.session.user.userName + req.body.cart,
+                    owner: true
+                }}}
+            ).then((data)=>{}).catch((err)=>{});
+            
+            loadAllCarts(req.session.user.userName).then((cartData) => {
+                res.render("allCarts", {
+                    cart: cartData
+                });
+                
+            });
+
+        })
+        .catch((err)=>{
+            res.render("allCarts", {
+                error: err
+            });
+        })
+    }
 });
 
 router.get("/:id", ensureLogin, (req, res)=>{
@@ -329,4 +386,6 @@ router.get("/:id", ensureLogin, (req, res)=>{
         })
     })
 })
+
+
 module.exports = router;

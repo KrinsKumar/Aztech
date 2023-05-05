@@ -20,7 +20,7 @@ const userSchema = new Schema({
         "default": false
     },
     "carts": [{
-        "cartID": Number,
+        "cartID": String,
         "owner": Boolean  // true if this user owns the cart
     }],
     "verificationCode": Number

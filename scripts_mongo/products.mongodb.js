@@ -1091,4 +1091,4 @@ db.products.insertMany([
     }
 ]);
 
-db.products.find({})
+db.products.find({}),{productName:1, _id:0})
