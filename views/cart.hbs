@@ -1,0 +1,78 @@
+
+<button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+   <span class="sr-only">Open sidebar</span>
+   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+   </svg>
+</button>
+
+<aside id="sidebar-multi-level-sidebar" class="left-0 z-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 sm:top-[73px] md:top-[71px] xsm:top-32" aria-label="Sidebar">
+        <div class="h-full px-9 py-4 overflow-y-auto border-r border-gray-200 bg-gray-50">
+            <div class="h-full flex flex-col">
+            <!-- Share Button -->
+            <button type="button" class="text-white bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center mr-2 mt-9">
+                <img src="/photo/share.svg" alt="Shopping cart logo" class="h-auto w-4 mr-2">
+                Share
+            </button>
+            <!-- Moderators -->
+            <ul class="pt-4 space-y-1">
+                <h3 class="my-3 text-xl font-bold text-urban">Moderators</h3>
+
+                <li class="py-2 sm:py-1">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-200 rounded-full">
+                            <span class="font-medium text-gray-600">SS</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-900 truncate">
+                                Sam Smith
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center bg-green-200 text-gray-800 text-xs font-medium mr-2 px-1 py-1 rounded-full">
+                            <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                        </span>
+                    </div>
+                </li>
+                <li class="py-2 sm:py-1">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-200 rounded-full">
+                            <span class="font-medium text-gray-600">FT</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-900 truncate">
+                                Frank Taylor
+                            </p>
+                        </div>
+                        <span class="inline-flex items-center bg-yellow-200 text-gray-800 text-xs font-medium mr-2 px-1 py-0.5 rounded-full">
+                            <span class="w-2 h-2 mr-1 bg-yellow-400 rounded-full"></span>
+                            ?
+                        </span>
+                    </div>
+                </li>
+            </ul>
+            
+            <!-- My Carts -->
+            <ul class="pt-4 mt-4 space-y-1 font-medium border-t border-gray-200">
+                <h3 class="my-3 text-xl font-bold text-urban">My Carts</h3>
+
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100">
+                        <img src="/photo/cart.svg" alt="Shopping cart logo" class="h-auto w-5 mr-2">
+                        <span class="ml-1">Jay's Cart</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100">
+                        <img src="/photo/cart.svg" alt="Shopping cart logo" class="h-auto w-5 mr-2">
+                        <span class="ml-1">Build Cart</span>
+                    </a>
+                </li>
+            </ul>
+
+            <button type="button" class="mt-auto text-white bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center justify-center mt-9">
+                Get Quote
+            </button>
+
+        </div>
+    </div>
+</aside>
