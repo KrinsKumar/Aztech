@@ -108,6 +108,7 @@ app.engine(
         total = 0
         if (Products) {
           Products.forEach((product) => {
+            console.log(product.price)
             total += product.price * product.quantity;
           });
         }
