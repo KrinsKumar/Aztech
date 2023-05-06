@@ -19,9 +19,9 @@
           <div class="flex md:order-2">
               <div class="flex flex-row">
                 {{#if link}}
-                  <a href="{{link}}"><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 rounded bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300">{{linkText}}</button></a>
+                  <a href="{{link}}"><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 rounded bg-indigo-700 hover:bg-urban focus:ring-4 focus:ring-indigo-300">{{linkText}}</button></a>
                 {{else}}
-                  <a href=""><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-4 md:mr-0 rounded bg-urban hover:bg-indigo-800 focus:ring-4 focus:ring-indigo-300">Get Quote</button></a>
+                  <a href=""><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-4 md:mr-0 rounded bg-urban hover:bg-urban focus:ring-4 focus:ring-indigo-300">Get Quote</button></a>
                 {{/if}}
                 <a href="/cart"><img src="/photo/cart.svg" alt="Shopping cart logo" class="h-auto w-5 lg:ml-3 xlg:ml-4 md:ml-2 mt-2"></a>
               </div>
@@ -32,17 +32,23 @@
           </div>
           <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 Z-50" id="navbar-cta">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-              <li>
+              <li class="flex items-center justify-center">
                 <a href="/" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0" aria-current="page">Home</a>
               </li>
-              <li>
+              <li class="flex items-center justify-center">
                 <a href="/product" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Products</a>
               </li>
-              <li>
+              <li class="flex items-center justify-center">
                 <a href="/cart" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Carts</a>
               </li>
-              <li>
-                <a href="/chat" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Chat</a>
+              <li class="flex items-center justify-center">
+                <a href="/chat">
+                  <button class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    <span class="relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Use AI
+                    </span>
+                  </button>
+                </a>
               </li>
             </ul>
           </div>
