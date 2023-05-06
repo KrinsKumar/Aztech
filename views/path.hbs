@@ -46,7 +46,12 @@
         </a>
     </ol>
 </section>
-
+{{#if error}}
+    <div class="m-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
+        <strong class="font-bold">Error: </strong>
+        <span class="block sm:inline">{{error}}</span>
+    </div>
+{{/if}}
 <form action="/pathway/4k/{{index}}" method="post">
     {{#each products}}
         <div class="flex flex-col justify-center">
@@ -72,13 +77,13 @@
                     <p class="md:text-lg text-gray-500 text-base">{{description}}</p>
                     <div class=" flex flex-row items-center justify-between">
                         <p class="text-xl font-black text-gray-800">
-                            ${{price}}
+                            ${{price}} {{sku}}
                         </p>
                         <div class="{{#if available}}inline-flex{{else}}hidden{{/if}} w-[150px]">
                             <span class="inline-flex items-center px-3 text-sm bg-urban text-white border border-r-0 border-gray-300 rounded-l-md">
                                 Quantity
                             </span>
-                            <input type="text" name="{{categoryName}}" class="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
+                            <input type="number" name="{{sku}}" class="rounded-none rounded-r-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5">
                         </div>
                     </div>
                 </div>
@@ -86,54 +91,6 @@
         </div>
     {{/each}}
 
-
-<div class="relative overflow-x-auto m-10 shadow-lg border-2">
-    <table class="w-full text-sm text-left text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Total
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Quantity
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-            </tr>
-            <tr class="bg-white border-b">
-                <th scope="row" class="px-6 py-3 text-xs text-gray-700 uppercase bg-gray-50" colspan="3">
-                    Total
-                </th>
-                <td class="px-6 py-4">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
+<div class="flex flex-row justify-center">
+    <button type="submit" class="m-auto text-white bg-urban hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
 </div>
-
-
-
-</form>
-

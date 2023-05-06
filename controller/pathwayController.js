@@ -29,7 +29,7 @@ function ensureCart(req, res, next) {
     if (!req.session.user) {
         res.redirect("/login");
       } else {
-      if (!req.session.user.cart) {
+      if (!req.session.cart) {
               res.redirect("/product");
           } else {
           next(); 
@@ -61,19 +61,19 @@ const getAllProductsByCategory = function (categoryID) {
 ///4000 series
 // clicking on the product will take you to a new product tab
 
-router.get("/4k/1", ensureLogin, /*ensureCart,*/ (req, res) => {
+router.get("/4k/1", ensureLogin, ensureCart, (req, res) => {
     //create new cart add that to the useres accounts cart array
     //products from 6 max 250
     //get the max value from the cart for the id
     getAllProductsByCategory('6')
     .then((data) => {
-        cartID = req.session.user.cartID;
-        cartModel.findOne({cartID}).lean().exec()
-        .then((cart) => {
+        cartIDD = req.session.cart.cartID;
+        cartModel.findOne({cartID : cartIDD}).lean().exec()
+        .then((cartt) => {
             res.render("path", {
                 products: data,
                 index: 1,
-                cart
+                cart : cartt
             })
         })
     })
@@ -81,18 +81,58 @@ router.get("/4k/1", ensureLogin, /*ensureCart,*/ (req, res) => {
 });
 
 router.post("/4k/1", (req, res) => {
+    let skus = [1019, 1020, 1021, 1120];
+    let units = [parseInt(req.body[1019]), parseInt(req.body[1020]), parseInt(req.body[1021]), parseInt(req.body[1120])];
+    let total = 0;
+    units.forEach((unit) => {
+        if (unit) {
+            total += unit;
+        }
+    })
+    if (total > 250) {
+        getAllProductsByCategory('6')
+        .then((data) => {
+            cartID = req.session.user.cartID;
+            cartModel.findOne({cartID}).lean().exec()
+            .then((cart) => {
+                res.render("path", {
+                    products: data,
+                    index: 1,
+                    error: "You have exceeded the maximum number of units for this pathway. Please try again.",
+                })
+            })
+        })
+    } else {
+        let productss = []
+        for (let i = 0; i < units.length; i++) {
+            if (typeof(units[i]) == "number" && units[i] > 0) {
+                productss.push({sku: skus[i], quantity: units[i]})
+            }
+        }
 
+        productss.forEach((product) => {
+            cartModel.updateOne({cartID: req.session.cart.cartID}, {
+                $push: {products: product}
+            }).then((data) => {}).catch((err) => {console.log(err)})
+        })
+
+        res.redirect("/pathway/4k/2")
+    }
 })
 
 router.get("/4k/2", ensureLogin, (req, res) => {
-    //get the bases from 7
-    //qty = the qty from 6
     getAllProductsByCategory('7')
     .then((data) => {
-        res.render("path", {
-            products: data,
-            index: 2
-        })
+        cartIDD = req.session.cart.cartID;
+        cartModel.findOne({cartID : cartIDD}).lean().exec()
+        .then((cartt) => {
+            productss = false;
+                res.render("path", {
+                    products: data,
+                    index: 2,
+                })
+            }
+        )
     })
 });
 

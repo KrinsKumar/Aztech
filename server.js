@@ -18,10 +18,7 @@ const chatController = require("./controller/chatController.js");
 app.engine('.hbs', exphbs.engine({ extname: '.hbs',
     helpers: {
         ifeq: function(a, b, options) {
-            if (a === b) 
-                { return options.fn(this); }
-            else 
-                { return options.inverse(this); }
+            if (a == b) { return options.fn(this); }
         },
         ifmore: function(a, b, options) {
             if (a > b) { return options.fn(this); }
@@ -43,18 +40,15 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
         ini: function(a, options){
             return a[0].toUpperCase();
         },
-        displayCart: function(cartName, cartID, options){
-            if (cartName) return cartName
-            else {
-                console.log(typeof(cartID) + " + " + cartID)
-                return cartID
-                return cartID.substr(1, cartID.length)
-            }
+        discount: function(price, discount){
+            return price - (price * (discount/100));
         },
-        modExist: function(mod, options){
-            if (mod.length > 0) return options
-            else "No Collabrators Exists"
-
+        calcTotal: function(Products){
+            total = 0
+            Products.forEach(product => {
+                total += product.price * product.quantity
+            })
+            return total
         }
     }})
 );

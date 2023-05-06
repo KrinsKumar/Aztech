@@ -1,4 +1,4 @@
-const {cartModel, userModel} = require('../model/database.js')
+const {cartModel, userModel, productModel} = require('../model/database.js')
 let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const express = require("express");
@@ -286,6 +286,19 @@ const removeproduct = function(cartIdPara, productNamePara) {
     })
 }
 
+const loadProduct = function(product) {
+    return new Promise((resolve, reject) => {
+        productModel.findOne({sku: product.sku}).lean()
+        .exec()
+        .then((data)=>{
+            resolve(data);
+        })
+        .catch((err)=>{
+            reject(err)
+        })
+    })
+}
+
 const loadAllCarts = function(userNamePara) {
     return new Promise((resolve, reject) => {
         userModel.findOne({userName: userNamePara}).lean()
@@ -410,7 +423,77 @@ router.post("/", ensureLogin, (req, res) => {
 });
 
 router.get("/:id", ensureLogin, (req, res)=>{
-    loadCartPage(req, res, req.params.id);
+    req.session.cart = {
+        cartID: req.params.id
+    }
+    cartModel.findOne({cartID: req.params.id}).lean()
+    .exec()
+    .then(data=>{
+        if (data == null) {
+            res.render("cart", {
+                error: "This cart does not exist"
+            })
+        } else {
+            loadAllCarts(req.session.user.userName).then((cartData) => {
+                req.session.cart = {
+                    cartID: data.cartID
+                }
+                let promises = data.products.map(async (product) => {
+                    let thisProduct = await loadProduct(product);
+                    thisProduct.quantity = product.quantity;
+                    return thisProduct;
+                })
+                Promise.all(promises)
+                .then((allProducts) => {
+
+                    userModel.findOne({userName: data.userName}).lean().exec()
+                    .then((userData) => {
+
+                        if (userData.discounted) {
+                            if(data.userName != req.session.user.userName) {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    products: allProducts,
+                                    discounted: userData.discounted
+                                })
+                            }
+                            else {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    leader: true,
+                                    products: allProducts,
+                                    discounted: userData.discounted
+                                })
+                            }
+                        } else {
+                            if(data.userName != req.session.user.userName) {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    products: allProducts
+                                })
+                            }
+                            else {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    leader: true,
+                                    products: allProducts
+                                })
+                            }
+                        }
+                    })
+                })
+            })
+        }
+    })
+    .catch(err=>{
+        res.render("cart", {
+            error: err
+        })
+    })
 })
 
 router.post('/addmod', ensureLogin, ensureCart, (req, res) => {
