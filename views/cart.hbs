@@ -157,7 +157,7 @@
                             <p class="text-lg font-semibold">${{#calcTotal products discounted}}{{/calcTotal}} </p>
                             <p class="text-sm line-through self-center">${{#calcTotal products 0}}{{/calcTotal}}</p>
                         {{else}}
-                        <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
+                        <span class="font-semibold">${{#calcTotal products 0 }}{{/calcTotal}}</span>
                         {{/if}}
                     </div>
                 </p>

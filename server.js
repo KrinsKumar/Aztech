@@ -93,9 +93,9 @@ app.engine(
       ini: function (a, options) {
         return a[0].toUpperCase();
       },
-      discount: function (price, discount) {
-        return price - price * (discount / 100);
-      },
+    //   discount: function (price, discount) {
+    //     return price - price * (discount / 100);
+    //   },
       displayCart: function (cartName, cartID, options) {
         if (cartName) return cartName;
         else {
@@ -104,14 +104,14 @@ app.engine(
           return cartID.substr(1, cartID.length);
         }
       },
-      calcTotal: function (Products) {
-        total = 0;
+      calcTotal: function (Products, discount) {
+        total = 0
         if (Products) {
           Products.forEach((product) => {
             total += product.price * product.quantity;
           });
         }
-        return total;
+        return total - discount * total;
       },
     }
   )
@@ -133,7 +133,7 @@ app.use(
 }));
 
 app.use(function(req,res,next) {
-    res.locals.userExists = req.session.user.userName;
+    //res.locals.userExists = req.session.user.userName;
     res.locals.session = req.session;
     next();
 })
