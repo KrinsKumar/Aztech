@@ -55,7 +55,7 @@ const products = [
         productName: "ALC-480"
     },
     {
-        category: "Loop Adde",
+        category: "Loop Adder",
         productName: "PR-300"
     },
     {   category: "Loop Adder",
@@ -70,27 +70,27 @@ const products = [
         productName: "SRM-312"
     },
     {
-        category: "Remote Annunciator",
+        category: "Remote Annunciator Annunciators",
         productName: "BB-1001DR"
     },
     {
-        category: "Remote Annunciator",
+        category: "Remote Annunciator Annunciators",
         productName: "BB-1001WPRA"
     },
     {
-        category: "Remote Annunciator",
+        category: "Remote Annunciator Aunnunciators",
         productName: "BB-1002DR"
     },
     {
-        category: "Remote Annunciator",
+        category: "Remote Annunciator Aunnunciators",
         productName: "BB-1002WPRA"
     },
     {
-        category: "Detectors",
+        category: "Detectors Detector",
         productName: "MIX-4010"
     },
     {
-        category: "Detectors",
+        category: "Detectors Detector",
         productName: "MIX-4010-ISO"
     }
   ]
@@ -167,11 +167,21 @@ router.post('/', async (req, res) => {
             };
             return !flag;
         });
-        console.log(filteredProducts.length);
         console.log(filteredProducts);
+
+        // Getting data from Mongo -------------------------
+        let mongoProductArray = [];
+        for (let i = 0; i < filteredProducts.length; i++) {
+            let mongoProduct = await getAllProductsByName(filteredProducts[i].productName);
+            mongoProductArray.push(mongoProduct);
+        }
+
+
+        console.log(mongoProductArray);
+
         res.render('chat', {
             reply: response.data.choices[0].message.content,
-            products: filteredProducts
+            products: mongoProductArray
         })
 
     } catch (error) {
