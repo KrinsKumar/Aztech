@@ -20,9 +20,46 @@ app.engine(
   exphbs.engine({
     extname: ".hbs",
     helpers: {
-      ifeq: function (a, b, options) {
-        if (a == b) {
-          return options.fn(this);
+        ifeq: function(a, b, options) {
+            if (a == b) { return options.fn(this); }
+        },
+        ifmore: function(a, b, options) {
+            if (a > b) { return options.fn(this); }
+        },
+        navLink: function(url, options){
+            return '<li' + 
+                ((url == app.locals.activeRoute) ? ' class="active" ' : '') + 
+                '><a href="' + url + '">' + options.fn(this) + '</a></li>';
+        },
+        safeHTML: function(context){
+            return stripJs(context);
+        },
+        formatDate: function(dateObj){
+            let year = dateObj.getFullYear();
+            let month = (dateObj.getMonth() + 1).toString();
+            let day = dateObj.getDate().toString();
+            return `${year}-${month.padStart(2, '0')}-${day.padStart(2,'0')}`;
+        },
+        ini: function(a, options){
+            return a[0].toUpperCase();
+        },
+        discount: function(price, discount){
+            return price - (price * (discount/100));
+        },
+        displayCart: function(cartName, cartID, options){
+            if (cartName) return cartName
+            else {
+                console.log(typeof(cartID) + " + " + cartID)
+                return cartID
+                return cartID.substr(1, cartID.length)
+            }
+        },
+        calcTotal: function(Products, discount){
+            total = 0
+            Products.forEach(product => {
+                total += product.price * product.quantity
+            })
+            return total - (discount/100) * total
         }
       },
       ifmore: function (a, b, options) {
@@ -73,8 +110,8 @@ app.engine(
         }
         return total;
       },
-    },
-  })
+    }
+  )
 );
 app.set("view engine", ".hbs");
 app.set("layout", "main");
@@ -89,14 +126,14 @@ app.use(
     cookieName: "session",
     secret: "ThisIsaSuperLongSecretKeyWithNumbers1234567890!@#$%^&*()",
     duration: 60 * 60 * 1000 * 24 * 7, // 1 week
-    activeDuration: 1000 * 60 * 60 * 24, // 1 day
-  })
-);
+    activeDuration: 1000 * 60 * 60 * 24  // 1 day
+}));
 
-app.use(function (req, res, next) {
-  res.locals.session = req.session;
-  next();
-});
+app.use(function(req,res,next) {
+    res.locals.userExists = req.session.user.userName;
+    res.locals.session = req.session;
+    next();
+})
 
 //-routes-------------------------------------------------------------------
 

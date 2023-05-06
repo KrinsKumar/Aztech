@@ -111,12 +111,7 @@
                                     <p class="text-sm ">{{description}}</p>
                                 </div>
                                 <div class="text-right">
-                                    {{#if discounted}}
-                                    <p class="text-lg font-semibold">${{#discount price discounted}}{{/discount}}</p>
-                                    <p class="text-sm line-through">${{price}}</p>got
-                                    {{else}}
-                                    <p class="text-lg font-semibold">${{price}}</p>not
-                                    {{/if}}
+                                    <p class="text-lg font-semibold">${{price}}</p>
                                 </div>
                             </div>
                             <div class="flex text-sm divide-x">
@@ -157,12 +152,14 @@
             </ul>
             <div class="space-y-1 text-right">
                 <p>Total amount:
-                    {{#if discounted}}
-                        <p class="text-lg font-semibold">${{#discount {{#calcTotal products}}{{/calcTotal}}  discounted}}{{/discount}}</p>
-                        <p class="text-sm line-through">${{#calcTotal products}}{{/calcTotal}}</p>got
-                    {{else}}
-                    <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
-                    {{/if}}
+                    <div class="flex flex-row gap-4 justify-end">
+                        {{#if discounted}}
+                            <p class="text-lg font-semibold">${{#calcTotal products discounted}}{{/calcTotal}} </p>
+                            <p class="text-sm line-through self-center">${{#calcTotal products 0}}{{/calcTotal}}</p>
+                        {{else}}
+                        <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
+                        {{/if}}
+                    </div>
                 </p>
                 <p class="text-sm ">Plus applicable charges</p>
             </div>

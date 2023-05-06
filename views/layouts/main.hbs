@@ -21,7 +21,11 @@
                 {{#if link}}
                   <a href="{{link}}"><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 rounded bg-indigo-700 hover:bg-urban focus:ring-4 focus:ring-indigo-300">{{linkText}}</button></a>
                 {{else}}
-                  <a href="/login"><button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-4 md:mr-0 rounded bg-urban hover:bg-urban focus:ring-4 focus:ring-indigo-300">Login</button></a>
+                  {{#if userExists}}
+                    <button type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-4 md:mr-0 rounded bg-urban hover:bg-urban focus:ring-4 focus:ring-indigo-300">{{userExists}}</button>
+                  {{else}}
+                  <a href="/login"><button          type="button" class="text-white font-medium rounded-lg text-sm px-4 py-2 text-center mr-4 md:mr-0 rounded bg-urban hover:bg-urban focus:ring-4 focus:ring-indigo-300">Login</button></a>
+                  {{/if}}
                 {{/if}}
                 <a href="/cart"><img src="/photo/cart.svg" alt="Shopping cart logo" class="h-auto w-5 lg:ml-3 xlg:ml-4 md:ml-2 mt-2"></a>
               </div>

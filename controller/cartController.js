@@ -621,7 +621,7 @@ router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
                 subject: "New Cart Added",
                 html:
                     `A new cart named ${cartName} got added by ${userName}. 
-                    <a herf="http://cart/${cartName}">Click here to check it out</a>`
+                    <a herf="https://fine-red-squirrel-tie.cyclic.app/cart/${cartName}">Click here to check it out</a>`
             };
             // TODO update herf after hosted on cyclic
             sgMail.send(msg)  //send the email
