@@ -53,7 +53,7 @@ const productSchema = new Schema({
 
 const categorySchema = new Schema({
     "id": {
-        "type": String,
+        "type": Number,
         "unique": true
     },
     "categoryName": {
