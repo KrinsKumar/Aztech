@@ -483,26 +483,33 @@ router.get("/:id", ensureLogin, ensureAccess, (req, res)=>{
 
                     userModel.findOne({userName: data.userName}).lean().exec()
                     .then((userData) => {
-
-                        if (userData.discounted) {
+                      
+                        if (userData.discount) {
                             if(data.userName != req.session.user.userName) {
+                              console.log(userData.discount);
+
                                 res.render("cart", {
                                     carts: cartData,
                                     thisCart: data,
                                     products: allProducts,
-                                    discounted: userData.discounted
+                                    discounted: userData.discount
                                 })
                             }
                             else {
+                              console.log(userData.discount);
+
                                 res.render("cart", {
                                     carts: cartData,
                                     thisCart: data,
                                     leader: true,
                                     products: allProducts,
-                                    discounted: userData.discounted
+                                    discounted: userData.discount
                                 })
                             }
+
                         } else {
+                          console.log(userData.discount);
+
                             if(data.userName != req.session.user.userName) {
                                 res.render("cart", {
                                     carts: cartData,

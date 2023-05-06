@@ -102,11 +102,12 @@
                                         <p class="text-sm ">{{description}}</p>
                                     </div>
                                     <div class="text-right">
+                                        {{discounted}}
                                         {{#if discounted}}
                                             <p class="text-lg font-semibold">${{#discount price discounted}}{{/discount}}</p>
-                                            <p class="text-sm line-through">${{price}}</p>
+                                            <p class="text-sm line-through">${{price}}</p>got
                                         {{else}}
-                                            <p class="text-lg font-semibold">${{price}}</p>
+                                            <p class="text-lg font-semibold">${{price}}</p>not
                                         {{/if}}
                                     </div>
                                 </div>
@@ -139,9 +140,9 @@
                 </ul>
                 <div class="space-y-1 text-right">
                     <p>Total amount:
-                        <span class="font-semibold">{{#calcTotal products}}{{/calcTotal}}</span>
+                        <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
                     </p>
-                    <p class="text-sm ">Not including taxes and shipping costs</p>
+                    <p class="text-sm ">Plus applicable charges</p>
                 </div>
                 <div class="flex justify-end space-x-4">
                     <a href="/product">
