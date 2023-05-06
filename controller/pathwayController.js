@@ -159,7 +159,19 @@ router.get("/4k/4", ensureLogin, (req, res) => {
 });
 
 router.get("/4k/5", ensureLogin, (req, res) => {
-    //display 10 11 12
+    getAllProductsByCategory('10')
+    .then((cart1) => {
+        getAllProductsByCategory('11')
+        .then((cart2) => {
+            getAllProductsByCategory('11')
+            .then((cart3) => {
+                res.render("path", {
+                    products: data,
+                    index: 4
+                })
+            })
+        })
+    })
 });
 
 

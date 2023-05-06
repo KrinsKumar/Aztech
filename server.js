@@ -56,9 +56,12 @@ app.engine(
         },
         calcTotal: function(Products, discount){
             total = 0
+            console.log(Products);
+            if(Products && Products.length !== 0){
             Products.forEach(product => {
                 total += product.price * product.quantity
             })
+        }
             return total - (discount/100) * total
         }
       },
