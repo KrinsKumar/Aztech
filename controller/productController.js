@@ -119,7 +119,16 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:sku", (req, res) => {
+
+function ensureCart(req, res, next) {
+  if (!req.session.cart) {
+    res.redirect("/cart");
+  } else {
+    next();
+  }
+}
+
+router.get("/:sku", ensureCart, (req, res) => {
   const SKU = req.params.sku;
   let similarProducts, boughtTogether;
   getProductBySku(SKU)
@@ -178,5 +187,7 @@ router.get("/:sku", (req, res) => {
       console.log(err);
     });
 });
+
+
 
 module.exports = router;

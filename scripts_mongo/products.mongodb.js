@@ -91,7 +91,7 @@ db.products.insertMany([
         "description": "The RAX-LCD-LITE Remote LCD Annunciator display mimics the main Fire Alarm Panel display at a remote location.",
         "info": [
             {
-                "heading": "null",
+                "heading": "",
                 "text": [
                     "The RAX-LCD-LITE Remote LCD Annunciator display mimics the main Fire Alarm Panel display at a remote location. It is equipped with a large 4-line x 20-character back-lit alphanumeric LCD display that uses a simple menu system complete with a directional keypad and switches for Enter, Menu, Cancel and Info. There are five types of enclosure available: the BB-1001, BB-1002, BB-1003, BB-1008, and BB-1012 which can take 1,2,3,8,12 chassis respectively."
                 ]
@@ -112,7 +112,7 @@ db.products.insertMany([
         "description": "The RAM-1032TZDS-CC Main Remote LED Annunciator provides common annunciator functions and 32 points of LED annunciation. The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Each display point can be identified by the slide-in label that slides in beside the LED.",
         "info": [
             {
-                "heading": "null",
+                "heading": "",
                 "text": [
                     "RAM-1032TZDS-CC Conformal Coated Annunciator provides common annunciator functions and 32 points of LED annunciation. In addition, The RAM-1032TZDS-CC has indicators for A.C. On, Common Trouble and Signal Silence and controls for System Reset, Lamp Test, Fire Drill, Buzzer Silence and Signal Silence. Also, Identify each display point by the slide-in label that slides in beside the LED. The RAM-1032TZDS-CC allows for the control switches to be disabled on a per-function basis for areas that do not require certain common control functions to be remotely located from the fire alarm control unit.",
                     "In order to expand the RAM1032TZDS-CC, use the addition of RAX1048TZDS-CC Programmable LED Annunciator Modules.",
@@ -156,7 +156,7 @@ db.products.insertMany([
         "description": "RAX-1048TZDS Programmable Remote Annunciator Module provides 48 programmable bi-coloured LEDs that can be identified by slide-in labels. The RAX-1048TZDS connects to the main control unit or main annunciator module when mounted remotely.",
         "info": [
             {
-                "heading": "null",
+                "heading": "",
                 "text": [
                     "The RAX-1048TZDS Programmable Remote Annunciator Module provides 48 programmable bi-coloured LEDs. The RAX-1048TZDS connects to the main control unit or main annunciator. Each display point can be identified by the slide-in label that slides in beside the LED. The RAX-1048TZDS occupies one display position in the BB-1000D or BB-5000D Series enclosures.",
                     "The RAX-1048TZDS interconnects via one ribbon cable to the RAM-1032TZDS. Another option is to connect the RAX-1048TZDS to the previous RAX-1048TZDS, adding up to 48 additional points of control with trouble annunciation.",
@@ -1091,4 +1091,3 @@ db.products.insertMany([
     }
 ]);
 
-db.products.find({}),{productName:1, _id:0})

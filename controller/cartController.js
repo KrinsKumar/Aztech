@@ -1,6 +1,6 @@
-const { cartModel, userModel, productModel } = require("../model/database.js");
-let mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
+const {cartModel, userModel, productModel} = require('../model/database.js')
+let mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 const express = require("express");
 const app = express();
 const router = express.Router();
@@ -42,7 +42,9 @@ function checkAdmin(req, res, next) {
 
 function ensureAccess(req, res, next) {
   // isAccessable takes 2 argument first one is cartID. // TODO
-  if (isAccessable(req.session.email)) {
+  
+  
+  if (isAccessable(req.params.id, req.session.user.email)) {
     next();
   } else {
     res.render("home", {
@@ -107,18 +109,21 @@ const isCartApproved = function (cartIdPara) {
 //checks if the access is granted
 const isAccessable = function (cartIdPara, emailPara) {
   return new Promise((resolve, reject) => {
-    carts
-      .find({
-        cartID: cartIdPara,
-      })
-      .exec()
+    cartModel.find({cartID: cartIdPara}).lean().exec()
       .then((data) => {
-        forEach(data.collaborators, (collaborator) => {
-          if (collaborator.email == emailPara) {
-            resolve(true);
-          }
-        });
-        resolve(false);
+        
+        if (data.owner == emailPara) {
+          resolve(true);
+        }
+        if (typeof(data.collaborators) == "undefined" || data.collaborators.length == 0) {
+          resolve(false);
+        } else {
+          data.collaborators.forEach((collaborator) => {
+            if (collaborator.email == emailPara) {
+              resolve(true);
+            }
+          });
+        }
       })
       .catch((err) => {
         reject(err);
@@ -274,37 +279,44 @@ const addproduct = function (cartIdPara, productPara) {
   });
 };
 
-//remove product from the cart
-const removeproduct = function (cartIdPara, productNamePara) {
-  return new Promise((resolve, reject) => {
-    if (
-      productNamePara == "" ||
-      productNamePara == null ||
-      productNamePara == undefined
-    ) {
-      rej("Invalid product Name");
-    } else {
-      carts
-        .find({
-          cartID: cartIdPara,
-        })
+const removeproduct = function(cartIdPara, productNamePara) {
+    return new Promise((resolve, reject) => {
+        if (productNamePara == "" || productNamePara == null || productNamePara == undefined) {
+            rej("Invalid product Name");
+        } else {
+            carts.find({
+                "cartID": cartIdPara
+            })
+            .exec()
+            .then((data)=>{
+                forEach(data.products, (product) => {
+                    if(product.name == productNamePara){
+                        data.products.remove(product);
+                        data.save();
+                        resolve(true);
+                    }
+                });
+                resolve(false);
+            })
+            .catch((err)=>{
+                reject(err)
+            })
+        }
+    })
+}
+
+const loadProduct = function(product) {
+    return new Promise((resolve, reject) => {
+        productModel.findOne({sku: product.sku}).lean()
         .exec()
-        .then((data) => {
-          forEach(data.products, (product) => {
-            if (product.name == productNamePara) {
-              data.products.remove(product);
-              data.save();
-              resolve(true);
-            }
-          });
-          resolve(false);
+        .then((data)=>{
+            resolve(data);
         })
-        .catch((err) => {
-          reject(err);
-        });
-    }
-  });
-};
+        .catch((err)=>{
+            reject(err)
+        })
+    })
+}
 
 const loadAllCarts = function (userNamePara) {
   return new Promise((resolve, reject) => {
@@ -434,9 +446,7 @@ router.post("/", ensureLogin, (req, res) => {
             error: "A cart with that name already exists",
           });
         } else {
-          res.render("allCarts", {
-            carts: cartData,
-          });
+          res.redirect("/cart");
         }
       });
     })
@@ -447,8 +457,111 @@ router.post("/", ensureLogin, (req, res) => {
     });
 });
 
-router.get("/:id", ensureLogin, (req, res) => {
-  loadCartPage(req, res, req.params.id);
+router.get("/:id", ensureLogin, ensureAccess, (req, res)=>{
+    req.session.cart = {
+        cartID: req.params.id
+    }
+    cartModel.findOne({cartID: req.params.id}).lean()
+    .exec()
+    .then(data=>{
+        if (data == null) {
+            res.render("cart", {
+                error: "This cart does not exist"
+            })
+        } else {
+            loadAllCarts(req.session.user.userName).then((cartData) => {
+                req.session.cart = {
+                    cartID: data.cartID
+                }
+                let promises = data.products.map(async (product) => {
+                    let thisProduct = await loadProduct(product);
+                    thisProduct.quantity = product.quantity;
+                    return thisProduct;
+                })
+                Promise.all(promises)
+                .then((allProducts) => {
+
+                    userModel.findOne({userName: data.userName}).lean().exec()
+                    .then((userData) => {
+
+                        if (userData.discounted) {
+                            if(data.userName != req.session.user.userName) {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    products: allProducts,
+                                    discounted: userData.discounted
+                                })
+                            }
+                            else {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    leader: true,
+                                    products: allProducts,
+                                    discounted: userData.discounted
+                                })
+                            }
+                        } else {
+                            if(data.userName != req.session.user.userName) {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    products: allProducts
+                                })
+                            }
+                            else {
+                                res.render("cart", {
+                                    carts: cartData,
+                                    thisCart: data,
+                                    leader: true,
+                                    products: allProducts
+                                })
+                            }
+                        }
+                    })
+                })
+            })
+        }
+    })
+    .catch(err=>{
+        res.render("cart", {
+            error: err
+        })
+    })
+})
+
+router.post('/addmod', ensureLogin, ensureCart, (req, res) => {
+    if(req.body.email == req.session.user.email) {
+        loadCartPage(req, res, req.session.cart.cartID, "You cannot add yourself as a collaborator");
+    } else {
+        userModel.updateOne({email: req.body.email},
+            {$push: {carts: {
+                cartID: req.session.cart.cartID,
+                owner: false,
+            }}  
+        }).then((data)=>{
+            if (data.modifiedCount == 0) {
+                loadCartPage(req, res, req.session.cart.cartID, "No user with that email exists");
+            } else {
+                let modd;
+                if (req.body.mod == "on") modd = true; 
+                else  modd = false;
+                
+                cartModel.updateOne({cartID: req.session.cart.cartID},{
+                    $push: {collaborators: {
+                        email: req.body.email,
+                        approved: false,
+                        isModerator: modd
+                    }}
+                }).then((dataa)=>{
+                    res.redirect("/cart/" + req.session.cart.cartID);
+                })
+
+            }
+        })
+    }
+
 });
 
 router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
@@ -505,27 +618,49 @@ router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
       });
   }
 });
-// TODO testing require
-router.post("/addtocart", ensureCart, (req, res) => {
-  const { sku, quantity } = req.body;
-  let cartID = req.session.cart.cartID;
-  productModel
-    .findOne({ sku: sku })
-    .exec()
-    .then((data) => {
-        let productInc = {productName: data.productName, quantity: quantity, price: data.price};
-      cartModel
-        .updateOne({ cartID: cartID }, {
-            $inc: {totalPrice: (quantity*data.price)},
-            products: products.push({productInc}),
-        })
-        .then(data=>{
-            res.redirect(`/products/${sku}`);
-        })    
-        .catch(err=>{
-            console.log("Error occur while updating cart while adding products. Error" + err);
-        })
-    });
+
+router.post('/approve', ensureLogin, ensureCart, (req, res) => {
+  email = req.session.user.email;
+  cartIDD = req.session.cart.cartID;
+  cartModel.updateOne({cartID: cartIDD, "collaborators.email": email}, {
+    $set: {"collaborators.$.approved": true}
+  })
+})
+
+router.post("/add/:id", ensureLogin, ensureCart, (req, res) => {
+  let pQty = req.body['custom-input-number'];
+  let psku = req.params.id;
+  cartModel.updateOne({ cartID : req.session.cart.cartID }, {
+    $push: { products: { sku: psku, quantity: pQty } }
+  }).then(() => {}).catch(err => console.log(err))
+
+  res.redirect("/cart/" + req.session.cart.cartID);
 });
+
+router.post("/update/:id", ensureLogin, ensureCart, (req, res) => {
+    cartModel.findOne({cartID: req.params.id}).lean().exec()
+    .then((cart) => {
+        cart.products.forEach((product) => {
+            product.quantity = req.body[`${product.sku}`];
+        })
+        cartModel.updateOne({cartID: req.params.id}, {
+            $set: {products: cart.products}
+        }).then(() => {
+            res.redirect("/cart/" + req.params.id);
+        }
+        ).catch(err => console.log(err))
+
+    })
+
+});
+
+router.post("delete/:id" , ensureLogin, ensureCart, (req, res) => {
+    console.log(req.body.sku, req.params.id)
+    cartModel.updateOne({cartID: req.params.id}, {
+        $pull: {products: {sku: req.body.sku}}
+    }).then(() => {
+        res.redirect("/cart/" + req.params.id);
+    }).catch(err => {})
+})
 
 module.exports = router;

@@ -72,7 +72,7 @@ const cartSchema = new Schema({
     "cartName": String,
     "userName": String,
     "products": [{
-        "productName": String, 
+        "sku": Number, 
         "quantity": Number, 
         "price": Number
     }],
