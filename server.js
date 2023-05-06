@@ -43,6 +43,14 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
         discount: function(price, discount){
             return price - (price * (discount/100));
         },
+        displayCart: function(cartName, cartID, options){
+            if (cartName) return cartName
+            else {
+                console.log(typeof(cartID) + " + " + cartID)
+                return cartID
+                return cartID.substr(1, cartID.length)
+            }
+        },
         calcTotal: function(Products){
             total = 0
             Products.forEach(product => {

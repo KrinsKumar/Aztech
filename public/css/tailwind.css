@@ -910,6 +910,10 @@ video {
   margin-top: 3.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
 }
@@ -1259,6 +1263,10 @@ video {
 
 .gap-14 {
   gap: 3.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-y-4 {
@@ -2005,6 +2013,10 @@ video {
   padding-left: 0px;
 }
 
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2286,6 +2298,11 @@ video {
 .text-yellow-600 {
   --tw-text-opacity: 1;
   color: rgb(202 138 4 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(37 99 235 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2751,6 +2768,10 @@ video {
 @media (min-width: 100px) {
   .xsm\:top-32 {
     top: 8rem;
+  }
+
+  .xsm\:ml-2 {
+    margin-left: 0.5rem;
   }
 }
 

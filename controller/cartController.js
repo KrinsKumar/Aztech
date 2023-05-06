@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 const {cartModel, userModel, productModel} = require('../model/database.js')
 let mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-=======
-const { cartModel, userModel, productModel } = require("../model/database.js");
-let mongoose = require("mongoose");
-const dotenv = require("dotenv").config();
->>>>>>> 847f2f9208ebb55ccc530cb916c5938cff8ceb95
 const express = require("express");
 const app = express();
 const router = express.Router();
@@ -48,7 +42,9 @@ function checkAdmin(req, res, next) {
 
 function ensureAccess(req, res, next) {
   // isAccessable takes 2 argument first one is cartID. // TODO
-  if (isAccessable(req.session.email)) {
+  
+  
+  if (isAccessable(req.params.id, req.session.user.email)) {
     next();
   } else {
     res.render("home", {
@@ -113,18 +109,21 @@ const isCartApproved = function (cartIdPara) {
 //checks if the access is granted
 const isAccessable = function (cartIdPara, emailPara) {
   return new Promise((resolve, reject) => {
-    carts
-      .find({
-        cartID: cartIdPara,
-      })
-      .exec()
+    cartModel.find({cartID: cartIdPara}).lean().exec()
       .then((data) => {
-        forEach(data.collaborators, (collaborator) => {
-          if (collaborator.email == emailPara) {
-            resolve(true);
-          }
-        });
-        resolve(false);
+        
+        if (data.owner == emailPara) {
+          resolve(true);
+        }
+        if (typeof(data.collaborators) == "undefined" || data.collaborators.length == 0) {
+          resolve(false);
+        } else {
+          data.collaborators.forEach((collaborator) => {
+            if (collaborator.email == emailPara) {
+              resolve(true);
+            }
+          });
+        }
       })
       .catch((err) => {
         reject(err);
@@ -447,9 +446,7 @@ router.post("/", ensureLogin, (req, res) => {
             error: "A cart with that name already exists",
           });
         } else {
-          res.render("allCarts", {
-            carts: cartData,
-          });
+          res.redirect("/cart");
         }
       });
     })
@@ -460,7 +457,7 @@ router.post("/", ensureLogin, (req, res) => {
     });
 });
 
-router.get("/:id", ensureLogin, (req, res)=>{
+router.get("/:id", ensureLogin, ensureAccess, (req, res)=>{
     req.session.cart = {
         cartID: req.params.id
     }
@@ -621,27 +618,49 @@ router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
       });
   }
 });
-// TODO testing require
-router.post("/addtocart", ensureCart, (req, res) => {
-  const { sku, quantity } = req.body;
-  let cartID = req.session.cart.cartID;
-  productModel
-    .findOne({ sku: sku })
-    .exec()
-    .then((data) => {
-        let productInc = {productName: data.productName, quantity: quantity, price: data.price};
-      cartModel
-        .updateOne({ cartID: cartID }, {
-            $inc: {totalPrice: (quantity*data.price)},
-            products: products.push({productInc}),
-        })
-        .then(data=>{
-            res.redirect(`/products/${sku}`);
-        })    
-        .catch(err=>{
-            console.log("Error occur while updating cart while adding products. Error" + err);
-        })
-    });
+
+router.post('/approve', ensureLogin, ensureCart, (req, res) => {
+  email = req.session.user.email;
+  cartIDD = req.session.cart.cartID;
+  cartModel.updateOne({cartID: cartIDD, "collaborators.email": email}, {
+    $set: {"collaborators.$.approved": true}
+  })
+})
+
+router.post("/add/:id", ensureLogin, ensureCart, (req, res) => {
+  let pQty = req.body['custom-input-number'];
+  let psku = req.params.id;
+  cartModel.updateOne({ cartID : req.session.cart.cartID }, {
+    $push: { products: { sku: psku, quantity: pQty } }
+  }).then(() => {}).catch(err => console.log(err))
+
+  res.redirect("/cart/" + req.session.cart.cartID);
 });
+
+router.post("/update/:id", ensureLogin, ensureCart, (req, res) => {
+    cartModel.findOne({cartID: req.params.id}).lean().exec()
+    .then((cart) => {
+        cart.products.forEach((product) => {
+            product.quantity = req.body[`${product.sku}`];
+        })
+        cartModel.updateOne({cartID: req.params.id}, {
+            $set: {products: cart.products}
+        }).then(() => {
+            res.redirect("/cart/" + req.params.id);
+        }
+        ).catch(err => console.log(err))
+
+    })
+
+});
+
+router.post("delete/:id" , ensureLogin, ensureCart, (req, res) => {
+    console.log(req.body.sku, req.params.id)
+    cartModel.updateOne({cartID: req.params.id}, {
+        $pull: {products: {sku: req.body.sku}}
+    }).then(() => {
+        res.redirect("/cart/" + req.params.id);
+    }).catch(err => {})
+})
 
 module.exports = router;
