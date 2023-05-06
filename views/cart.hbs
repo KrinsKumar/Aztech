@@ -15,45 +15,51 @@
     </svg>
 </button>
 
-    <div class="flex flex-row">
-        <aside id="sidebar-multi-level-sidebar" class="z-50 left-0 w-64 h-transition-transform -translate-x-full sm:translate-x-0 sm:top-[73px] md:top-[71px] xsm:top-32" aria-label="Sidebar">
-            <div class="h-full px-9 py-4 overflow-y-auto border-r border-gray-200 bg-gray-50">
-                <div class="h-full flex flex-col">
-                    <!-- Moderators -->
-                    <ul class="pt-1 space-y-1 mod-list">
-                        <h3 class="my-3 text-xl font-bold text-urban">Collaborators</h3>
-                        {{#each thisCart.collaborators}}
-                            <li class="py-2 sm:py-1">
-                                <div class="flex items-center space-x-3">
-                                    <div class="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-200 rounded-full">
-                                        <span class="font-medium text-gray-600">{{#ini email}}{{/ini}}</span>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-semibold text-gray-900 truncate">
-                                            {{email}}
-                                        </p>
-                                    </div>
-                                    {{#if isModerator}}
-                                        {{#if approved}}
-                                            <span class="inline-flex items-center bg-green-200 text-gray-800 text-xs font-medium mr-2 px-1 py-1 rounded-full">
-                                                <span class="w-2 h-2 bg-green-400 rounded-full"></span>
-                                            </span>
-                                        {{else}}
-                                            <span class="inline-flex items-center bg-yellow-200 text-gray-800 text-xs font-medium mr-2 px-1 py-0.5 rounded-full">
-                                                <span class="w-2 h-2 mr-1 bg-yellow-400 rounded-full"></span>
-                                                ?
-                                            </span>
-                                        {{/if}}
-                                    {{/if}}
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ul>
-                    {{#if leader}}
-                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="mt-1 mx-1 text-white right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2">
-                            +
-                        </button>
-                    {{/if}}
+<div class="flex flex-row">
+    <aside id="sidebar-multi-level-sidebar"
+        class="z-50 left-0 w-64 h-transition-transform -translate-x-full sm:translate-x-0 sm:top-[73px] md:top-[71px] xsm:top-32"
+        aria-label="Sidebar">
+        <div class="h-full px-9 py-4 overflow-y-auto border-r border-gray-200 bg-gray-50">
+            <div class="h-full flex flex-col">
+                <!-- Moderators -->
+                <ul class="pt-1 space-y-1 mod-list">
+                    <h3 class="my-3 text-xl font-bold text-urban">Collaborators</h3>
+                    {{#each thisCart.collaborators}}
+                    <li class="py-2 sm:py-1">
+                        <div class="flex items-center space-x-3">
+                            <div
+                                class="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-200 rounded-full">
+                                <span class="font-medium text-gray-600">{{#ini email}}{{/ini}}</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-gray-900 truncate">
+                                    {{email}}
+                                </p>
+                            </div>
+                            {{#if isModerator}}
+                            {{#if approved}}
+                            <span
+                                class="inline-flex items-center bg-green-200 text-gray-800 text-xs font-medium mr-2 px-1 py-1 rounded-full">
+                                <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                            </span>
+                            {{else}}
+                            <span
+                                class="inline-flex items-center bg-yellow-200 text-gray-800 text-xs font-medium mr-2 px-1 py-0.5 rounded-full">
+                                <span class="w-2 h-2 mr-1 bg-yellow-400 rounded-full"></span>
+                                ?
+                            </span>
+                            {{/if}}
+                            {{/if}}
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{#if leader}}
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    class="mt-1 mx-1 text-white right-2.5 bottom-2.5 bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2">
+                    +
+                </button>
+                {{/if}}
 
 
                 <!-- My Carts -->
@@ -72,106 +78,122 @@
 
                 </ul>
 
-                <button type="button" class="mt-2 text-white bg-urban hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center justify-center mt-9">
+                <button type="button"
+                    class="mt-2 text-white bg-urban hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center justify-center mt-9">
                     <a download="Quotation.jpg" href="/Assets/Sample Quote Document.jpg">
                         Get Quote
                     </a>
                 </button>
-                
-            </div>
-        </aside>
-        <form method="post" action="/cart/update/{{thisCart.cartID}}">
-            {{#if cartError}}
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-2 " role="alert">
-                    <strong class="font-bold">Error: </strong>
-                    <span class="block sm:inline">{{cartError}}</span>
-                </div>
-            {{/if}}
 
-            <div class="flex flex-col max-w-3xl p-6 space-y-4 sm:p-10">
-                <h2 class="text-xl font-semibold">Your cart - <span class="text-urban">{{thisCart.cartName}}</span></h2>
-                <ul class="flex flex-col divide-y divide-gray-700">
-                    {{#each products}}
-                    <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
-                        <div class="flex w-full space-x-2 sm:space-x-4">
-                            <img class="flex-shrink-0 object-cover w-20 h-20  rounded outline-none sm:w-32 sm:h-32" src="{{image}}" alt="{{productName}}">
-                            <div class="flex flex-col justify-between w-full pb-4">
-                                <div class="flex justify-between w-full pb-2 space-x-2">
-                                    <div class="space-y-1">
-                                        <h3 class="text-lg font-semibold leading-snug sm:pr-8">{{productName}}</h3>
-                                        <p class="text-sm ">{{description}}</p>
-                                    </div>
-                                    <div class="text-right">
-                                        {{discounted}}
-                                        {{#if discounted}}
-                                            <p class="text-lg font-semibold">${{#discount price discounted}}{{/discount}}</p>
-                                            <p class="text-sm line-through">${{price}}</p>got
-                                        {{else}}
-                                            <p class="text-lg font-semibold">${{price}}</p>not
-                                        {{/if}}
-                                    </div>
+            </div>
+    </aside>
+    <form method="post" action="/cart/update/{{thisCart.cartID}}">
+        {{#if cartError}}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-2 " role="alert">
+            <strong class="font-bold">Error: </strong>
+            <span class="block sm:inline">{{cartError}}</span>
+        </div>
+        {{/if}}
+
+        <div class="flex flex-col max-w-3xl p-6 space-y-4 sm:p-10">
+            <h2 class="text-xl font-semibold">Your cart - <span class="text-urban">{{thisCart.cartName}}</span></h2>
+            <ul class="flex flex-col divide-y divide-gray-700">
+                {{discounted}}
+                {{#each products}}
+                <li class="flex flex-col py-6 sm:flex-row sm:justify-between">
+                    <div class="flex w-full space-x-2 sm:space-x-4">
+                        <img class="flex-shrink-0 object-cover w-20 h-20  rounded outline-none sm:w-32 sm:h-32"
+                            src="{{image}}" alt="{{productName}}">
+                        <div class="flex flex-col justify-between w-full pb-4">
+                            <div class="flex justify-between w-full pb-2 space-x-2">
+                                <div class="space-y-1">
+                                    <h3 class="text-lg font-semibold leading-snug sm:pr-8">{{productName}}</h3>
+                                    <p class="text-sm ">{{description}}</p>
                                 </div>
-                                <div class="flex text-sm divide-x">
-                                    <button type="button" class="flex items-center px-2 py-1 pl-0 space-x-1">
-                                        <label for="quantity" class="align-center block mb-2 text-sm font-medium text-gray-900">Quantity</label>
-                                    </button>
-                                    <button type="button" class="flex items-center px-2 py-1 space-x-1">
-                                      <input type="number" name="{{sku}}" id="{{sku}}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5" required="" value="{{quantity}}">
-                                    </button>
-                                    <form action="/cart/delete/{{thisCart.cartID}}" method="post">
-                                        <button type="submit" name="{{sku}}" class="ml-1 pl-2 flex items-center px-2 py-1 pl-0 space-x-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4 h-4 fill-current">
-                                                <path d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z"></path>
-                                                <rect width="32" height="200" x="168" y="216"></rect>
-                                                <rect width="32" height="200" x="240" y="216"></rect>
-                                                <rect width="32" height="200" x="312" y="216"></rect>
-                                                <path d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z"></path>
-                                            </svg>
-                                            <span>Remove</span>
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="flex text-sm divide-x flex-row align-middle">
+                                <div class="text-right">
+                                    {{#if discounted}}
+                                    <p class="text-lg font-semibold">${{#discount price discounted}}{{/discount}}</p>
+                                    <p class="text-sm line-through">${{price}}</p>got
+                                    {{else}}
+                                    <p class="text-lg font-semibold">${{price}}</p>not
+                                    {{/if}}
                                 </div>
                             </div>
+                            <div class="flex text-sm divide-x">
+                                <button type="button" class="flex items-center px-2 py-1 pl-0 space-x-1">
+                                    <label for="quantity"
+                                        class="align-center block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                                </button>
+                                <button type="button" class="flex items-center px-2 py-1 space-x-1">
+                                    <input type="number" name="{{sku}}" id="{{sku}}"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5"
+                                        required="" value="{{quantity}}">
+                                </button>
+                                <form action="/cart/delete/{{thisCart.cartID}}" method="post">
+                                    <button type="submit" name="{{sku}}"
+                                        class="ml-1 pl-2 flex items-center px-2 py-1 pl-0 space-x-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                            class="w-4 h-4 fill-current">
+                                            <path
+                                                d="M96,472a23.82,23.82,0,0,0,23.579,24H392.421A23.82,23.82,0,0,0,416,472V152H96Zm32-288H384V464H128Z">
+                                            </path>
+                                            <rect width="32" height="200" x="168" y="216"></rect>
+                                            <rect width="32" height="200" x="240" y="216"></rect>
+                                            <rect width="32" height="200" x="312" y="216"></rect>
+                                            <path
+                                                d="M328,88V40c0-13.458-9.488-24-21.6-24H205.6C193.488,16,184,26.542,184,40V88H64v32H448V88ZM216,48h80V88H216Z">
+                                            </path>
+                                        </svg>
+                                        <span>Remove</span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="flex text-sm divide-x flex-row align-middle">
+                            </div>
                         </div>
-                    </li>
-                    {{/each}}
-                </ul>
-                <div class="space-y-1 text-right">
-                    <p>Total amount:
-                        <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
-                    </p>
-                    <p class="text-sm ">Plus applicable charges</p>
-                </div>
-                <div class="flex justify-end space-x-4">
-                    <a href="/product">
-                        <button type="button" class="px-6 py-2 border rounded-md ">Back
-                            <span class="sr-only sm:not-sr-only">to shop</span>
-                        </button>
-                    </a>
-                        <button type="submit" class="px-6 py-2 border rounded-md ">
-                            <span class="sr-only sm:not-sr-only">Cart&nbsp;</span>Update
-                        </button>
-                    </form>
-                    {{#if leader}}
-                        <form action="/cart/submit" method="post">
-                            <button type="submit" class="px-6 py-2 bg-green-200 border rounded-md ">
-                                Submit
-                            </button>
-                        </form>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+            <div class="space-y-1 text-right">
+                <p>Total amount:
+                    {{#if discounted}}
+                        <p class="text-lg font-semibold">${{#discount {{#calcTotal products}}{{/calcTotal}}  discounted}}{{/discount}}</p>
+                        <p class="text-sm line-through">${{#calcTotal products}}{{/calcTotal}}</p>got
                     {{else}}
-                        <form action="/cart/approve" method="post">
-                            <button type="submit" class="px-6 py-2 bg-green-200 border rounded-md ">
-                                Approve
-                            </button>
-                        </form>
+                    <span class="font-semibold">${{#calcTotal products}}{{/calcTotal}}</span>
                     {{/if}}
-                </div>  
-                </div>
+                </p>
+                <p class="text-sm ">Plus applicable charges</p>
             </div>
-        </form>
-    </div>
+            <div class="flex justify-end space-x-4">
+                <a href="/product">
+                    <button type="button" class="px-6 py-2 border rounded-md ">Back
+                        <span class="sr-only sm:not-sr-only">to shop</span>
+                    </button>
+                </a>
+                <button type="submit" class="px-6 py-2 border rounded-md ">
+                    <span class="sr-only sm:not-sr-only">Cart&nbsp;</span>Update
+                </button>
+    </form>
+    {{#if leader}}
+    <form action="/cart/submit" method="post">
+        <button type="submit" class="px-6 py-2 bg-green-200 border rounded-md ">
+            Submit
+        </button>
+    </form>
+    {{else}}
+    <form action="/cart/approve" method="post">
+        <button type="submit" class="px-6 py-2 bg-green-200 border rounded-md ">
+            Approve
+        </button>
+    </form>
+    {{/if}}
+</div>
+</div>
+</div>
+</form>
+</div>
 {{/if}}
 
 
