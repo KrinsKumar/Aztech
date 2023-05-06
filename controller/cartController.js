@@ -463,6 +463,7 @@ router.get("/:id", ensureLogin, ensureAccess, (req, res)=>{
     req.session.cart = {
         cartID: req.params.id
     }
+    console.log(req.session.cart)
     cartModel.findOne({cartID: req.params.id}).lean()
     .exec()
     .then(data=>{
