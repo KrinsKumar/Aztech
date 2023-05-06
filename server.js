@@ -51,7 +51,7 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
                 return cartID.substr(1, cartID.length)
             }
         },
-        calcTotal: function(Products){
+        calcTotal: function(Products, discount){
             total = 0
             Products.forEach(product => {
                 total += product.price * product.quantity 
