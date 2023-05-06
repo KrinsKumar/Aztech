@@ -54,9 +54,9 @@ app.engine('.hbs', exphbs.engine({ extname: '.hbs',
         calcTotal: function(Products, discount){
             total = 0
             Products.forEach(product => {
-                total += product.price * product.quantity 
+                total += product.price * product.quantity
             })
-            return total
+            return total - (discount/100) * total
         }
     }})
 );
@@ -76,10 +76,10 @@ app.use(clientSessions({
 }));
 
 app.use(function(req,res,next) {
+    res.locals.userExists = req.session.user.userName;
     res.locals.session = req.session;
     next();
 })
-
 
 //-routes-------------------------------------------------------------------
 
