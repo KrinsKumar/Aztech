@@ -10,36 +10,7 @@
                 </div>
             </a>
         </div>
-        {{!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
-                <img class="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
-            </a>
-            <div class="p-5">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
-            </div>
-        </div> --}}
-        {{!-- <div class="col-span-2 rounded-lg">
-            <h1 class="text-3xl">Details</h1>
-            {{#each product.info}}
-            <h2 class="font-bold">{{heading}}</h2>
-            <br>
-                <ul class="space-y-1 text-sm text-gray-200 list-disc list-inside dark:text-gray-400">
-                    {{#each text}}
-                        <li>{{this}}</li>
-                    {{/each}}
-                </ul>
-            <br>
-            {{/each}}
-        </div> --}}
-
-        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="mb-4 border-gray-200">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                 <li class="mr-2" role="presentation">
                     <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Details</button>
@@ -72,31 +43,6 @@
                 <a href="{{product.manual}}">Manual</a>
             </div>
         </div>
-
-        {{!-- <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" role="tablist">
-                <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="details-tab" data-tabs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">Details</button>
-                </li>
-                <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="specifications-tab" data-tabs-target="#specifications" type="button" role="tab" aria-controls="specifications" aria-selected="false">Specifications</button>
-                </li>
-                <li class="mr-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="manual-tab" data-tabs-target="#manual" type="button" role="tab" aria-controls="manual" aria-selected="false">Manual</button>
-                </li>
-            </ul>
-            </div>
-            <div id="myTabContent">
-            <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="details" role="tabpanel" aria-labelledby="details-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content for the <strong class="font-medium text-gray-800 dark:text-white">Details tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-            </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="specifications" role="tabpanel" aria-labelledby="specifications-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content for the <strong class="font-medium text-gray-800 dark:text-white">Specifications tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-            </div>
-            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="manual" role="tabpanel" aria-labelledby="manual-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content for the <strong class="font-medium text-gray-800 dark:text-white">Manual tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-            </div>
-        </div> --}}
     </section>
     <div class="p-4 self-start">
         <h1 class="text-4xl font-bold mb-2 text-black">{{product.productName}}</h1>
@@ -114,6 +60,118 @@
         <p class="text-urban font-bold">${{product.price}}</p>
         <br>
         <p>{{product.description}}</p>
+        <br>
+        <div class="flex justify-left items-center space-x-2">
+            <div class="custom-number-input h-10 w-32">
+                <label for="custom-input-number" class="sr-only">Quantity</label>
+                <div class="flex flex-row h-10 w-full rounded-lg relative bg-gray-100">
+                <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l-lg cursor-pointer outline-none">
+                    <span class="m-auto text-2xl font-thin">−</span>
+                </button>
+                <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-base cursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r-lg cursor-pointer">
+                    <span class="m-auto text-2xl font-thin">+</span>
+                </button>
+                </div>
+            </div>
+            <button type="button" class="text-white bg-urban hover:bg-urban focus:ring-4 focus:ring-urban font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-urban dark:hover:bg-urban focus:outline-none dark:focus:ring-urban">Add To Cart</button>
+        </div>
+        <br>
+        <div class="flex justify-center items-center">
+            <article class="rounded-lg border-gray-700 bg-gray-300 p-4">
+                <div class="flex items-center gap-4">
+                    <div>
+                        <h3 class="text-2xl text-black">Buy Together</h3>
+                    </div>
+                </div>
+
+                <ul class="mt-4 space-y-2">
+                    <li>
+                    <a href="#" class="block h-full border bg-white p-4">
+                        <div class="max-h-20 grid grid-cols-4">
+                            <div class="max-h-20 col-span-1">
+                                <img class="block mx-auto h-full w-full object-cover rounded-lg" src={{product.image}} alt="" />
+                            </div>
+                            <div class="col-span-3 text-2xl flex justify-center items-center">
+                                <p>{{product.productName}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="block h-full border bg-white p-4">
+                        <div class="max-h-20 grid grid-cols-4">
+                            <div class="max-h-20 col-span-1">
+                                <img class="block mx-auto h-full w-full object-cover rounded-lg" src={{product.image}} alt="" />
+                            </div>
+                            <div class="col-span-3 text-2xl flex justify-center items-center">
+                                <p>{{relatedProducts.productName}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    </li>
+                </ul>
+                <div>
+                        <h3 class="text-2xl text-black">Related Products</h3>
+                    </div>
+            </article>
+        </div>
     </div>
+
 </div>
+
+<style>
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .custom-number-input input:focus {
+    outline: none !important;
+  }
+
+  .custom-number-input button:focus {
+    outline: none !important;
+  }
+</style>
+
+<script>
+  function decrement(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    value--;
+    target.value = value;
+  }
+
+  function increment(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+      'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    value++;
+    target.value = value;
+  }
+
+  const decrementButtons = document.querySelectorAll(
+    `button[data-action="decrement"]`
+  );
+
+  const incrementButtons = document.querySelectorAll(
+    `button[data-action="increment"]`
+  );
+
+  decrementButtons.forEach(btn => {
+    btn.addEventListener("click", decrement);
+  });
+
+  incrementButtons.forEach(btn => {
+    btn.addEventListener("click", increment);
+  });
+</script>
 
