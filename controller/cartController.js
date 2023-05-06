@@ -4,6 +4,8 @@ const dotenv = require('dotenv').config();
 const express = require("express");
 const app = express();
 const router = express.Router();
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
 //middleware
 
@@ -538,40 +540,41 @@ router.get("/:id", ensureLogin, ensureAccess, (req, res)=>{
     })
 })
 
-router.post('/addmod', ensureLogin, ensureCart, (req, res) => {
-    if(req.body.email == req.session.user.email) {
-        loadCartPage(req, res, req.session.cart.cartID, "You cannot add yourself as a collaborator");
-    } else {
-        userModel.updateOne({email: req.body.email},
-            {$push: {carts: {
-                cartID: req.session.cart.cartID,
-                owner: false,
-            }}  
-        }).then((data)=>{
-            if (data.modifiedCount == 0) {
-                loadCartPage(req, res, req.session.cart.cartID, "No user with that email exists");
-            } else {
-                let modd;
-                if (req.body.mod == "on") modd = true; 
-                else  modd = false;
+// router.post('/addmod', ensureLogin, ensureCart, (req, res) => {
+//     if(req.body.email == req.session.user.email) {
+//         loadCartPage(req, res, req.session.cart.cartID, "You cannot add yourself as a collaborator");
+//     } else {
+//         userModel.updateOne({email: req.body.email},
+//             {$push: {carts: {
+//                 cartID: req.session.cart.cartID,
+//                 owner: false,
+//             }}  
+//         }).then((data)=>{
+//             if (data.modifiedCount == 0) {
+//                 loadCartPage(req, res, req.session.cart.cartID, "No user with that email exists");
+//             } else {
+//                 let modd;
+//                 if (req.body.mod == "on") modd = true; 
+//                 else  modd = false;
                 
-                cartModel.updateOne({cartID: req.session.cart.cartID},{
-                    $push: {collaborators: {
-                        email: req.body.email,
-                        approved: false,
-                        isModerator: modd
-                    }}
-                }).then((dataa)=>{
-                    res.redirect("/cart/" + req.session.cart.cartID);
-                })
+//                 cartModel.updateOne({cartID: req.session.cart.cartID},{
+//                     $push: {collaborators: {
+//                         email: req.body.email,
+//                         approved: false,
+//                         isModerator: modd
+//                     }}
+//                 }).then((dataa)=>{
+//                     res.redirect("/cart/" + req.session.cart.cartID);
+//                 })
 
-            }
-        })
-    }
+//             }
+//         })
+//     }
 
-});
+// });
 
 router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
+  let modEmail = req.body.email;
   if (req.body.email == req.session.user.email) {
     loadCartPage(
       req,
@@ -601,6 +604,37 @@ router.post("/addmod", ensureLogin, ensureCart, (req, res) => {
             "No user with that email exists"
           );
         } else {
+          // TODO send email. modEmail
+          // 
+          let userName, cartName;
+          userModel.findOne({ email: req.body.email})
+          .exec()
+          .then(data=>{
+            userName = data.userName;
+            cartModel.findOne({cartID: req.session.cart.cartID})
+            .exec()
+            .then(data=>{
+              cartName = data.cartName;
+              const msg = {
+                to: modEmail,
+                from: "eazeurban@gmail.com",
+                subject: "New Cart Added",
+                html:
+                    `A new cart named ${cartName} got added by ${userName}. 
+                    <a herf="https://fine-red-squirrel-tie.cyclic.app/cart/${cartName}">Click here to check it out</a>`
+            };
+            // TODO update herf after hosted on cyclic
+            sgMail.send(msg)  //send the email
+          //   .then(() => {
+                
+          //   })
+          //   .catch(err => {
+                
+          //   });
+             })
+           })
+          
+          //
           let modd;
           if (req.body.mod == "on") modd = true;
           else modd = false;
@@ -663,6 +697,7 @@ router.post("/update/:id", ensureLogin, ensureCart, (req, res) => {
 
 router.post("delete/:id" , ensureLogin, ensureCart, (req, res) => {
     console.log(req.body.sku, req.params.id)
+
     cartModel.updateOne({cartID: req.params.id}, {
         $pull: {products: {sku: req.body.sku}}
     }).then(() => {
