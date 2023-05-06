@@ -1,5 +1,5 @@
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <p><a href="/product"><span class="text-urban">Products</span></a>/{{product.category}}</p>
+    <p><a href="/product"><span class="text-urban">Products</span></a> / {{product.categoryDetail.categoryName}} / {{product.productName}}</p>
 </div>
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-2 gap-4">
     <section class="self-start">
@@ -16,10 +16,10 @@
                     <button class="text-urban inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Details</button>
                 </li>
                 <li class="mr-2" role="presentation">
-                    <button class="text-urban inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Specifications</button>
+                    <button class="text-urban inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Specifications</button>
                 </li>
                 <li class="mr-2" role="presentation">
-                    <button class="text-urban inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Manual</button>
+                    <button class="text-urban inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Manual</button>
                 </li>
             </ul>
         </div>
@@ -28,7 +28,7 @@
                 {{#each product.info}}
             <h2 class="font-bold">{{heading}}</h2>
             <br>
-                <ul class="space-y-1 text-sm text-gray-200 list-disc list-inside dark:text-gray-400">
+                <ul class="space-y-1 text-sm text-gray-800 list-disc list-inside">
                     {{#each text}}
                         <li>{{this}}</li>
                     {{/each}}
@@ -52,7 +52,7 @@
                 <svg class="w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
                 Out of Stock
             {{else}}
-                <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                <svg class="w-4 h-4 mr-1.5 text-green-500  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                 In Stock
             {{/ifeq}}
         </div>
@@ -61,21 +61,23 @@
         <br>
         <p>{{product.description}}</p>
         <br>
-        <div class="flex justify-center items-center space-x-2">
-            <div class="custom-number-input h-10 w-32">
-                <label for="custom-input-number" class="sr-only">Quantity</label>
-                <div class="flex flex-row h-10 w-full rounded-lg relative bg-gray-100">
-                <button data-action="decrement" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l-lg cursor-pointer outline-none">
-                    <span class="m-auto text-2xl font-thin">−</span>
-                </button>
-                <input type="number" value="1" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-base cursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
-                <button data-action="increment" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r-lg cursor-pointer">
-                    <span class="m-auto text-2xl font-thin">+</span>
-                </button>
+        <form action="/cart/add/{{product.sku}}" method="post">
+            <div class="flex justify-center items-center space-x-2">
+                <div class="custom-number-input h-10 w-32">
+                    <label for="custom-input-number" class="sr-only">Quantity</label>
+                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-gray-100">
+                    <button data-action="decrement" type="button" class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l-lg cursor-pointer outline-none">
+                        <span class="m-auto text-2xl font-thin">−</span>
+                    </button>
+                    <input type="number" value="1" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-base cursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                    <button data-action="increment" type="button" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r-lg cursor-pointer">
+                        <span class="m-auto text-2xl font-thin">+</span>
+                    </button>
+                    </div>
                 </div>
+                <button type="submit" class="text-white bg-urban hover:bg-urban focus:ring-4 focus:ring-urban font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none">Add To Cart</button>
             </div>
-            <button type="button" class="text-white bg-urban hover:bg-urban focus:ring-4 focus:ring-urban font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-urban dark:hover:bg-urban focus:outline-none dark:focus:ring-urban">Add To Cart</button>
-        </div>
+        </form>
         <br>
         <div class="flex justify-center items-center">
             <article class="rounded-lg border-gray-700 bg-gray-300 p-4">
@@ -87,7 +89,7 @@
                 <ul class="mt-4 space-y-2">
                     {{#each bundleProducts}}
                     <li>
-                    <a href="#" class="block h-full border bg-white p-4">
+                    <a href="/product/{{sku}}" class="block h-full border bg-white p-4">
                         <div class="max-h-20 grid grid-cols-4">
                             <div class="max-h-20 mr-4 col-span-1">
                                 <img class="block mx-auto h-full w-full object-cover rounded-lg" src={{image}} alt="" />
@@ -99,16 +101,14 @@
                                 <svg class="w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
                                 Out of Stock
                                 {{else}}
-                                <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <svg class="w-4 h-4 mr-1.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                 In Stock
                                 {{/ifeq}}
                             </div>
                             </div>
                             <div class="max-h-20 col-span-1 flex justify-center items-center">
                                 <button class="bg-urban hover:bg-urban-700 text-white font-bold py-2 px-4 rounded-full flex justify-center items-center">
-                                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M10 18a1 1 0 01-1-1V11H2a1 1 0 110-2h7V3a1 1 0 112 0v6h7a1 1 0 110 2h-7v6a1 1 0 01-1 1z"/>
-                                    </svg>
+                                    View
                                 </button>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                 <ul class="mt-4 space-y-2">
                     {{#each relatedProducts}}
                     <li>
-                    <a href="#" class="block h-full border bg-white p-4">
+                    <a href="/product/{{sku}}" class="block h-full border bg-white p-4">
                         <div class="max-h-20 grid grid-cols-4">
                             <div class="max-h-20 mr-4 col-span-1">
                                 <img class="block mx-auto h-full w-full object-cover rounded-lg" src={{image}} alt="" />
@@ -134,16 +134,14 @@
                                 <svg class="w-4 h-4 mr-1.5 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
                                 Out of Stock
                                 {{else}}
-                                <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <svg class="w-4 h-4 mr-1.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                                 In Stock
                                 {{/ifeq}}
                             </div>
                             </div>
                             <div class="max-h-20 col-span-1 flex justify-center items-center">
                                 <button class="bg-urban hover:bg-urban-700 text-white font-bold py-2 px-4 rounded-full flex justify-center items-center">
-                                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M10 18a1 1 0 01-1-1V11H2a1 1 0 110-2h7V3a1 1 0 112 0v6h7a1 1 0 110 2h-7v6a1 1 0 01-1 1z"/>
-                                    </svg>
+                                    View
                                 </button>
                             </div>
                         </div>
