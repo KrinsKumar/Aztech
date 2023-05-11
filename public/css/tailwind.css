@@ -590,6 +590,10 @@ video {
   inset: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .bottom-2 {
   bottom: 0.5rem;
 }
@@ -622,20 +626,16 @@ video {
   top: 0.75rem;
 }
 
-.bottom-0 {
-  bottom: 0px;
-}
-
-.z-50 {
-  z-index: 50;
-}
-
 .-z-50 {
   z-index: -50;
 }
 
 .z-0 {
   z-index: 0;
+}
+
+.z-50 {
+  z-index: 50;
 }
 
 .col-span-1 {
@@ -687,6 +687,11 @@ video {
   margin-right: 0.25rem;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -715,11 +720,6 @@ video {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .-mb-px {
@@ -922,6 +922,10 @@ video {
   max-height: 100%;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-2 {
   width: 0.5rem;
 }
@@ -972,10 +976,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .min-w-0 {
@@ -1109,6 +1109,10 @@ video {
   gap: 2.5rem;
 }
 
+.gap-14 {
+  gap: 3.5rem;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1119,10 +1123,6 @@ video {
 
 .gap-5 {
   gap: 1.25rem;
-}
-
-.gap-14 {
-  gap: 3.5rem;
 }
 
 .gap-y-4 {
@@ -1499,6 +1499,14 @@ video {
   background-image: url('/photo/bg-hero.png');
 }
 
+.bg-\[url\(\'\/photo\/fx-400\.png\'\)\] {
+  background-image: url('/photo/fx-400.png');
+}
+
+.bg-\[url\(\'\/photo\/sensors\.png\'\)\] {
+  background-image: url('/photo/sensors.png');
+}
+
 .bg-\[url\(\'https\:\/\/mircom\.com\/wp-content\/uploads\/400-series-notification-devices-600x600\.jpg\'\)\] {
   background-image: url('https://mircom.com/wp-content/uploads/400-series-notification-devices-600x600.jpg');
 }
@@ -1509,14 +1517,6 @@ video {
 
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
-}
-
-.bg-\[url\(\'\/photo\/fx-400\.png\'\)\] {
-  background-image: url('/photo/fx-400.png');
-}
-
-.bg-\[url\(\'\/photo\/sensors\.png\'\)\] {
-  background-image: url('/photo/sensors.png');
 }
 
 .from-purple-600 {
@@ -1594,12 +1594,12 @@ video {
   padding: 1rem;
 }
 
-.p-6 {
-  padding: 1.5rem;
-}
-
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .px-0 {
@@ -1713,12 +1713,20 @@ video {
   padding-left: 0px;
 }
 
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .pl-2 {
   padding-left: 0.5rem;
 }
 
 .pl-3 {
   padding-left: 0.75rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .pr-4 {
@@ -1735,14 +1743,6 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pl-10 {
-  padding-left: 2.5rem;
-}
-
-.pl-8 {
-  padding-left: 2rem;
 }
 
 .text-left {
@@ -2041,12 +2041,12 @@ video {
   transition-duration: 150ms;
 }
 
-.duration-75 {
-  transition-duration: 75ms;
-}
-
 .duration-700 {
   transition-duration: 700ms;
+}
+
+.duration-75 {
+  transition-duration: 75ms;
 }
 
 .ease-in {
@@ -2340,10 +2340,6 @@ video {
     margin-top: 0px;
   }
 
-  .sm\:ml-72 {
-    margin-left: 18rem;
-  }
-
   .sm\:inline {
     display: inline;
   }
@@ -2510,16 +2506,12 @@ video {
     width: auto;
   }
 
-  .md\:max-w-3xl {
-    max-width: 48rem;
-  }
-
   .md\:max-w-2xl {
     max-width: 42rem;
   }
 
-  .md\:max-w-sm {
-    max-width: 24rem;
+  .md\:max-w-3xl {
+    max-width: 48rem;
   }
 
   .md\:flex-row {
@@ -2552,12 +2544,6 @@ video {
     --tw-space-y-reverse: 0;
     margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
-  }
-
-  .md\:space-x-1 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(0.25rem * var(--tw-space-x-reverse));
-    margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .md\:rounded-none {
